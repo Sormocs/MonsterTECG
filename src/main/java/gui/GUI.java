@@ -1,3 +1,5 @@
+package gui;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -45,7 +47,9 @@ public class GUI extends JFrame {
         begin_host.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
 
-                //AQUI CODIGO PARA EJECUTAR, SI ES MUCHO CREAR METODO APARTE
+                //AQUI CÓDIGO PARA EJECUTAR, SI ES MUCHO CREAR METODO APARTE
+                Partida host = new Partida();
+                host.Host();
 
                 Change2Screen2();
             }
@@ -60,6 +64,12 @@ public class GUI extends JFrame {
             public void actionPerformed(ActionEvent e) {
 
                 //AQUI CODIGO PARA EJECUTAR, SI ES MUCHO CREAR METODO APARTE
+
+                Partida partida = new Partida();
+                partida.Invitado();
+
+                //public void host....
+                //crea el hilo cliente....
 
                 Change2Screen2();
             }

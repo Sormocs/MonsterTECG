@@ -1,8 +1,14 @@
+import servidor.Server;
+import gui.GUI;
+
 public class Main {
 
     public static void main(String[] args) {
 
-        GUI main_win = new GUI();
+        //Server holis = new Server();
+        //holis.Escuchar();
+
+        gui.GUI main_win = new gui.GUI();
         main_win.setVisible(true);
 
     }
