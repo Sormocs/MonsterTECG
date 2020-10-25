@@ -11,6 +11,7 @@ public class GUI extends JFrame {
     private JPanel screen2;
     private JButton begin_host;
     private JButton join_guest;
+    private JButton secret_button;
 
 
     public GUI(){
@@ -75,6 +76,21 @@ public class GUI extends JFrame {
             }
         });
 
+        //BOTON SECRETO:
+
+        secret_button = new JButton();
+        secret_button.setText("Boton Secreto");
+        secret_button.setBounds(320,350,160,50);
+        secret_button.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+
+                //AQUI CODIGO PARA EJECUTAR, SI ES MUCHO CREAR METODO APARTE
+
+            }
+        });
+
+
+        this.screen1.add(secret_button);
         this.screen1.add(join_guest);
         this.screen1.add(begin_host);
     }
