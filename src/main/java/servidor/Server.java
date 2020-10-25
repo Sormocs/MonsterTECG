@@ -4,13 +4,13 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.LinkedList;
 
-public class Server {
+public class Server implements Runnable{
     private final int puerto = 5000;
     private final int conexiones = 2;
     private LinkedList<Socket> usuarios = new LinkedList<Socket>();
     private boolean turno = true;
 
-    public void Escuchar() {
+    public void run() {
         try {
             ServerSocket servidor = new ServerSocket(puerto, conexiones);
             System.out.println("Esperando jugadores...");

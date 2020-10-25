@@ -8,5 +8,6 @@ public class Main2 {
         Runnable iniciar_conexion = new Cliente();
         Thread hilo = new Thread(iniciar_conexion);
         hilo.start();
+
     }
 }

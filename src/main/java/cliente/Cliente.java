@@ -3,6 +3,7 @@ package cliente;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.net.Socket;
+import java.net.UnknownHostException;
 
 public class Cliente implements Runnable {
 
@@ -11,6 +12,8 @@ public class Cliente implements Runnable {
     private DataOutputStream out;
     private DataInputStream in;
     private int puerto = 5000;
+
+    private String IP;
 
     private String host = "localhost";
     private String mensaje;
@@ -22,6 +25,7 @@ public class Cliente implements Runnable {
             this.cliente = new Socket(host,puerto);
             this.in = new DataInputStream(cliente.getInputStream());
             this.out = new DataOutputStream(cliente.getOutputStream());
+            ObtenerIP();
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -39,6 +43,14 @@ public class Cliente implements Runnable {
         } catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    private void ObtenerIP() throws UnknownHostException {
+
+        CheckIP miIP = new CheckIP();
+        this.IP = miIP.obtenerIP();
+        System.out.println(IP);
+
     }
 
 
