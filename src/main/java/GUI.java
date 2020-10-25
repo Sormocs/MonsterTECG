@@ -45,7 +45,7 @@ public class GUI extends JFrame {
         begin_host.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
 
-                //AQUI CODIGO PARA EJECUTAR, SI ES MUCHO CREAR METODO APARTE
+                //AQUI CÓDIGO PARA EJECUTAR, SI ES MUCHO CREAR METODO APARTE
 
                 Change2Screen2();
             }
