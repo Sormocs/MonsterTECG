@@ -4,6 +4,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.net.Socket;
 import java.util.LinkedList;
+import java.util.Scanner;
 
 public class HiloServidor implements  Runnable{
 
@@ -27,11 +28,12 @@ public class HiloServidor implements  Runnable{
 
             while(true){
                 //logica del juego
-                System.out.println("hola");
+                String mensajeRecibido = in.readUTF();
+                System.out.println(mensajeRecibido);
 
                 for (Socket usuario : usuarios){
                     out = new DataOutputStream(usuario.getOutputStream());
-                    out.writeUTF("holawas");
+                    out.writeUTF("enviando mensaje desde el servidor");
                 }
             }
         } catch (Exception e){

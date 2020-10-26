@@ -2,8 +2,10 @@ package cliente;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.io.IOException;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.Scanner;
 
 public class Cliente implements Runnable {
 
@@ -35,11 +37,13 @@ public class Cliente implements Runnable {
     public void run(){
         try{
             //mensaje = in.readUTF();
-            while(true){
+            while(true) {
                 mensaje = in.readUTF();
                 System.out.println(mensaje);
                 //lógica del game
+
             }
+
         } catch (Exception e){
             e.printStackTrace();
         }
@@ -53,5 +57,9 @@ public class Cliente implements Runnable {
 
     }
 
+    public void EnviarMensaje() throws IOException {
+        String mensaje1 = "Enviando información sobre el cliente";
+        out.writeUTF(mensaje1);
+    }
 
 }

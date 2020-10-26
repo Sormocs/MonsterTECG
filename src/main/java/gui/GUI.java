@@ -7,6 +7,8 @@ import java.io.*;
 
 public class GUI extends JFrame {
 
+    private Partida partida;
+
     private JPanel screen1;
     private JPanel screen2;
     private JButton begin_host;
@@ -21,6 +23,7 @@ public class GUI extends JFrame {
         setSize(800,600);
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        partida = new Partida();
     }
 
 
@@ -49,8 +52,8 @@ public class GUI extends JFrame {
             public void actionPerformed(ActionEvent e) {
 
                 //AQUI CÓDIGO PARA EJECUTAR, SI ES MUCHO CREAR METODO APARTE
-                Partida host = new Partida();
-                host.Host();
+
+                partida.Host();
 
                 Change2Screen2();
             }
@@ -66,7 +69,6 @@ public class GUI extends JFrame {
 
                 //AQUI CODIGO PARA EJECUTAR, SI ES MUCHO CREAR METODO APARTE
 
-                Partida partida = new Partida();
                 partida.Invitado();
 
                 //public void host....
@@ -84,13 +86,14 @@ public class GUI extends JFrame {
         secret_button.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
 
-                //AQUI CODIGO PARA EJECUTAR, SI ES MUCHO CREAR METODO APARTE
-
+                try {
+                    partida.EnviarMensaje();
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
+                }
             }
         });
 
-
-        this.screen1.add(secret_button);
         this.screen1.add(join_guest);
         this.screen1.add(begin_host);
     }
@@ -101,6 +104,7 @@ public class GUI extends JFrame {
         JLabel hellow = new JLabel("Welcome to an unfinished game");
         hellow.setBounds(300,300,250,50);
         screen2.add(hellow);
+        this.screen2.add(secret_button);
 
     }
 
