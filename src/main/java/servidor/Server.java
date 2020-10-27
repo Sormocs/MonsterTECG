@@ -12,12 +12,16 @@ public class Server implements Runnable{
 
     public void run() {
         try {
+            //Se crea el socket server
             ServerSocket servidor = new ServerSocket(puerto, conexiones);
             System.out.println("Esperando jugadores...");
 
+            //Ciclo donde espera a que los jugadores se conecten para agregarlos a la lista
             while (true) {
                 Socket cliente = servidor.accept();
                 usuarios.add(cliente);
+
+                //Hilo para el server
                 Runnable iniciar_conexion = new HiloServidor(cliente,usuarios);
                 Thread hilo = new Thread(iniciar_conexion);
                 hilo.start();

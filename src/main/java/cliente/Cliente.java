@@ -24,6 +24,7 @@ public class Cliente implements Runnable {
 
     public Cliente(){
         try{
+            //Se crea el socket y los data e input stream para enviar y recibir mensajes
             this.cliente = new Socket(host,puerto);
             this.in = new DataInputStream(cliente.getInputStream());
             this.out = new DataOutputStream(cliente.getOutputStream());
@@ -38,6 +39,7 @@ public class Cliente implements Runnable {
         try{
             //mensaje = in.readUTF();
             while(true) {
+                //Lee el mensaje que envió el servidor
                 mensaje = in.readUTF();
                 System.out.println(mensaje);
                 //lógica del game
@@ -51,6 +53,7 @@ public class Cliente implements Runnable {
 
     private void ObtenerIP() throws UnknownHostException {
 
+        //Llamo a la clase y al método para obtener la IP
         CheckIP miIP = new CheckIP();
         this.IP = miIP.obtenerIP();
         System.out.println(IP);
@@ -58,6 +61,7 @@ public class Cliente implements Runnable {
     }
 
     public void EnviarMensaje() throws IOException {
+        //Enviar un mensaje al server
         String mensaje1 = "Enviando información sobre el cliente";
         out.writeUTF(mensaje1);
     }

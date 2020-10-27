@@ -23,20 +23,25 @@ public class HiloServidor implements  Runnable{
     @Override
     public void run(){
         try{
+            //Data output and input stream para enviar y recibir mensajes
             out = new DataOutputStream(socket.getOutputStream());
             in = new DataInputStream(socket.getInputStream());
 
             while(true){
                 //logica del juego
+
+                //lee el mensaje que viene desde el servidor
                 String mensajeRecibido = in.readUTF();
                 System.out.println(mensajeRecibido);
 
+                //ciclo para enviar el mensaje a los 2 usuarios
                 for (Socket usuario : usuarios){
                     out = new DataOutputStream(usuario.getOutputStream());
                     out.writeUTF("enviando mensaje desde el servidor");
                 }
             }
         } catch (Exception e){
+            //método por si se desconecta un usuario que lo elimine de la lista.
             for (int i = 0; i < usuarios.size(); i++) {
                 if(usuarios.get(i) == socket){
                     usuarios.remove(i);
