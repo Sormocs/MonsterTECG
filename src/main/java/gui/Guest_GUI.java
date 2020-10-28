@@ -48,7 +48,7 @@ public class Guest_GUI extends JFrame{
         //BOTON SECRETO:
         secret_button = new JButton();
         secret_button.setText("Boton Secreto");
-        secret_button.setBounds(320,350,160,50);
+        secret_button.setBounds(50,270,160,50);
         secret_button.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
 
@@ -60,6 +60,7 @@ public class Guest_GUI extends JFrame{
             }
         });
 
+        this.guest_screen.add(secret_button);
         this.guest_screen.add(guest_gui_bg);
 
     }
