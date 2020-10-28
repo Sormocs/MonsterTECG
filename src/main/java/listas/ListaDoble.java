@@ -75,7 +75,7 @@ public class ListaDoble {
 
         while (temp != null){
             System.out.println(temp.getDato());
-            temp = temp.getSiguiente()
+            temp = temp.getSiguiente();
         }
     }
 }

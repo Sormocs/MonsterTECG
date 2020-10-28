@@ -1,120 +1,114 @@
 package gui;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
+import java.net.BindException;
 
 public class GUI extends JFrame {
 
     private Partida partida;
+    private Host_GUI ventana_host;
+    private Guest_GUI ventana_invitado;
 
-    private JPanel screen1;
-    private JPanel screen2;
+    private JPanel screen;
+
     private JButton begin_host;
     private JButton join_guest;
     private JButton secret_button;
 
+    private JLabel menu_bg;
 
-    public GUI(){
+
+    public GUI() {
         super();
         InitializeComponents();
+        ConfigureWin();
+        partida = new Partida();
+
+    }
+
+    public void ConfigureWin(){
         setTitle("Monster TECG!");
         setSize(800,600);
         setResizable(false);
+        setLocationRelativeTo(null);
+        InitializeComponents();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        partida = new Partida();
     }
 
 
     private void InitializeComponents(){
 
-        screen2 = new JPanel();
-        screen2.setBackground(Color.BLUE);
+        screen = new JPanel();
+        screen.setLayout(null);
+        this.getContentPane().add(screen);
+        ScreenComps();
 
-
-        screen1 = new JPanel();
-        screen1.setBackground(Color.BLACK);
-        this.getContentPane().add(screen1);
-        Screen1Comps();
     }
 
-    private void Screen1Comps(){
+    private void ScreenComps(){
 
-        screen1.setLayout(null);
+        menu_bg = new JLabel(new ImageIcon("Imagenes/MenuBG.jpg"));
+        menu_bg.setBounds(0,0,800,600);
+        Buttons();
 
-        //BOTON HOST:
+    }
+
+    private void Buttons(){
 
         begin_host = new JButton();
-        begin_host.setText("Entrar como host");
-        begin_host.setBounds(100,350,160,50);
+        begin_host.setIcon(new ImageIcon("Imagenes/HostButton.png"));
+        begin_host.setBounds(100,230,270,130);
         begin_host.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
 
-                //AQUI CÓDIGO PARA EJECUTAR, SI ES MUCHO CREAR METODO APARTE
+                ActionButton1();
 
-                partida.Host();
-
-                Change2Screen2();
             }
         });
 
         //BOTON INVITADO:
 
         join_guest = new JButton();
-        join_guest.setText("Entrar como Invitado");
-        join_guest.setBounds(540,350,160,50);
+        join_guest.setIcon(new ImageIcon("Imagenes/GuestButton.png"));
+        join_guest.setBounds(420,230,270,130);
         join_guest.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
 
-                //AQUI CODIGO PARA EJECUTAR, SI ES MUCHO CREAR METODO APARTE
-
-                partida.Invitado();
+                ActionButton2();
 
                 //public void host....
                 //crea el hilo cliente....
 
-                Change2Screen2();
             }
         });
 
-        //BOTON SECRETO:
-
-        secret_button = new JButton();
-        secret_button.setText("Boton Secreto");
-        secret_button.setBounds(320,350,160,50);
-        secret_button.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-
-                try {
-                    partida.EnviarMensaje();
-                } catch (IOException ioException) {
-                    ioException.printStackTrace();
-                }
-            }
-        });
-
-        this.screen1.add(join_guest);
-        this.screen1.add(begin_host);
-    }
-
-    private void Screen2Comps(){
-
-        screen2.setLayout(null);
-        JLabel hellow = new JLabel("Welcome to an unfinished game");
-        hellow.setBounds(300,300,250,50);
-        screen2.add(hellow);
-        this.screen2.add(secret_button);
+        this.screen.add(begin_host);
+        this.screen.add(join_guest);
+        this.screen.add(menu_bg);
 
     }
 
-    private void Change2Screen2(){
+    private void ActionButton1(){
 
-        this.screen1.setVisible(false);
-        this.getContentPane().add(screen2);
-        Screen2Comps();
+        partida.Host();
+        ventana_host = new Host_GUI();
+        ventana_host.setVisible(true);
+        this.setVisible(false);
 
     }
 
+    private void ActionButton2(){
 
+        partida.Invitado();
+        ventana_invitado = new Guest_GUI();
+        ventana_invitado.setVisible(true);
+        this.setVisible(false);
+
+
+        //public void host....
+        //crea el hilo cliente....
+
+    }
 }
