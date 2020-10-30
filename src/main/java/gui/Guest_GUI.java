@@ -14,11 +14,12 @@ public class Guest_GUI extends JFrame{
 
     private JLabel guest_gui_bg;
 
-    public Guest_GUI(){
+    public Guest_GUI(Partida partida){
 
         super();
         InitializeComponents();
         ConfigureWin();
+        this.partida = partida;
 
     }
 

@@ -77,10 +77,6 @@ public class GUI extends JFrame {
             public void actionPerformed(ActionEvent e) {
 
                 ActionButton2();
-
-                //public void host....
-                //crea el hilo cliente....
-
             }
         });
 
@@ -93,7 +89,7 @@ public class GUI extends JFrame {
     private void ActionButton1(){
 
         partida.Host();
-        ventana_host = new Host_GUI();
+        ventana_host = new Host_GUI(partida);
         ventana_host.setVisible(true);
         this.setVisible(false);
 
@@ -102,7 +98,7 @@ public class GUI extends JFrame {
     private void ActionButton2(){
 
         partida.Invitado();
-        ventana_invitado = new Guest_GUI();
+        ventana_invitado = new Guest_GUI(partida);
         ventana_invitado.setVisible(true);
         this.setVisible(false);
 

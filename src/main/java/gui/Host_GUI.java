@@ -12,11 +12,14 @@ public class Host_GUI extends JFrame{
 
     private JButton start_btn;
 
-    public Host_GUI(){
+    private Partida partida;
+
+    public Host_GUI(Partida partida){
 
         super();
         InitializeComponents();
         ConfigureWin();
+        this.partida = partida;
 
     }
 
