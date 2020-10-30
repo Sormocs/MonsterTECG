@@ -6,20 +6,17 @@ import java.io.*;
 
 public class Guest_GUI extends JFrame{
 
-    private Partida partida;
-
     private JPanel guest_screen;
 
     private JButton secret_button;
 
     private JLabel guest_gui_bg;
 
-    public Guest_GUI(Partida partida){
+    public Guest_GUI(){
 
         super();
         InitializeComponents();
         ConfigureWin();
-        this.partida = partida;
 
     }
 
@@ -54,7 +51,7 @@ public class Guest_GUI extends JFrame{
             public void actionPerformed(ActionEvent e) {
 
                 try {
-                    partida.EnviarMensaje();
+                    Partida.GetInstance().EnviarMensaje();
                 } catch (IOException ioException) {
                     ioException.printStackTrace();
                 }

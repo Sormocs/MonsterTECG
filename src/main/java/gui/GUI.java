@@ -7,7 +7,6 @@ import java.net.BindException;
 
 public class GUI extends JFrame {
 
-    private Partida partida;
     private Host_GUI ventana_host;
     private Guest_GUI ventana_invitado;
 
@@ -24,7 +23,6 @@ public class GUI extends JFrame {
         super();
         InitializeComponents();
         ConfigureWin();
-        partida = new Partida();
 
     }
 
@@ -88,8 +86,8 @@ public class GUI extends JFrame {
 
     private void ActionButton1(){
 
-        partida.Host();
-        ventana_host = new Host_GUI(partida);
+        Partida.GetInstance().Host();
+        ventana_host = new Host_GUI();
         ventana_host.setVisible(true);
         this.setVisible(false);
 
@@ -97,14 +95,11 @@ public class GUI extends JFrame {
 
     private void ActionButton2(){
 
-        partida.Invitado();
-        ventana_invitado = new Guest_GUI(partida);
+        Partida.GetInstance().Invitado();
+        ventana_invitado = new Guest_GUI();
         ventana_invitado.setVisible(true);
         this.setVisible(false);
 
-
-        //public void host....
-        //crea el hilo cliente....
 
     }
 }

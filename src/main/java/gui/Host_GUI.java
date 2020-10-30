@@ -2,7 +2,6 @@ package gui;
 
 import javax.swing.*;
 import java.awt.event.*;
-import java.io.*;
 
 public class Host_GUI extends JFrame{
 
@@ -12,14 +11,11 @@ public class Host_GUI extends JFrame{
 
     private JButton start_btn;
 
-    private Partida partida;
-
-    public Host_GUI(Partida partida){
+    public Host_GUI(){
 
         super();
         InitializeComponents();
         ConfigureWin();
-        this.partida = partida;
 
     }
 
