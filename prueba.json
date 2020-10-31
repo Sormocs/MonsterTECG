@@ -1,0 +1,21 @@
+{
+  "cartas": {
+    "Minion": {
+      "M1": {
+        "nombre": "M1",
+        "costo": "100",
+        "ataque": "150"
+      },
+      "M2": {
+        "nombre": "M2",
+        "costo": "54",
+        "ataque": "98"
+      },
+      "M3": {
+        "nombre": "M3",
+        "costo": "98",
+        "ataque": "12"
+      }
+    }
+  }
+}

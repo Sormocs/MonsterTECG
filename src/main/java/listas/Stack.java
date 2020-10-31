@@ -15,6 +15,7 @@ public class Stack {
     }
 
     public boolean push(Object nodo){
+        //Ingresar dato al inicio
         if (top>=(max-1)){
             System.out.println("la lista esta llena");
             return false;
@@ -25,6 +26,7 @@ public class Stack {
     }
 
     public boolean pop(){
+        //Sacar dato al inicio
         if(this.isEmpty()){
             System.out.println("la lista esta vacia");
             return false;
@@ -35,6 +37,7 @@ public class Stack {
     }
 
     public void print(){
+        //Imprimir la clase
         for (Object i : stack){
             System.out.println(i);
         }

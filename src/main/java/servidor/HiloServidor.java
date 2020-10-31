@@ -4,7 +4,6 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.net.Socket;
 import java.util.LinkedList;
-import java.util.Scanner;
 
 public class HiloServidor implements  Runnable{
 
@@ -28,20 +27,29 @@ public class HiloServidor implements  Runnable{
             in = new DataInputStream(socket.getInputStream());
 
             while(true){
-                //logica del juego
 
-                //lee el mensaje que viene desde el servidor
-                String mensajeRecibido = in.readUTF();
-                System.out.println(mensajeRecibido);
+                //Leer mensaje que proviene desde el cliente
+                String mensaje = in.readUTF();
+                System.out.println(mensaje);
 
-                //ciclo para enviar el mensaje a los 2 usuarios
+                //Separar el mensaje según el protocolo establecido
+                String[] leermensaje = mensaje.split("-");
+
+                //Leerá de quien proviene el mensaje. Si es del host, lo cambiará a guest y si viceversa.
+                if (leermensaje[2].equals("host")){
+                    leermensaje[2] = "guest";
+                } else if (leermensaje[2].equals("guest")){
+                    leermensaje[2] = "host";
+                }
+
+                //Ciclo para enviar el mensaje a los 2 usuarios
                 for (Socket usuario : usuarios){
                     out = new DataOutputStream(usuario.getOutputStream());
-                    out.writeUTF("enviando mensaje desde el servidor");
+                    out.writeUTF("Hola como estas");
                 }
             }
         } catch (Exception e){
-            //método por si se desconecta un usuario que lo elimine de la lista.
+            //Método por si se desconecta un usuario que lo elimine de la lista.
             for (int i = 0; i < usuarios.size(); i++) {
                 if(usuarios.get(i) == socket){
                     usuarios.remove(i);

@@ -1,15 +1,22 @@
 package cliente;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import manejo.json.Json;
+
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 import java.net.UnknownHostException;
-import java.util.Scanner;
 
 public class Cliente implements Runnable {
 
     private Socket cliente;
+
+    private String jugador;
+
+    private int vida;
+    private int mana;
 
     private DataOutputStream out;
     private DataInputStream in;
@@ -22,7 +29,10 @@ public class Cliente implements Runnable {
 
     private boolean turno;
 
-    public Cliente(){
+    public Cliente(String jugador){
+        this.vida = 1000;
+        this.mana = 1000;
+        this.jugador = jugador;
         try{
             //Se crea el socket y los data e input stream para enviar y recibir mensajes
             this.cliente = new Socket(host,puerto);
@@ -37,12 +47,19 @@ public class Cliente implements Runnable {
     @Override
     public void run(){
         try{
-            //mensaje = in.readUTF();
             while(true) {
+
                 //Lee el mensaje que envió el servidor
                 mensaje = in.readUTF();
                 System.out.println(mensaje);
-                //lógica del game
+
+                //Separar el mensaje según el protocolo establecido
+                String[] leermensaje = mensaje.split("-");
+
+                //Lógica del juego
+                if (leermensaje[2].equals(this.jugador)){
+                    EjeccucionServer();
+                }
 
             }
 
@@ -61,9 +78,23 @@ public class Cliente implements Runnable {
     }
 
     public void EnviarMensaje() throws IOException {
+
         //Enviar un mensaje al server
-        String mensaje1 = "Enviando información sobre el cliente";
-        out.writeUTF(mensaje1);
+
+        this.out.writeUTF("carta1");
+
     }
 
+    public boolean getVida() {
+        return vida < 0;
+    }
+
+    public void setVida(int vida) {
+        this.vida -= vida;
+        System.out.println(this.vida);
+    }
+
+    public void EjeccucionServer(){
+        //Aqui se hará lo que mander el servidor
+    }
 }
