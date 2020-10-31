@@ -1,0 +1,327 @@
+{
+  "cartas": {
+    "minions":{
+      "attackOwn18_141HP": {
+        "ataque": "141",
+        "costo": "150",
+        "tipo": "minions",
+        "porcentaje": "18",
+        "aplica": "propiaHP",
+        "ruta": "Cartas/Minions-Attack_Own18Prcnt_141HP.png"
+      },
+      "attackOwn25":{
+        "ataque": "0",
+        "costo": "100",
+        "tipo": "minions",
+        "porcentaje": "25",
+        "aplica": "propiaHP",
+        "ruta": "Cartas/Minions-Attack_Own25Prcnt.png"
+      },
+      "attackOwn35_413HP": {
+        "ataque": "413",
+        "costo": "400",
+        "tipo": "minions",
+        "porcentaje": "35",
+        "aplica": "propiaHP",
+        "ruta": "Cartas/Minions-Attack_Own35Prcnt_413HP.png"
+      },
+      "attackOwn36": {
+        "ataque": "0",
+        "costo": "150",
+        "tipo": "minions",
+        "porcentaje": "36",
+        "aplica": "propiaHP",
+        "ruta": "Cartas/Minions-Attack_Own36Prcnt.png"
+      },
+      "attackOwn40": {
+        "ataque": "0",
+        "costo": "200",
+        "tipo": "minions",
+        "porcentaje": "40",
+        "aplica": "propiaHP",
+        "ruta": "Cartas/Minions-Attack_Own40Prcnt.png"
+      },
+      "attackRival16_148HP": {
+        "ataque": "148",
+        "costo": "100",
+        "tipo": "minions",
+        "porcentaje": "16",
+        "aplica": "RivalHP",
+        "ruta": "Cartas/Minions-Attack16Prcnt_148HP.png"
+      },
+      "attackRival20": {
+        "ataque": "0",
+        "costo": "50",
+        "tipo": "minions",
+        "porcentaje": "20",
+        "aplica": "RivalHP",
+        "ruta": "Cartas/Minions-Attack20Prcnt.png"
+      },
+      "attackRival24_134HP": {
+        "ataque": "134",
+        "costo": "100",
+        "tipo": "minions",
+        "porcentaje": "24",
+        "aplica": "RivalHP",
+        "ruta": "Cartas/Minions-Attack24Prcnt_134HP.png"
+      },
+      "attackRival32_58HP": {
+        "ataque": "58",
+        "costo": "300",
+        "tipo": "minions",
+        "porcentaje": "32",
+        "aplica": "RivalHP",
+        "ruta": "Cartas/Minions-Attack32Prcnt_58HP.png"
+      },
+      "attackRival40": {
+        "ataque": "0",
+        "costo": "300",
+        "tipo": "minions",
+        "porcentaje": "40",
+        "aplica": "RivalHP",
+        "ruta": "Cartas/Minions-Attack40Prcnt.png"
+      },
+      "attackRival56": {
+        "ataque": "0",
+        "costo": "500",
+        "tipo": "minions",
+        "porcentaje": "56",
+        "aplica": "RivalHP",
+        "ruta": "Cartas/Minions-Attack56Prcnt.png"
+      },
+      "attack100HP": {
+        "ataque": "100",
+        "costo": "50",
+        "tipo": "minions",
+        "porcentaje": "0",
+        "aplica": "ninguno",
+        "ruta": "Cartas/Minions-Attack100HP.png"
+      },
+      "attack125HP": {
+        "ataque": "125",
+        "costo": "50",
+        "tipo": "minions",
+        "porcentaje": "0",
+        "aplica": "ninguno",
+        "ruta": "Cartas/Minions-Attack125HP.png"
+      },
+      "attack172HP": {
+        "ataque":"172",
+        "costo": "75",
+        "tipo": "minions",
+        "porcentaje": "0",
+        "aplica": "ninguno",
+        "ruta": "Cartas/Minions-Attack172HP.png"
+      },
+      "attack200HP": {
+        "ataque": "200",
+        "costo": "100",
+        "tipo": "minions",
+        "porcentaje": "0",
+        "aplica": "ninguno",
+        "ruta": "Cartas/Minions-Attack200HP.png"
+      },
+      "attack258HP": {
+        "ataque": "258",
+        "costo": "125",
+        "tipo": "minions",
+        "porcentaje": "0",
+        "aplica": "ninguno",
+        "ruta": "Cartas/Minions-Attack258HP.png"
+      },
+      "attack269HP": {
+        "ataque": "269",
+        "costo": "120",
+        "tipo": "minions",
+        "porcentaje": "0",
+        "aplica": "ninguno",
+        "ruta": "Cartas/Minions-Attack269HP.png"
+
+      },
+      "attack300HP": {
+        "ataque": "300",
+        "costo": "150",
+        "tipo": "minions",
+        "porcentaje": "0",
+        "aplica": "ninguno",
+        "ruta": "Cartas/Minions-Attack300HP.png"
+      },
+      "attack321HP": {
+        "ataque": "321",
+        "costo": "175",
+        "tipo": "minions",
+        "porcentaje": "0",
+        "aplica": "ninguno",
+        "ruta": "Cartas/Minions-Attack321HP.png"
+      },
+      "attack400HP": {
+        "ataque": "400",
+        "costo": "350",
+        "tipo": "minions",
+        "porcentaje": "0",
+        "aplica": "ninguno",
+        "ruta": "Cartas/Minions-Attack400HP.png"
+      }
+    },
+    "secrets":{
+      "fifty_fifty": {
+        "ataque": "1000",
+        "tipo": "secreta",
+        "costo": "700",
+        "evento": "winorlose",
+        "porcentaje": "50",
+        "ruta": "Cartas/Secret-50WinOrLose.png"
+      },
+      "def50": {
+        "ataque": "0",
+        "tipo": "secreta",
+        "costo": "200",
+        "evento": "defensa",
+        "porcentaje": "50",
+        "ruta": "Cartas/Secret-Def50.png"
+      },
+      "def75":{
+        "ataque": "0",
+        "tipo": "secreta",
+        "costo": "250",
+        "evento": "defensa",
+        "porcentaje": "75",
+        "ruta": "Cartas/Secret-Def75.png"
+      },
+      "def90": {
+        "ataque": "0",
+        "tipo": "secreta",
+        "costo": "325",
+        "evento": "defensa",
+        "porcentaje": "90",
+        "ruta": "Cartas/Secret-Def90.png"
+      },
+      "elimSecretCard": {
+        "ataque": "0",
+        "tipo": "secreta",
+        "costo": "350",
+        "evento": "EliminarCartaSecreta",
+        "porcentaje": "0",
+        "ruta": "Cartas/Secret-EliminateNextSecret.png"
+      },
+      "elimSpellCard": {
+        "ataque": "0",
+        "tipo": "secreta",
+        "costo": "350",
+        "evento": "EliminarCartaSpell",
+        "porcentaje": "0",
+        "ruta": "Cartas/Secret-EliminateNextSpell.png"
+      },
+      "killIfSecret": {
+        "ataque": "1000",
+        "tipo": "secreta",
+        "costo": "500",
+        "evento": "Secreta_y_Ganar",
+        "porcentaje": "0",
+        "ruta": "Cartas/Secret-Kill_ifSecret.png"
+      },
+      "reflect50DMG": {
+        "ataque": "0",
+        "tipo": "secreta",
+        "costo": "200",
+        "evento": "reflejar",
+        "porcentaje": "50",
+        "ruta": "Cartas/Secret-Reflect50.png"
+      },
+      "InstaWin4": {
+        "ataque": "1000",
+        "tipo": "secreta",
+        "costo": "400",
+        "evento": "Ejecutar",
+        "porcentaje": "4",
+        "ruta": "Cartas/Secret-WinHPLower4.png"
+      },
+      "InstaWin10": {
+        "ataque": "1000",
+        "tipo": "secreta",
+        "costo": "500",
+        "evento": "ejecutar",
+        "porcentaje": "10",
+        "ruta": "Cartas/Secret-WinHPLower10.png"
+      }
+    },
+    "Spells": {
+      "BoostMana": {
+        "tipo": "spell",
+        "objetivo": "mana",
+        "porcentaje": "25",
+        "accion": "BoostMana",
+        "costo": "50",
+        "ruta": "Cartas/Spell-BoostManaRegen.png"
+      },
+      "DuplicateCard": {
+        "tipo": "spell",
+        "objetivo": "cartaRival",
+        "porcentaje": "0",
+        "accion": "DuplicarCarta",
+        "costo": "150",
+        "ruta": "Cartas/Spell-DuplicateCard.png"
+      },
+      "Fill40Mana": {
+        "tipo": "hechizo",
+        "objetivo": "mana",
+        "porcentaje": "40",
+        "accion": "RellenarMana",
+        "costo": "100",
+        "ruta": "Cartas/Spell-Fill_40_Mana.png"
+      },
+      "Fill100Mana": {
+        "tipo": "hechizo",
+        "objetivo": "mana",
+        "porcentaje": "0",
+        "accion":"RellenarMana",
+        "costo": "200",
+        "ruta": "Cartas/Spell-FillMana.png"
+      },
+      "Freeze": {
+        "tipo": "hechizo",
+        "objetivo": "rival",
+        "porcentaje": "0",
+        "accion": "QuitarTurnoRival",
+        "costo": "250",
+        "ruta": "Cartas/Spell-Freeze"
+      },
+      "Heal50": {
+        "tipo": "hechizo",
+        "objetivo": "self",
+        "porcentaje": "50",
+        "accion": "curar",
+        "costo": "150",
+        "ruta": "Cartas/Spell-Heal"
+      },
+      "Heal10": {
+        "tipo": "hechizo",
+        "objetivo": "self",
+        "porcentaje": "10",
+        "accion": "curar",
+        "costo": "50",
+        "ruta": "Cartas/Spell-Heal"
+      },
+      "RevealCard": {
+        "tipo": "hechizo",
+        "objetivo": "rival",
+        "accion": "revelar",
+        "costo": "150",
+        "ruta": "Cartas/SpellRevealCards"
+      },
+      "StealCard": {
+        "tipo": "hechizo",
+        "objetivo": "rival",
+        "accion": "robo",
+        "costo": "450",
+        "ruta": "Cartas/Spell-StealCard"
+      },
+      "SupremePower": {
+        "tipo": "hechizo",
+        "objetivo": "self",
+        "accion": "3CartasSeguidas",
+        "ruta": "Cartas/SpellSupremePower"
+      }
+    }
+  }
+}

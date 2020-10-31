@@ -2,7 +2,6 @@ import listas.ListaCircular;
 import servidor.Server;
 import gui.GUI;
 
-import java.sql.SQLOutput;
 
 public class Main {
 

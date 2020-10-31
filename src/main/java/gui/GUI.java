@@ -2,8 +2,6 @@ package gui;
 
 import javax.swing.*;
 import java.awt.event.*;
-import java.io.*;
-import java.net.BindException;
 
 public class GUI extends JFrame {
 
@@ -14,7 +12,6 @@ public class GUI extends JFrame {
 
     private JButton begin_host;
     private JButton join_guest;
-    private JButton secret_button;
 
     private JLabel menu_bg;
 
