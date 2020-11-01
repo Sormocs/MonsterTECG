@@ -5,6 +5,10 @@ import java.io.DataOutputStream;
 import java.net.Socket;
 import java.util.LinkedList;
 
+/**
+ * Clase donde se maneja toda la lógica del servidor
+ */
+
 public class HiloServidor implements  Runnable{
 
     private Socket socket;
@@ -18,6 +22,10 @@ public class HiloServidor implements  Runnable{
         this.socket = soc;
         this.usuarios = usuarios;
     }
+
+    /**
+     * Hilo donde se ejecuta lo que provenga del cliente y enviar mensajes al cliente
+     */
 
     @Override
     public void run(){
@@ -49,7 +57,7 @@ public class HiloServidor implements  Runnable{
                 }
             }
         } catch (Exception e){
-            //Método por si se desconecta un usuario que lo elimine de la lista.
+            //Si se desconecta un usuario que lo elimine de la lista.
             for (int i = 0; i < usuarios.size(); i++) {
                 if(usuarios.get(i) == socket){
                     usuarios.remove(i);

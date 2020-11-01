@@ -1,13 +1,15 @@
 package cliente;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import manejo.json.Json;
-
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 import java.net.UnknownHostException;
+
+/**
+ * Clase para tener el cliente del servidor
+ *
+ */
 
 public class Cliente implements Runnable {
 
@@ -44,6 +46,10 @@ public class Cliente implements Runnable {
         }
     }
 
+    /**
+     * Hilo donde se ejecutará lo que el cliente recibe del servidor
+     */
+
     @Override
     public void run(){
         try{
@@ -68,6 +74,11 @@ public class Cliente implements Runnable {
         }
     }
 
+    /**
+     * Llama a la clase CheckIP para obtener la ip de la pc.
+     * @throws UnknownHostException
+     */
+
     private void ObtenerIP() throws UnknownHostException {
 
         //Llamo a la clase y al método para obtener la IP
@@ -77,6 +88,11 @@ public class Cliente implements Runnable {
 
     }
 
+    /**
+     * Envia un mensaje al servidor
+     * @throws IOException
+     */
+
     public void EnviarMensaje() throws IOException {
 
         //Enviar un mensaje al server
@@ -85,14 +101,28 @@ public class Cliente implements Runnable {
 
     }
 
+    /**
+     * Revisa si la vida ha llegado a 0
+     * @return boolean
+     */
+
     public boolean getVida() {
         return vida < 0;
     }
+
+    /**
+     * Modifica la vida del jugador.
+     * @param vida
+     */
 
     public void setVida(int vida) {
         this.vida -= vida;
         System.out.println(this.vida);
     }
+
+    /**
+     * Ejecuta lo que recibirá del server
+     */
 
     public void EjeccucionServer(){
         //Aqui se hará lo que mander el servidor

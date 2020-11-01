@@ -3,9 +3,13 @@ package gui;
 import cliente.Cliente;
 import servidor.Server;
 
-
 import java.io.IOException;
 
+/**
+ *
+ * Esta clase pretende ser el puente de comunicación entre la GUI y la parte de cliente y servidor
+ *
+ */
 public class Partida {
 
     private Cliente cliente;
@@ -16,6 +20,12 @@ public class Partida {
 
     }
 
+    /**
+     * Este método retorna la instancia de la clase según el patrón de diseño singleton.
+     *
+     * @return la instanca de la clase
+     */
+
     public static Partida GetInstance(){
         //Retorna la instancia de partida.
         if (instancia == null){
@@ -24,6 +34,10 @@ public class Partida {
         return instancia;
 
     }
+
+    /**
+     * Crea los hilos para server y cliente del host
+     */
 
     public void Host(){
         //Creo hilo para ejecutar el servidor
@@ -37,6 +51,10 @@ public class Partida {
         hilo_cliente.start();
 
     }
+
+    /**
+     * Crea el hilo del cliente guest
+     */
     public void Invitado(){
 
         //Creo hilo para ejercutar el cliente
@@ -44,6 +62,11 @@ public class Partida {
         Thread hilo_cliente = new Thread(cliente);
         hilo_cliente.start();
     }
+
+    /**
+     * LLama al método "EnviarMensaje" de cliente
+     * @throws IOException
+     */
 
     public void EnviarMensaje() throws IOException {
         //Llamo a cliente para enviar un mensaje al server

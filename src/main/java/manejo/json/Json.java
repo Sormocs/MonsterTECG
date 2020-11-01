@@ -9,6 +9,10 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import java.io.BufferedReader;
 import java.io.FileReader;
 
+/**
+ * Clase para le manejo de json
+ */
+
 public class Json {
     private static ObjectMapper objectMapper = getDefaultObjectMapper();
 
@@ -17,20 +21,49 @@ public class Json {
         return defaultObjectMapper;
     }
 
+    /**
+     * De String a Jsonnode
+     * @param jsonSource
+     * @return Jsonnode
+     * @throws JsonProcessingException
+     */
+
     public static JsonNode parse(String jsonSource) throws JsonProcessingException{
-        //De Json a String.
         return objectMapper.readTree(jsonSource);
     }
+
+    /**
+     * De Json no a objeto
+     * @param node
+     * @param clazz
+     * @param <A>
+     * @return objeto
+     * @throws JsonProcessingException
+     */
 
     public static <A> A fromJson(JsonNode node, Class<A> clazz) throws JsonProcessingException{
         //De JsonNode a Objeto
         return objectMapper.treeToValue(node,clazz);
     }
 
+    /**
+     * De objeto a json
+     * @param o
+     * @return JsonNode
+     */
+
     public static JsonNode toJson(Object o){
         //De objeto a JsonNode
         return objectMapper.valueToTree(o);
     }
+
+    /**
+     * De jsonnode a String
+     * @param node
+     * @param pretty
+     * @return String
+     * @throws JsonProcessingException
+     */
 
     public static String generateString(JsonNode node, boolean pretty) throws JsonProcessingException{
         //De Json node a string
@@ -41,11 +74,17 @@ public class Json {
         return objectWriter.writeValueAsString(node);
     }
 
+    /**
+     * Metodo para leer en .json
+     * @param file
+     * @return String
+     */
+
     public static String ReadJson(String file){
         //Lee el archivo.json
         String json = new String();
         try{
-            BufferedReader br = new BufferedReader(new FileReader("prueba.json"));
+            BufferedReader br = new BufferedReader(new FileReader(file));
 
             try{
                 StringBuilder sb = new StringBuilder();

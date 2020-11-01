@@ -1,5 +1,9 @@
 package listas;
 
+/**
+ * clase para el manejo de una lista doblemente enlazada
+ */
+
 public class ListaDoble {
 
     private NodoDoble inicio;
@@ -10,12 +14,18 @@ public class ListaDoble {
         fin = null;
     }
 
-    //método para saber is la lista está vacia
+    /**
+     * Metodo para saber si esta vacia
+     * @return
+     */
     public boolean Vacia(){
         return inicio == null;
     }
 
-    //Agregar nodo al inicio
+    /**
+     * Método para insertar al inicio
+     * @param dato
+     */
     public void  InsertarInicio(Object dato){
         if (!Vacia()){
             inicio = new NodoDoble(dato, null, null);
@@ -27,7 +37,10 @@ public class ListaDoble {
         }
     }
 
-    //Agregar nodo al final
+    /**
+     * Método para insertar al final
+     * @param dato
+     */
     public void  InsertarFinal(Object dato){
         if (!Vacia()) {
             fin = new NodoDoble(dato, null, null);
@@ -39,7 +52,10 @@ public class ListaDoble {
         }
     }
 
-    //Eliminar al inicio
+    /**
+     * Metodo para eliminar al inicio
+     * @return Object
+     */
 
     public Object EliminarInicio(){
 
@@ -54,7 +70,10 @@ public class ListaDoble {
         return dato;
     }
 
-    //Eliminar al final
+    /**
+     * metodo para ELiminar al final
+     * @return objecto
+     */
 
     public Object EliminarFinal(){
 
@@ -69,7 +88,9 @@ public class ListaDoble {
         return dato;
     }
 
-    //recorre la lista hacia delante y muestra el dato
+    /**
+     * recorre e imprime la lista en consola
+     */
     public void MostrarAdelante(){
         NodoDoble temp = inicio;
 
