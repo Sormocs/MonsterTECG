@@ -71,6 +71,11 @@ public class Stack {
         }
     }
 
+    /**
+     * Método que llena el stack de 16 cartas aleatorias
+     * @throws JsonProcessingException
+     */
+
     public void Llenar() throws JsonProcessingException {
 
         String file = Json.ReadJson("cards.json");
