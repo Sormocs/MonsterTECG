@@ -1,5 +1,13 @@
 package cliente;
 
+import cartas.Minions;
+import cartas.Secrets;
+import cartas.Spells;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import listas.Stack;
+import manejo.json.Json;
+
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -20,6 +28,8 @@ public class Cliente implements Runnable {
     private int vida;
     private int mana;
 
+    private Stack stack;
+
     private DataOutputStream out;
     private DataInputStream in;
     private int puerto = 5000;
@@ -35,6 +45,8 @@ public class Cliente implements Runnable {
         this.vida = 1000;
         this.mana = 1000;
         this.jugador = jugador;
+        stack = new Stack();
+        stack.Llenar();
         try{
             //Se crea el socket y los data e input stream para enviar y recibir mensajes
             this.cliente = new Socket(host,puerto);
@@ -60,11 +72,15 @@ public class Cliente implements Runnable {
                 System.out.println(mensaje);
 
                 //Separar el mensaje según el protocolo establecido
-                String[] leermensaje = mensaje.split("-");
+                String[] leermensaje = mensaje.split("#");
+
+                if (leermensaje[0].equals("Iniciar") && this.jugador.equals("Guest")){
+
+                }
 
                 //Lógica del juego
                 if (leermensaje[2].equals(this.jugador)){
-                    EjeccucionServer();
+                    EjeccucionCliente(leermensaje);
                 }
 
             }
@@ -93,11 +109,22 @@ public class Cliente implements Runnable {
      * @throws IOException
      */
 
-    public void EnviarMensaje() throws IOException {
+    public void EnviarMensaje()  {
 
         //Enviar un mensaje al server
 
-        this.out.writeUTF("carta1");
+        try {
+            JsonNode nodo = (JsonNode) stack.getTop();
+            String s_string = Json.generateString(nodo,false);
+
+            String mensaje = s_string;
+
+            mensaje += "#0#Host";
+            System.out.println(mensaje);
+            this.out.writeUTF(mensaje);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -122,9 +149,83 @@ public class Cliente implements Runnable {
 
     /**
      * Ejecuta lo que recibirá del server
+     * @param mensaje
      */
 
-    public void EjeccucionServer(){
+    public void EjeccucionCliente(String[] mensaje){
         //Aqui se hará lo que mander el servidor
+
+        try {
+
+            String s_nodo = mensaje[0];
+            JsonNode nodo = Json.parse(s_nodo);
+
+            String tipo = nodo.get("tipo").textValue();
+
+            System.out.println(tipo);
+
+            if (tipo.equals("minions")){
+
+                Minions(nodo);
+
+            } else if (tipo.equals("spells")){
+
+                Spells(nodo);
+
+            } else if (tipo.equals("secreta")){
+
+                Secrets(nodo);
+
+            }
+
+
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+
     }
+
+    public void Minions(JsonNode nodo){
+
+        try {
+            Minions minion = Json.fromJson(nodo,Minions.class);
+            minion.hola();
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void Spells(JsonNode nodo){
+
+        try {
+            Spells spell = Json.fromJson(nodo,Spells.class);
+            spell.hola();
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void Secrets(JsonNode nodo){
+
+        try {
+            Secrets secret = Json.fromJson(nodo,Secrets.class);
+            secret.hola();
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void Iniciar(){
+        try {
+            this.out.writeUTF("Iniciar-0-host");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
 }

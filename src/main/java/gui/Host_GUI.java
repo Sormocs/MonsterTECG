@@ -51,11 +51,7 @@ public class Host_GUI extends JFrame{
             public void actionPerformed(ActionEvent e) {
 
                 //PROGRA BOTON, PREFERIBLEMENTE METODO NUEVO
-                try {
-                    Partida.GetInstance().EnviarMensaje();
-                } catch (IOException ioException) {
-                    ioException.printStackTrace();
-                }
+                Partida.GetInstance().EnviarMensaje();
 
             }
         });

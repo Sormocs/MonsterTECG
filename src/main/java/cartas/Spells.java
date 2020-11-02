@@ -2,10 +2,14 @@ package cartas;
 
 public class Spells {
 
-    String tipo;
-    String objetivo;
-    int porcentaje;
-    String accion;
-    int costo;
-    String ruta;
+    public String tipo;
+    public String objetivo;
+    public int porcentaje;
+    public String accion;
+    public int costo;
+    public String ruta;
+
+    public void hola(){
+        System.out.println("lo logre");
+    }
 }

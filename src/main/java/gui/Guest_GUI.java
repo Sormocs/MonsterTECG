@@ -50,11 +50,7 @@ public class Guest_GUI extends JFrame{
         secret_button.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
 
-                try {
-                    Partida.GetInstance().EnviarMensaje();
-                } catch (IOException ioException) {
-                    ioException.printStackTrace();
-                }
+                Partida.GetInstance().EnviarMensaje();
             }
         });
 

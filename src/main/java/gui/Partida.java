@@ -50,6 +50,7 @@ public class Partida {
         Thread hilo_cliente = new Thread(cliente);
         hilo_cliente.start();
 
+
     }
 
     /**
@@ -68,7 +69,7 @@ public class Partida {
      * @throws IOException
      */
 
-    public void EnviarMensaje() throws IOException {
+    public void EnviarMensaje(){
         //Llamo a cliente para enviar un mensaje al server
 
         cliente.EnviarMensaje();

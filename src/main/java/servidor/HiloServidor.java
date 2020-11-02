@@ -41,7 +41,7 @@ public class HiloServidor implements  Runnable{
                 System.out.println(mensaje);
 
                 //Separar el mensaje según el protocolo establecido
-                String[] leermensaje = mensaje.split("-");
+                String[] leermensaje = mensaje.split("#");
 
                 //Leerá de quien proviene el mensaje. Si es del host, lo cambiará a guest y si viceversa.
                 if (leermensaje[2].equals("host")){
@@ -53,7 +53,7 @@ public class HiloServidor implements  Runnable{
                 //Ciclo para enviar el mensaje a los 2 usuarios
                 for (Socket usuario : usuarios){
                     out = new DataOutputStream(usuario.getOutputStream());
-                    out.writeUTF("Hola como estas");
+                    out.writeUTF(mensaje);
                 }
             }
         } catch (Exception e){

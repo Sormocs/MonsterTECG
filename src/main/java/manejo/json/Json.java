@@ -80,7 +80,7 @@ public class Json {
      * @return String
      */
 
-    public static String ReadJson(String file){
+    public static String ReadJson(String file) {
         //Lee el archivo.json
         String json = new String();
         try{

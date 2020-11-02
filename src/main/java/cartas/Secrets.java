@@ -1,10 +1,14 @@
 package cartas;
 
 public class Secrets {
-    int ataque;
-    String tipo;
-    int costo;
-    String evento;
-    int porcentaje;
-    String ruta;
+    public int ataque;
+    public String tipo;
+    public int costo;
+    public String evento;
+    public int porcentaje;
+    public String ruta;
+
+    public void hola(){
+        System.out.println("lo logre");
+    }
 }

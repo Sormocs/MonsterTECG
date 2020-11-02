@@ -1,10 +1,14 @@
 package cartas;
 
 public class Minions {
-    int ataque;
-    int costo;
-    String tipo;
-    String porcentaje;
-    String aplica;
-    String ruta;
+    public int ataque;
+    public int costo;
+    public String tipo;
+    public String porcentaje;
+    public String aplica;
+    public String ruta;
+
+    public void hola(){
+        System.out.println("lo logre");
+    }
 }
