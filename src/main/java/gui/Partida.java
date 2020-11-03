@@ -1,6 +1,7 @@
 package gui;
 
 import cliente.Cliente;
+import com.fasterxml.jackson.databind.JsonNode;
 import servidor.Server;
 
 import java.io.IOException;
@@ -69,9 +70,31 @@ public class Partida {
      * @throws IOException
      */
 
-    public void EnviarMensaje(Object card){
+    public void EnviarMensaje(JsonNode card){
         //Llamo a cliente para enviar un mensaje al server
 
         cliente.EnviarMensaje(card);
+    }
+
+    public int getVidaPlayer(){
+        int vida = cliente.getVida();
+        return vida;
+    }
+
+    public int getVidaRival(){
+
+        int vida = cliente.getVidaR();
+        return vida;
+
+    }
+
+    public int getManaPlayer(){
+        int mana = cliente.getMana();
+        return mana;
+    }
+
+    public int getManaRival(){
+        int mana = cliente.getManaR();
+        return mana;
     }
 }

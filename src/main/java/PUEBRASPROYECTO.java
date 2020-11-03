@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import listas.*;
 import manejo.json.Json;
 
-public class pruebarandomjson {
+public class PUEBRASPROYECTO {
 
     public static void main(String[] args) throws JsonProcessingException {
 

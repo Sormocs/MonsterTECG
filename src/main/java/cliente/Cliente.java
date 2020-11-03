@@ -28,6 +28,9 @@ public class Cliente implements Runnable {
     private int vida;
     private int mana;
 
+    private int vidaR;
+    private int manaR;
+
     private Stack stack;
 
     private DataOutputStream out;
@@ -45,8 +48,7 @@ public class Cliente implements Runnable {
         this.vida = 1000;
         this.mana = 1000;
         this.jugador = jugador;
-        //stack = new Stack();
-        //stack.Llenar();
+
         try{
             //Se crea el socket y los data e input stream para enviar y recibir mensajes
             this.cliente = new Socket(host,puerto);
@@ -69,7 +71,7 @@ public class Cliente implements Runnable {
 
                 //Lee el mensaje que envió el servidor
                 mensaje = in.readUTF();
-                //System.out.println(mensaje);
+                System.out.println(mensaje);
 
                 //Separar el mensaje según el protocolo establecido
                 String[] leermensaje = mensaje.split("#");
@@ -109,42 +111,27 @@ public class Cliente implements Runnable {
      * @throws IOException
      */
 
-    public void EnviarMensaje(Object card)  {
+    public void EnviarMensaje(JsonNode carta)  {
 
         //Enviar un mensaje al server
 
         try {
-            JsonNode nodo = (JsonNode) card;
-            String s_string = Json.generateString(nodo,false);
+
+            String s_string = Json.generateString(carta,false);
+
+            // Formación del mensaje.
 
             String mensaje = s_string;
 
-            mensaje += "#0#Host";
-            //System.out.println(mensaje);
+            mensaje += "#" + this.jugador + "#";
+            System.out.println(mensaje);
             this.out.writeUTF(mensaje);
+
+            mensaje = null;
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-    }
-
-    /**
-     * Revisa si la vida ha llegado a 0
-     * @return boolean
-     */
-
-    public boolean getVida() {
-        return vida < 0;
-    }
-
-    /**
-     * Modifica la vida del jugador.
-     * @param vida
-     */
-
-    public void setVida(int vida) {
-        this.vida -= vida;
-        System.out.println(this.vida);
     }
 
     /**
@@ -161,8 +148,6 @@ public class Cliente implements Runnable {
             JsonNode nodo = Json.parse(s_nodo);
 
             String tipo = nodo.get("tipo").textValue();
-
-            //System.out.println(tipo);
 
             if (tipo.equals("minions")){
 
@@ -189,7 +174,7 @@ public class Cliente implements Runnable {
 
         try {
             Minions minion = Json.fromJson(nodo,Minions.class);
-            //minion.hola();
+            minion.hola();
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
@@ -200,7 +185,7 @@ public class Cliente implements Runnable {
 
         try {
             Spells spell = Json.fromJson(nodo,Spells.class);
-            //spell.hola();
+            spell.hola();
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
@@ -211,7 +196,7 @@ public class Cliente implements Runnable {
 
         try {
             Secrets secret = Json.fromJson(nodo,Secrets.class);
-            //secret.hola();
+            secret.hola();
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
@@ -225,4 +210,54 @@ public class Cliente implements Runnable {
             e.printStackTrace();
         }
     }
+
+    //MANEJO DE VIDA Y MANA DE LOS 2 JUGADORES
+
+    /**
+     * Revisa si la vida ha llegado a 0
+     * @return boolean
+     */
+
+    public boolean VerificarVida(){
+        return vida < 0;
+    }
+
+    public int getVida() {
+        return vida;
+    }
+
+    /**
+     * Modifica la vida del jugador.
+     * @param vida
+     */
+
+    public void setVida(int vida) {
+        this.vida -= vida;
+        System.out.println(this.vida);
+    }
+
+    public int getMana() {
+        return mana;
+    }
+
+    public void setMana(int mana) {
+        this.mana -= mana;
+    }
+
+    public int getVidaR() {
+        return vidaR;
+    }
+
+    public void setVidaR(int vidaR) {
+        this.vidaR = vidaR;
+    }
+
+    public int getManaR() {
+        return manaR;
+    }
+
+    public void setManaR(int manaR) {
+        this.manaR = manaR;
+    }
+
 }

@@ -44,17 +44,23 @@ public class HiloServidor implements  Runnable{
                 String[] leermensaje = mensaje.split("#");
 
                 //Leerá de quien proviene el mensaje. Si es del host, lo cambiará a guest y si viceversa.
-                if (leermensaje[2].equals("host")){
-                    leermensaje[2] = "guest";
-                } else if (leermensaje[2].equals("guest")){
-                    leermensaje[2] = "host";
+                if (leermensaje[1].equals("Guest")){
+                    mensaje = leermensaje[0] + "#Host#" + leermensaje[3] + "#" + leermensaje[4];
+                    Socket usuariosFirst = usuarios.getFirst();
+                    out = new DataOutputStream(usuariosFirst.getOutputStream());
+                    out.writeUTF(mensaje);
+                } else if (leermensaje[1].equals("Host")){
+                    mensaje = leermensaje[0] + "#Gues#" + leermensaje[3] + "#" + leermensaje[4];
+                    Socket usuariosLast = usuarios.getLast();
+                    out = new DataOutputStream(usuariosLast.getOutputStream());
+                    out.writeUTF(mensaje);
                 }
 
                 //Ciclo para enviar el mensaje a los 2 usuarios
-                for (Socket usuario : usuarios){
-                    out = new DataOutputStream(usuario.getOutputStream());
-                    out.writeUTF(mensaje);
-                }
+                //for (Socket usuario : usuarios){
+                    //out = new DataOutputStream(usuario.getOutputStream());
+                    //out.writeUTF(mensaje);
+                //}
             }
         } catch (Exception e){
             //Si se desconecta un usuario que lo elimine de la lista.
