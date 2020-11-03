@@ -47,6 +47,8 @@ public class Cliente implements Runnable {
     public Cliente(String jugador){
         this.vida = 1000;
         this.mana = 1000;
+        this.vidaR = 1000;
+        this.manaR = 1000;
         this.jugador = jugador;
 
         try{
@@ -81,7 +83,7 @@ public class Cliente implements Runnable {
                 }
 
                 //Lógica del juego
-                if (leermensaje[2].equals(this.jugador)){
+                if (leermensaje[1].equals(this.jugador)){
                     EjeccucionCliente(leermensaje);
                 }
 
@@ -120,11 +122,14 @@ public class Cliente implements Runnable {
             String s_string = Json.generateString(carta,false);
 
             // Formación del mensaje.
-
             String mensaje = s_string;
 
-            mensaje += "#" + this.jugador + "#";
-            System.out.println(mensaje);
+            String Svida = Integer.toString(this.vida);
+            String Smana = Integer.toString(this.mana);
+
+            mensaje += "#" + this.jugador + "#" + Svida + "#" + Smana;
+
+            //System.out.println(mensaje);
             this.out.writeUTF(mensaje);
 
             mensaje = null;
@@ -153,7 +158,7 @@ public class Cliente implements Runnable {
 
                 Minions(nodo);
 
-            } else if (tipo.equals("spells")){
+            } else if (tipo.equals("spell")){
 
                 Spells(nodo);
 
@@ -174,7 +179,12 @@ public class Cliente implements Runnable {
 
         try {
             Minions minion = Json.fromJson(nodo,Minions.class);
-            minion.hola();
+            int[] vidamana = new int[2];
+            vidamana = minion.Caso(this.vida,this.vidaR,this.mana);
+
+            setVida(vidamana[0]);
+            setMana(vidamana[1]);
+
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
@@ -232,7 +242,7 @@ public class Cliente implements Runnable {
      */
 
     public void setVida(int vida) {
-        this.vida -= vida;
+        this.vida = vida;
         System.out.println(this.vida);
     }
 
@@ -241,7 +251,8 @@ public class Cliente implements Runnable {
     }
 
     public void setMana(int mana) {
-        this.mana -= mana;
+        this.mana = mana;
+        System.out.println(this.mana);
     }
 
     public int getVidaR() {
