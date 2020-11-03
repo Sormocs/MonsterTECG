@@ -45,8 +45,8 @@ public class Cliente implements Runnable {
         this.vida = 1000;
         this.mana = 1000;
         this.jugador = jugador;
-        stack = new Stack();
-        stack.Llenar();
+        //stack = new Stack();
+        //stack.Llenar();
         try{
             //Se crea el socket y los data e input stream para enviar y recibir mensajes
             this.cliente = new Socket(host,puerto);
@@ -69,7 +69,7 @@ public class Cliente implements Runnable {
 
                 //Lee el mensaje que envió el servidor
                 mensaje = in.readUTF();
-                System.out.println(mensaje);
+                //System.out.println(mensaje);
 
                 //Separar el mensaje según el protocolo establecido
                 String[] leermensaje = mensaje.split("#");
@@ -109,18 +109,18 @@ public class Cliente implements Runnable {
      * @throws IOException
      */
 
-    public void EnviarMensaje()  {
+    public void EnviarMensaje(Object card)  {
 
         //Enviar un mensaje al server
 
         try {
-            JsonNode nodo = (JsonNode) stack.getTop();
+            JsonNode nodo = (JsonNode) card;
             String s_string = Json.generateString(nodo,false);
 
             String mensaje = s_string;
 
             mensaje += "#0#Host";
-            System.out.println(mensaje);
+            //System.out.println(mensaje);
             this.out.writeUTF(mensaje);
         } catch (IOException e) {
             e.printStackTrace();
@@ -162,7 +162,7 @@ public class Cliente implements Runnable {
 
             String tipo = nodo.get("tipo").textValue();
 
-            System.out.println(tipo);
+            //System.out.println(tipo);
 
             if (tipo.equals("minions")){
 
@@ -189,7 +189,7 @@ public class Cliente implements Runnable {
 
         try {
             Minions minion = Json.fromJson(nodo,Minions.class);
-            minion.hola();
+            //minion.hola();
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
@@ -200,7 +200,7 @@ public class Cliente implements Runnable {
 
         try {
             Spells spell = Json.fromJson(nodo,Spells.class);
-            spell.hola();
+            //spell.hola();
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
@@ -211,7 +211,7 @@ public class Cliente implements Runnable {
 
         try {
             Secrets secret = Json.fromJson(nodo,Secrets.class);
-            secret.hola();
+            //secret.hola();
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
@@ -225,7 +225,4 @@ public class Cliente implements Runnable {
             e.printStackTrace();
         }
     }
-
-
-
 }

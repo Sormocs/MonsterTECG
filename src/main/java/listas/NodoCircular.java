@@ -2,11 +2,11 @@ package listas;
 
 public class NodoCircular {
 
-    private int elemento;
+    private Object elemento;
     private NodoCircular next;
     private NodoCircular prev;
 
-    public NodoCircular(int element, NodoCircular previo, NodoCircular siguiente){
+    public NodoCircular(Object element, NodoCircular previo, NodoCircular siguiente){
 
         this.elemento = element;
         this.next = previo;
@@ -14,8 +14,8 @@ public class NodoCircular {
 
     }
 
-    public int getElemento() {
-        return elemento;
+    public Object getElemento() {
+        return this.elemento;
     }
 
     public void setNext(NodoCircular next) {
@@ -32,5 +32,9 @@ public class NodoCircular {
 
     public NodoCircular getNext(){
         return next;
+    }
+
+    public void setElemento(Object elemento) {
+        this.elemento = elemento;
     }
 }

@@ -6,7 +6,7 @@ public class ListaCircular {
     private NodoCircular inicio;
     private NodoCircular end;
 
-    public void InsertEnd(int valor){
+    public void InsertEnd(Object valor){
 
         if (inicio == null){
 
@@ -15,23 +15,61 @@ public class ListaCircular {
             nuevoNodo.setPrev(nuevoNodo);
             inicio = nuevoNodo;
             end = nuevoNodo;
+            this.size = 1;
 
         } else{
 
             NodoCircular ultimo = getEnd();
-            NodoCircular nuevoNodo = new NodoCircular(valor, ultimo, inicio);
+            NodoCircular nuevoNodo = new NodoCircular(valor, inicio, end);
 
             inicio.setPrev(nuevoNodo);
             end.setNext(nuevoNodo);
             end = nuevoNodo;
+            this.size ++;
 
         }
 
     }
 
-    public void Delete(int valor){
+    public void Delete(Object elemento){
 
+        int contador = 0;
+        NodoCircular current = inicio;
+        while (contador < size){
 
+            if (current.getElemento() == elemento){
+                NodoCircular prev = current.getPrev();
+                NodoCircular sig = current.getNext();
+
+                prev.setNext(sig);
+                sig.setPrev(prev);
+                size--;
+                break;
+            }else{
+                contador ++;
+                current = current.getNext();
+            }
+
+        }
+
+    }
+
+    public boolean Contains(Object valor){
+
+        NodoCircular actual = inicio;
+        while(actual != end){
+            if (actual.getElemento() == valor){
+                System.out.println("Contiene");
+                return true;
+            } else{
+                actual = actual.getNext();
+            }
+        }if (end.getElemento() == valor){
+            return true;
+        }else{
+            System.out.println("No contiene");
+            return false;
+        }
 
     }
 
@@ -46,13 +84,39 @@ public class ListaCircular {
     public void Show(){
 
         NodoCircular actual = inicio;
-        while(actual != end){
+        int contador = 0;
+        while(contador < size){
 
             System.out.println(actual.getElemento());
             actual = actual.getNext();
+            contador ++;
 
         }
-        System.out.println(actual.getElemento());
+        //System.out.println();
 
+    }
+
+    public NodoCircular getNode(int pos){
+        if (pos > size){
+            return null;
+        }else{
+            NodoCircular actual = inicio;
+            int contador = 0;
+            NodoCircular obtenido = null;
+            while (contador < size){
+                if (contador == pos){
+                    obtenido = actual;
+                    break;
+                }else{
+                    contador ++;
+                    actual = actual.getNext();
+                }
+            }
+            return obtenido;
+        }
+    }
+
+    public int getSize(){
+        return this.size;
     }
 }

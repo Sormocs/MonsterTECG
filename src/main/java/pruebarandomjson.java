@@ -16,7 +16,7 @@ public class pruebarandomjson {
         JsonNode nodo = (JsonNode) stack.getTop();
 
         Minions minion = Json.fromJson(nodo,Minions.class);
-        minion.hola();
+        //minion.hola();
 
 
     }

@@ -263,7 +263,7 @@
         "ruta": "Cartas/Spell-DuplicateCard.png"
       },
       "Fill40Mana": {
-        "tipo": "hechizo",
+        "tipo": "spell",
         "objetivo": "mana",
         "porcentaje": "40",
         "accion": "RellenarMana",
@@ -271,7 +271,7 @@
         "ruta": "Cartas/Spell-Fill_40_Mana.png"
       },
       "Fill100Mana": {
-        "tipo": "hechizo",
+        "tipo": "spell",
         "objetivo": "mana",
         "porcentaje": "0",
         "accion":"RellenarMana",
@@ -279,48 +279,52 @@
         "ruta": "Cartas/Spell-FillMana.png"
       },
       "Freeze": {
-        "tipo": "hechizo",
+        "tipo": "spell",
         "objetivo": "rival",
         "porcentaje": "0",
         "accion": "QuitarTurnoRival",
         "costo": "250",
-        "ruta": "Cartas/Spell-Freeze"
+        "ruta": "Cartas/Spell-Freeze.png"
       },
       "Heal50": {
-        "tipo": "hechizo",
+        "tipo": "spell",
         "objetivo": "self",
         "porcentaje": "50",
         "accion": "curar",
         "costo": "150",
-        "ruta": "Cartas/Spell-Heal"
+        "ruta": "Cartas/Spell-Heal.png"
       },
       "Heal10": {
-        "tipo": "hechizo",
+        "tipo": "spell",
         "objetivo": "self",
         "porcentaje": "10",
         "accion": "curar",
         "costo": "50",
-        "ruta": "Cartas/Spell-Heal"
+        "ruta": "Cartas/Spell-Heal_10.png"
       },
       "RevealCard": {
-        "tipo": "hechizo",
+        "tipo": "spell",
         "objetivo": "rival",
+        "porcentaje": "0",
         "accion": "revelar",
         "costo": "150",
-        "ruta": "Cartas/SpellRevealCards"
+        "ruta": "Cartas/Spell-RevealCards.png"
       },
       "StealCard": {
-        "tipo": "hechizo",
+        "tipo": "spell",
         "objetivo": "rival",
+        "porcentaje": "0",
         "accion": "robo",
         "costo": "450",
-        "ruta": "Cartas/Spell-StealCard"
+        "ruta": "Cartas/Spell-StealCard.png"
       },
       "SupremePower": {
-        "tipo": "hechizo",
+        "tipo": "spell",
         "objetivo": "self",
+        "porcentaje": "0",
         "accion": "3CartasSeguidas",
-        "ruta": "Cartas/SpellSupremePower"
+        "costo": "600",
+        "ruta": "Cartas/Spell-SupremePower.png"
       }
     }
   }

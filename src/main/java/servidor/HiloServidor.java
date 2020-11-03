@@ -38,7 +38,7 @@ public class HiloServidor implements  Runnable{
 
                 //Leer mensaje que proviene desde el cliente
                 String mensaje = in.readUTF();
-                System.out.println(mensaje);
+                //System.out.println(mensaje);
 
                 //Separar el mensaje según el protocolo establecido
                 String[] leermensaje = mensaje.split("#");

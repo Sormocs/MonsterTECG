@@ -1,5 +1,6 @@
 package listas;
 
+import cartas.Minions;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import manejo.json.Json;
@@ -36,7 +37,7 @@ public class Stack {
     public boolean push(Object nodo){
         //Ingresar dato al inicio
         if (top>=(max-1)){
-            System.out.println("la lista esta llena");
+            //System.out.println("la lista esta llena");
             return false;
         } else{
             this.stack[++this.top] = nodo;
@@ -130,5 +131,6 @@ public class Stack {
             e.printStackTrace();
         }
     }
+
 }
 

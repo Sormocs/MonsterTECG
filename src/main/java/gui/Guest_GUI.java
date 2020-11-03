@@ -1,17 +1,26 @@
 package gui;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+
 import javax.swing.*;
 import java.awt.event.*;
-import java.io.*;
 
+/**
+ * Clase Guest_GUI que crea la ventana que actua como el menu para el jugador que entra como guest al juego.
+ */
 public class Guest_GUI extends JFrame{
 
     private JPanel guest_screen;
 
-    private JButton secret_button;
+    private JButton join_btn;
+    private JButton history_btn;
 
     private JLabel guest_gui_bg;
 
+    /**
+     * Constructor de la clase que llama al constructor de la clase padre, además de iniciar los componentes de
+     * la ventana y configurar esta misma con su título y tamaño respectivos.
+     */
     public Guest_GUI(){
 
         super();
@@ -44,19 +53,38 @@ public class Guest_GUI extends JFrame{
         guest_gui_bg.setBounds(0,-5,800,600);
 
         //BOTON SECRETO:
-        secret_button = new JButton();
-        secret_button.setText("Boton Secreto");
-        secret_button.setBounds(50,270,160,50);
-        secret_button.addActionListener(new ActionListener() {
+        join_btn = new JButton(new ImageIcon("Imagenes/JoinBTN.jpg"));
+        join_btn.setBounds(30,230,270,130);
+        join_btn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-
-                Partida.GetInstance().EnviarMensaje();
+                try{
+                    ActionJoinBTN();
+                }catch(JsonProcessingException e2){
+                    e2.printStackTrace();
+                }
             }
         });
 
-        this.guest_screen.add(secret_button);
+        history_btn = new JButton(new ImageIcon("Imagenes/HistoryBTN.jpg"));
+        history_btn.setBounds(510, 230, 270, 130);
+        history_btn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+
+        this.guest_screen.add(history_btn);
+        this.guest_screen.add(join_btn);
         this.guest_screen.add(guest_gui_bg);
 
+    }
+
+    private void ActionJoinBTN() throws com.fasterxml.jackson.core.JsonProcessingException{
+        Match_GUI game_gui = new Match_GUI();
+        game_gui.setVisible(true);
+        this.setVisible(false);
+        //Partida.GetInstance().EnviarMensaje();
     }
 
 }

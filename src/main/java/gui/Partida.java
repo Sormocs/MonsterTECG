@@ -69,9 +69,9 @@ public class Partida {
      * @throws IOException
      */
 
-    public void EnviarMensaje(){
+    public void EnviarMensaje(Object card){
         //Llamo a cliente para enviar un mensaje al server
 
-        cliente.EnviarMensaje();
+        cliente.EnviarMensaje(card);
     }
 }
