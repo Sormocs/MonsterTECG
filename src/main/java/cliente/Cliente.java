@@ -46,9 +46,9 @@ public class Cliente implements Runnable {
 
     public Cliente(String jugador){
         this.vida = 1000;
-        this.mana = 1000;
+        this.mana = 200;
         this.vidaR = 1000;
-        this.manaR = 1000;
+        this.manaR = 200;
         this.jugador = jugador;
 
         try{

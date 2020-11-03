@@ -43,7 +43,7 @@ public class ListaCircular {
 
                 prev.setNext(sig);
                 sig.setPrev(prev);
-                size--;
+                size --;
                 break;
             }else{
                 contador ++;

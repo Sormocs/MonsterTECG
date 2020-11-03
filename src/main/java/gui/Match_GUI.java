@@ -19,10 +19,10 @@ public class Match_GUI extends JFrame {
     private JLabel PlayerMana;
     private JLabel RivalMana;
 
-    private int playerhp = 1000;
-    private int rivalhp = 1000;
-    private int playermana = 200;
-    private int rivalmana = 200;
+    private int playerhp = Partida.GetInstance().getVidaPlayer();
+    private int rivalhp = Partida.GetInstance().getVidaRival();
+    private int playermana = Partida.GetInstance().getManaPlayer();
+    private int rivalmana = Partida.GetInstance().getManaRival();
 
     private JButton use_card;
     private JButton take_card;
@@ -145,7 +145,7 @@ public class Match_GUI extends JFrame {
     }
 
     public void CardTaken(){
-        if (mano.getSize()<10){
+        if (mano.getSize()<10 && deck.isEmpty()==false){
             mano.InsertEnd(deck.getTop());
             deck.pop();
             Update();
@@ -160,6 +160,7 @@ public class Match_GUI extends JFrame {
         buttons();
         match_screen.revalidate();
         match_screen.repaint();
+        match_screen.updateUI();
         this.match_screen.add(take_card);
         this.match_screen.add(use_card);
         this.match_screen.add(fondo);
