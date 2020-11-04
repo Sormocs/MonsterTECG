@@ -27,6 +27,21 @@ public class Match_GUI extends JFrame {
     private JButton use_card;
     private JButton take_card;
 
+    private JButton card0;
+    private JButton card1;
+    private JButton card2;
+    private JButton card3;
+    private JButton card4;
+    private JButton card5;
+    private JButton card6;
+    private JButton card7;
+    private JButton card8;
+    private JButton card9;
+
+
+    private JTextArea history;
+
+    private JScrollPane scroll;
 
     private JsonNode selected;
 
@@ -60,6 +75,18 @@ public class Match_GUI extends JFrame {
 
         deck = new Stack();
         deck.Llenar();
+
+        history = new JTextArea();
+        history.setOpaque(false);
+        history.setEditable(false);
+        history.setLineWrap(true);
+        history.setBackground(Color.BLUE);
+        history.setForeground(Color.WHITE);
+
+        scroll = new JScrollPane(history);
+        scroll.setBounds(570,10,210,180);
+        scroll.getViewport().setOpaque(false);
+        scroll.setOpaque(false);
 
         PlayerHP = new JLabel();
         PlayerHP.setBounds(290,290,100,50);
@@ -106,6 +133,7 @@ public class Match_GUI extends JFrame {
         mano = new ListaCircular();
         GenerateHand();
         buttons();
+        this.match_screen.add(scroll);
         this.match_screen.add(take_card);
         this.match_screen.add(use_card);
         this.match_screen.add(PlayerHP);
