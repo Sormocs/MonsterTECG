@@ -5,7 +5,7 @@ import cartas.Secrets;
 import cartas.Spells;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
-import listas.Stack;
+import gui.Partida;
 import manejo.json.Json;
 
 import java.io.DataInputStream;
@@ -31,8 +31,6 @@ public class Cliente implements Runnable {
     private int vidaR;
     private int manaR;
 
-    private Stack stack;
-
     private DataOutputStream out;
     private DataInputStream in;
     private int puerto = 5000;
@@ -45,11 +43,13 @@ public class Cliente implements Runnable {
     private boolean turno;
 
     public Cliente(String jugador){
+
         this.vida = 1000;
         this.mana = 200;
         this.vidaR = 1000;
         this.manaR = 200;
         this.jugador = jugador;
+        this.turno = false;
 
         try{
             //Se crea el socket y los data e input stream para enviar y recibir mensajes
@@ -74,6 +74,8 @@ public class Cliente implements Runnable {
                 //Lee el mensaje que envió el servidor
                 mensaje = in.readUTF();
                 System.out.println(mensaje);
+
+                this.turno = true;
 
                 //Separar el mensaje según el protocolo establecido
                 String[] leermensaje = mensaje.split("#");
@@ -129,10 +131,11 @@ public class Cliente implements Runnable {
 
             mensaje += "#" + this.jugador + "#" + Svida + "#" + Smana;
 
-            //System.out.println(mensaje);
             this.out.writeUTF(mensaje);
 
             mensaje = null;
+            this.turno = false;
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -151,6 +154,11 @@ public class Cliente implements Runnable {
 
             String s_nodo = mensaje[0];
             JsonNode nodo = Json.parse(s_nodo);
+
+            String infoturno = nodo.get("informacion").textValue();
+            infoturno += " con costo de mana de ";
+            infoturno += nodo.get("costo");
+            Partida.GetInstance().GuardarPartida(infoturno);
 
             String tipo = nodo.get("tipo").textValue();
 

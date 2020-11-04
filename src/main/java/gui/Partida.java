@@ -2,6 +2,7 @@ package gui;
 
 import cliente.Cliente;
 import com.fasterxml.jackson.databind.JsonNode;
+import listas.ListaDoble;
 import servidor.Server;
 
 import java.io.IOException;
@@ -14,6 +15,8 @@ import java.io.IOException;
 public class Partida {
 
     private Cliente cliente;
+
+    private ListaDoble lista = new ListaDoble();
 
     private static Partida instancia = null;
 
@@ -76,6 +79,12 @@ public class Partida {
         cliente.EnviarMensaje(card);
     }
 
+    public void GuardarPartida(String infoturno){
+
+        //lista.InsertarFinal(infoturno);
+
+    }
+
     public int getVidaPlayer(){
         int vida = cliente.getVida();
         return vida;
@@ -97,4 +106,5 @@ public class Partida {
         int mana = cliente.getManaR();
         return mana;
     }
+
 }

@@ -8,6 +8,7 @@ public class Spells {
     public String accion;
     public int costo;
     public String ruta;
+    public String informacion;
 
     public void hola(){
         System.out.println("lo logre");

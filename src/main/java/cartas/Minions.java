@@ -7,6 +7,7 @@ public class Minions {
     public int porcentaje;
     public String aplica;
     public String ruta;
+    public String informacion;
 
     public int[] Caso(int Vida, int VidaR, int Mana){
 

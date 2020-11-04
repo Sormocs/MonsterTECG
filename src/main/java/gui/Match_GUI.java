@@ -5,7 +5,6 @@ import java.awt.*;
 import java.awt.event.*;
 import com.fasterxml.jackson.databind.JsonNode;
 import listas.*;
-import manejo.json.Json;
 
 public class Match_GUI extends JFrame {
 
@@ -159,6 +158,14 @@ public class Match_GUI extends JFrame {
 
         if (selected != null){
             Partida.GetInstance().EnviarMensaje(selected);
+
+            String infoturno = selected.get("informacion").textValue();
+            infoturno += " con costo de mana de ";
+            infoturno += selected.get("costo");
+            infoturno += "\n";
+
+            history.append(infoturno);
+            Partida.GetInstance().GuardarPartida(infoturno);
             //Object elemento = selected;
             //mano.Delete(elemento);
             //mano.Show();
