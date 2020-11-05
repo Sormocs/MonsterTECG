@@ -192,16 +192,20 @@ public class Match_GUI extends JFrame implements ActionListener{
                 mano.ChangeValue(deck.getTop(), pos2change);
                 deck.pop();
             }
-            buttons();
             check_pos[pos2change] = false;
             btn_list[pos2change].setIcon(new ImageIcon("Cartas/Card-Template.png"));
             btn_list[pos2change].setEnabled(false);
             selected = null;
+            buttons();
             TerminaTurno();
 
         }else{
             JOptionPane.showMessageDialog(this,"Select a card","Nothing Selected",JOptionPane.INFORMATION_MESSAGE);
         }
+        for (boolean pos : check_pos){
+            System.out.print(pos+" ");
+        }
+        System.out.println();
 
     }
 
@@ -214,6 +218,7 @@ public class Match_GUI extends JFrame implements ActionListener{
                     btn_list[i].setEnabled(true);
                     check_pos[i] = true;
                     TerminaTurno();
+                    buttons();
                     break;
                 }else if(check_pos[9]){
                     JOptionPane.showMessageDialog(this, "Your hand is full", "You can't add more", JOptionPane.INFORMATION_MESSAGE);
@@ -223,6 +228,10 @@ public class Match_GUI extends JFrame implements ActionListener{
         }else{
             JOptionPane.showMessageDialog(this,"You're card broke","You can't take more cards",JOptionPane.INFORMATION_MESSAGE);
         }
+        for (boolean pos : check_pos){
+            System.out.print(pos+" ");
+        }
+        System.out.println();
     }
 
 

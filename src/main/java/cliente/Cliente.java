@@ -13,6 +13,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
+import java.net.SocketException;
 
 /**
  * Clase para tener el cliente del servidor
@@ -72,30 +73,34 @@ public class Cliente implements Runnable {
         try{
             while(true) {
 
-                //Lee el mensaje que envió el servidor
-                mensaje = in.readUTF();
-                //System.out.println(mensaje);
+                try {
+                    //Lee el mensaje que envió el servidor
+                    mensaje = in.readUTF();
+                    //System.out.println(mensaje);
 
 
-                this.turno = true;
+                    this.turno = true;
 
-                //Separar el mensaje según el protocolo establecido
-                String[] leermensaje = mensaje.split("#");
+                    //Separar el mensaje según el protocolo establecido
+                    String[] leermensaje = mensaje.split("#");
 
-                if (leermensaje[0].equals("Iniciar")) {
-                    Partida.GetInstance().setHay_guest(true);
-                } else if(leermensaje[0].equals("TerminarTurno")){
-                    Partida.GetInstance().ComenzarTurno();
-                }
-                //Lógica del juego
-                else if (leermensaje[1].equals(this.jugador)){
-                    if (leermensaje[5].equals("TRUE")){
-                        EjeccucionCliente(leermensaje);
+                    if (leermensaje[0].equals("Iniciar")) {
+                        Partida.GetInstance().setHay_guest(true);
+                    } else if (leermensaje[0].equals("TerminarTurno")) {
+                        Partida.GetInstance().ComenzarTurno();
                     }
-                    //Guardar la partida
-                    GuardarPartida(leermensaje[0]);
-                }
+                    //Lógica del juego
+                    else if (leermensaje[1].equals(this.jugador)) {
+                        if (leermensaje[5].equals("TRUE")) {
+                            EjeccucionCliente(leermensaje);
+                        }
+                        //Guardar la partida
+                        GuardarPartida(leermensaje[0]);
+                    }
 
+                } catch(SocketException e1){
+                    Partida.GetInstance().ConnectionLost();
+                }
             }
 
         } catch (Exception e){
