@@ -71,19 +71,18 @@ public class Cliente implements Runnable {
 
                 //Lee el mensaje que envió el servidor
                 mensaje = in.readUTF();
-                System.out.println(mensaje);
+                //System.out.println(mensaje);
 
                 this.turno = true;
 
                 //Separar el mensaje según el protocolo establecido
                 String[] leermensaje = mensaje.split("#");
 
-                if (leermensaje[0].equals("Iniciar") && this.jugador.equals("Guest")){
-
+                if (leermensaje[0].equals("Iniciar")){
+                    Partida.GetInstance().setHay_guest(true);
                 }
-
                 //Lógica del juego
-                if (leermensaje[1].equals(this.jugador)){
+                else if (leermensaje[1].equals(this.jugador)){
                     EjeccucionCliente(leermensaje);
                 }
 
@@ -223,7 +222,15 @@ public class Cliente implements Runnable {
 
     public void Iniciar(){
         try {
-            this.out.writeUTF("Iniciar-0-host");
+            this.out.writeUTF("Iniciar#Guest#0#0#");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void HostConnects(){
+        try {
+            this.out.writeUTF("Conecta_Host#Host#0#0#");
         } catch (IOException e) {
             e.printStackTrace();
         }

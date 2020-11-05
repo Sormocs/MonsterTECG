@@ -87,9 +87,13 @@ public class Host_GUI extends JFrame {
     }
 
     public void actionPerformed_StartBTN() throws com.fasterxml.jackson.core.JsonProcessingException {
-        Match_GUI game_gui = new Match_GUI();
-        game_gui.setVisible(true);
-        this.setVisible(false);
-        //Partida.GetInstance().EnviarMensaje();
+
+        if (Partida.GetInstance().isHay_guest()) {
+            Match_GUI game_gui = new Match_GUI();
+            game_gui.setVisible(true);
+            this.setVisible(false);
+        }else{
+            JOptionPane.showMessageDialog(this,"Wait for the guest to connect","No Guest Connected",JOptionPane.INFORMATION_MESSAGE);
+        }
     }
 }

@@ -1,5 +1,7 @@
 package listas;
 
+import com.fasterxml.jackson.databind.JsonNode;
+
 public class ListaCircular {
 
     private int size;
@@ -31,44 +33,20 @@ public class ListaCircular {
 
     }
 
-    public void Delete(Object elemento){
+    public void ChangeValue(Object elemento, int pos){
 
         int contador = 0;
         NodoCircular current = inicio;
         while (contador < size){
 
-            if (current.getElemento() == elemento){
-                NodoCircular prev = current.getPrev();
-                NodoCircular sig = current.getNext();
-
-                prev.setNext(sig);
-                sig.setPrev(prev);
-                size --;
+            if (contador == pos){
+                current.setElemento(elemento);
                 break;
             }else{
                 contador ++;
                 current = current.getNext();
             }
 
-        }
-
-    }
-
-    public boolean Contains(Object valor){
-
-        NodoCircular actual = inicio;
-        while(actual != end){
-            if (actual.getElemento() == valor){
-                System.out.println("Contiene");
-                return true;
-            } else{
-                actual = actual.getNext();
-            }
-        }if (end.getElemento() == valor){
-            return true;
-        }else{
-            System.out.println("No contiene");
-            return false;
         }
 
     }
@@ -97,7 +75,7 @@ public class ListaCircular {
     }
 
     public NodoCircular getNode(int pos){
-        if (pos > size){
+        if (pos >= size){
             return null;
         }else{
             NodoCircular actual = inicio;

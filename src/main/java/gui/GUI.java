@@ -123,8 +123,7 @@ public class GUI extends JFrame {
         ventana_invitado = new Guest_GUI();
         ventana_invitado.setVisible(true);
         this.setVisible(false);
-
-
+        Partida.GetInstance().Iniciar();
 
     }
 }

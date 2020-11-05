@@ -3,10 +3,13 @@ package gui;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
+
 import com.fasterxml.jackson.databind.JsonNode;
 import listas.*;
+import manejo.json.Json;
 
-public class Match_GUI extends JFrame {
+public class Match_GUI extends JFrame implements ActionListener{
 
     private JLabel match_screen;
     private Stack deck;
@@ -22,9 +25,13 @@ public class Match_GUI extends JFrame {
     private int rivalhp = Partida.GetInstance().getVidaRival();
     private int playermana = Partida.GetInstance().getManaPlayer();
     private int rivalmana = Partida.GetInstance().getManaRival();
+    private int pos2change;
 
     private JButton use_card;
     private JButton take_card;
+    private JButton skip_turn;
+
+    private JButton reset;
 
     private JButton card0;
     private JButton card1;
@@ -37,12 +44,17 @@ public class Match_GUI extends JFrame {
     private JButton card8;
     private JButton card9;
 
+    private boolean[] check_pos = {true,true,true,true,false,false,false,false,false,false};
+
+    private JButton[] btn_list = {card0,card1,card2,card3,card4,card5,card6,card7,card8,card9};
+
+    private NodoCircular[] nodos = {};
 
     private static JTextArea history;
 
     private JScrollPane scroll;
 
-    private JsonNode selected;
+    private NodoCircular selected;
 
     public Match_GUI() throws com.fasterxml.jackson.core.JsonProcessingException{
         super();
@@ -111,28 +123,37 @@ public class Match_GUI extends JFrame {
         RivalMana.setFont(new Font("Comic Sans MS",Font.BOLD,28));
         RivalMana.setForeground(Color.RED);
 
+        skip_turn = new JButton(new ImageIcon("Imagenes/SkipBTN.jpg"));
+        skip_turn.setBounds(550,260,200,60);
+        skip_turn.addActionListener(this);
+
         use_card = new JButton(new ImageIcon("Imagenes/UseCardBTN.jpg"));
         use_card.setBounds(20,270,200,60);
-        use_card.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                CardUsed();
-            }
-        });
+        use_card.addActionListener(this);
 
         take_card = new JButton(new ImageIcon("Imagenes/TakeBTN.jpg"));
-        take_card.setBounds(550,350,200,60);
-        take_card.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                CardTaken();
-            }
-        });
+        take_card.setBounds(550,340,200,60);
+        take_card.addActionListener(this);
+
+        int posx = 50;
+        for (int i=0 ;i<10;i++, posx+=60){
+            btn_list[i] = new JButton();
+            btn_list[i].setBounds(posx,440,75,100);
+            btn_list[i].addActionListener(this::actionPerformed);
+            this.match_screen.add(btn_list[i]);
+        }
 
         mano = new ListaCircular();
         GenerateHand();
+
+        NodoCircular[] nodos = {mano.getNode(0),mano.getNode(1),mano.getNode(2),mano.getNode(3),mano.getNode(4),
+                mano.getNode(5),mano.getNode(6),mano.getNode(7),mano.getNode(8),mano.getNode(9)};
+
+        this.nodos = nodos;
+
         buttons();
         this.match_screen.add(scroll);
+        this.match_screen.add(skip_turn);
         this.match_screen.add(take_card);
         this.match_screen.add(use_card);
         this.match_screen.add(PlayerHP);
@@ -145,33 +166,36 @@ public class Match_GUI extends JFrame {
     public void GenerateHand() {
 
         int contador = 0;
-        while (contador < 4){
+        while (contador < 10){
             JsonNode element = (JsonNode) deck.getTop();
             mano.InsertEnd(element);
             deck.pop();
             contador ++;
-            //mano.Show();
         }
     }
 
     public void CardUsed(){
 
         if (selected != null){
-            Partida.GetInstance().EnviarMensaje(selected);
+            JsonNode carta = (JsonNode) selected.getElemento();
+            Partida.GetInstance().EnviarMensaje(carta);
 
-            String infoturno = "-Yo: "+selected.get("informacion").textValue();
+            String infoturno = carta.get("informacion").textValue();
             infoturno += " con costo de mana de ";
-            infoturno += selected.get("costo");
+            infoturno += carta.get("costo");
             infoturno += "\n";
-
-            Match_GUI.ShowCard(infoturno);
+            history.append(infoturno);
             Partida.GetInstance().GuardarPartida(infoturno);
-            //Object elemento = selected;
-            //mano.Delete(elemento);
-            //mano.Show();
-            //buttons();
-            //Update();
-            //selected = null;
+
+            if (deck.isEmpty() == false) {
+                mano.ChangeValue(deck.getTop(), pos2change);
+                deck.pop();
+            }
+            buttons();
+            check_pos[pos2change] = false;
+            btn_list[pos2change].setIcon(new ImageIcon("Cartas/Card-Template.png"));
+            btn_list[pos2change].setEnabled(false);
+            selected = null;
 
         }else{
             JOptionPane.showMessageDialog(this,"Select a card","Nothing Selected",JOptionPane.INFORMATION_MESSAGE);
@@ -180,214 +204,108 @@ public class Match_GUI extends JFrame {
     }
 
     public void CardTaken(){
-        if (mano.getSize()<10 && deck.isEmpty()==false){
-            mano.InsertEnd(deck.getTop());
-            deck.pop();
-            Update();
+        if (deck.isEmpty() == false){
+            for (int i = 0; i<10; i++){
+                if (check_pos[i] == false){
+                    JsonNode nodo = (JsonNode) nodos[i].getElemento();
+                    btn_list[i].setIcon(new ImageIcon(nodo.get("ruta").textValue()));
+                    btn_list[i].setEnabled(true);
+                    check_pos[i] = true;
+                    break;
+                }else if(check_pos[9]){
+                    JOptionPane.showMessageDialog(this, "Your hand is full", "You can't add more", JOptionPane.INFORMATION_MESSAGE);
+                    break;
+                }
+            }
         }else{
-            JOptionPane.showMessageDialog(this,"Your hand is full","You can't take more",JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this,"You're card broke","You can't take more cards",JOptionPane.INFORMATION_MESSAGE);
         }
-    }
-
-    public void Update(){
-        match_screen.remove(take_card);
-        match_screen.remove(use_card);
-        buttons();
-        match_screen.revalidate();
-        match_screen.repaint();
-        match_screen.updateUI();
-        this.match_screen.add(take_card);
-        this.match_screen.add(use_card);
-        this.match_screen.add(fondo);
     }
 
 
     public void buttons(){
-        button0();
-        button1();
-        button2();
-        button3();
-        button4();
-        button5();
-        button6();
-        button7();
-        button8();
-        button9();
-    }
-
-    private void button0(){
-        if (mano.getNode(0) != null){
-            NodoCircular actual = mano.getNode(0);
-            JsonNode nodo = (JsonNode) actual.getElemento();
-            JButton card0 = new JButton(new ImageIcon(nodo.get("ruta").textValue()));
-            card0.setBounds(50,440,75,100);
-            card0.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    selected = nodo;
-
-                }
-            });
-            this.match_screen.add(card0);
+        for (int i = 0; i<10; i++){
+            if (check_pos[i]){
+                JsonNode nodo = (JsonNode) nodos[i].getElemento();
+                btn_list[i].setIcon(new ImageIcon(nodo.get("ruta").textValue()));
+            } else {
+                btn_list[i].setIcon(new ImageIcon("Cartas/Card-Template.png"));
+                btn_list[i].setEnabled(false);
+            }
         }
     }
 
-    private void button1(){
-        if (mano.getNode(1) != null){
-            NodoCircular actual = mano.getNode(1);
-            JsonNode nodo = (JsonNode) actual.getElemento();
-            JButton card1 = new JButton(new ImageIcon(nodo.get("ruta").textValue()));
-            card1.setBounds(110,440,75,100);
-            card1.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    selected = nodo;
 
-                }
-            });
-            this.match_screen.add(card1);
-        }
-    }
-
-    private void button2(){
-        if (mano.getNode(2) != null){
-            NodoCircular actual = mano.getNode(2);
-            JsonNode nodo = (JsonNode) actual.getElemento();
-            JButton card2 = new JButton(new ImageIcon(nodo.get("ruta").textValue()));
-            card2.setBounds(170,440,75,100);
-            card2.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    selected = nodo;
-
-
-                }
-            });
-            this.match_screen.add(card2);
-        }
-    }
-
-    private void button3(){
-        if (mano.getNode(3) != null){
-            NodoCircular actual = mano.getNode(3);
-            JsonNode nodo = (JsonNode) actual.getElemento();
-            JButton card3 = new JButton(new ImageIcon(nodo.get("ruta").textValue()));
-            card3.setBounds(230,440,75,100);
-            card3.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    selected = nodo;
-                }
-            });
-            this.match_screen.add(card3);
-        }
-    }
-
-    private void button4(){
-        if (mano.getNode(4) != null){
-            NodoCircular actual = mano.getNode(4);
-            JsonNode nodo = (JsonNode) actual.getElemento();
-            JButton card4 = new JButton(new ImageIcon(nodo.get("ruta").textValue()));
-            card4.setBounds(290,440,75,100);
-            card4.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    selected = nodo;
-                }
-            });
-            this.match_screen.add(card4);
-        }
-    }
-
-    private void button5(){
-        if (mano.getNode(5) != null){
-            NodoCircular actual = mano.getNode(5);
-            JsonNode nodo = (JsonNode) actual.getElemento();
-            JButton card5 = new JButton(new ImageIcon(nodo.get("ruta").textValue()));
-            card5.setBounds(350,440,75,100);
-            card5.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    selected = nodo;
-                }
-            });
-            this.match_screen.add(card5);
-        }
-    }
-
-    private void button6(){
-        if (mano.getNode(6) != null){
-            NodoCircular actual = mano.getNode(6);
-            JsonNode nodo = (JsonNode) actual.getElemento();
-            JButton card6 = new JButton(new ImageIcon(nodo.get("ruta").textValue()));
-            card6.setBounds(410,440,75,100);
-            card6.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    selected = nodo;
-                }
-            });
-            this.match_screen.add(card6);
-        }
-    }
-
-    private void button7(){
-        if (mano.getNode(7) != null){
-            NodoCircular actual = mano.getNode(7);
-            JsonNode nodo = (JsonNode) actual.getElemento();
-            JButton card7 = new JButton(new ImageIcon(nodo.get("ruta").textValue()));
-            card7.setBounds(470,440,75,100);
-            card7.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    selected = nodo;
-                }
-            });
-            this.match_screen.add(card7);
-        }
-    }
-
-    private void button8(){
-        if (mano.getNode(8) != null){
-            NodoCircular actual = mano.getNode(8);
-            JsonNode nodo = (JsonNode) actual.getElemento();
-            JButton card8 = new JButton(new ImageIcon(nodo.get("ruta").textValue()));
-            card8.setBounds(530,440,75,100);
-            card8.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    selected = nodo;
-                }
-            });
-            this.match_screen.add(card8);
-        }
-    }
-
-    private void button9(){
-        if (mano.getNode(9) != null){
-            NodoCircular actual = mano.getNode(9);
-            JsonNode nodo = (JsonNode) actual.getElemento();
-            JButton card9 = new JButton(new ImageIcon(nodo.get("ruta").textValue()));
-            card9.setBounds(590,440,75,100);
-            card9.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    selected = nodo;
-                }
-            });
-            this.match_screen.add(card9);
-        }
-    }
-
-    /**
-     * Agrega la carta jugada a la pantalla
-     * @param infocarta String
-     */
-
-    public static void ShowCard(String infocarta){
+    public static void ShowCard(String infocarta) {
 
         history.append(infocarta);
-
     }
 
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
+        Object btn_pressed = e.getSource();
+
+        if (btn_pressed == use_card){
+            CardUsed();
+        }
+
+        if (btn_pressed == take_card){
+            CardTaken();
+        }
+        if (btn_pressed == skip_turn){
+
+        }
+
+        if (btn_pressed == btn_list[0]){
+            selected = mano.getNode(0);
+            pos2change = 0;
+
+        }
+        if (btn_pressed == btn_list[1]){
+            selected = mano.getNode(1);
+            pos2change = 1;
+
+        }
+        if (btn_pressed == btn_list[2]){
+            selected = mano.getNode(2);
+            pos2change = 2;
+
+        }
+        if (btn_pressed == btn_list[3]){
+            selected = mano.getNode(3);
+            pos2change = 3;
+
+        }
+        if (btn_pressed == btn_list[4]){
+            selected = mano.getNode(4);
+            pos2change = 4;
+        }
+        if (btn_pressed == btn_list[5]){
+            selected = mano.getNode(5);
+            pos2change = 5;
+        }
+
+        if (btn_pressed == btn_list[6]){
+            selected = mano.getNode(6);
+            pos2change = 6;
+        }
+        if (btn_pressed == btn_list[7]){
+            selected = mano.getNode(7);
+            pos2change = 7;
+        }
+        if (btn_pressed == btn_list[8]){
+            selected = mano.getNode(8);
+            pos2change = 8;
+        }
+        if (btn_pressed == btn_list[9]){
+            selected = mano.getNode(9);
+            pos2change = 9;
+        }
+
+
+
+
+    }
 }

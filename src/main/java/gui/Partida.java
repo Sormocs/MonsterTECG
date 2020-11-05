@@ -20,6 +20,10 @@ public class Partida {
 
     private static Partida instancia = null;
 
+    private boolean hay_guest = false; //True para pruebas, valor verdadero es false
+
+    private boolean hay_host = false;
+
     private Partida(){
 
     }
@@ -132,4 +136,16 @@ public class Partida {
         return mana;
     }
 
+    public void setHay_guest(boolean hay_guest) {
+        this.hay_guest = hay_guest;
+    }
+
+    public boolean isHay_guest() {
+        return hay_guest;
+    }
+
+
+    public void Iniciar() {
+        cliente.Iniciar();
+    }
 }
