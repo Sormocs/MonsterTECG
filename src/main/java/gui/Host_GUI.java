@@ -97,5 +97,6 @@ public class Host_GUI extends JFrame {
         }else{
             JOptionPane.showMessageDialog(this,"Wait for the guest to connect","No Guest Connected",JOptionPane.INFORMATION_MESSAGE);
         }
+
     }
 }
