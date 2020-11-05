@@ -84,7 +84,6 @@ public class Guest_GUI extends JFrame{
         Match_GUI game_gui = new Match_GUI();
         game_gui.setVisible(true);
         this.setVisible(false);
-        //Partida.GetInstance().EnviarMensaje();
     }
 
 }

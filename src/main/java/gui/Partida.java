@@ -79,16 +79,31 @@ public class Partida {
         cliente.EnviarMensaje(card);
     }
 
+    /**
+     * Guarda la jugada realizada para verla en el historial
+     * @param infoturno
+     */
+
     public void GuardarPartida(String infoturno){
 
-        //lista.InsertarFinal(infoturno);
+        lista.InsertarFinal(infoturno);
 
     }
+
+    /**
+     * Retorna la vida del jugador
+     * @return int
+     */
 
     public int getVidaPlayer(){
         int vida = cliente.getVida();
         return vida;
     }
+
+    /**
+     * Retorna la vida rival
+     * @return int
+     */
 
     public int getVidaRival(){
 
@@ -97,10 +112,20 @@ public class Partida {
 
     }
 
+    /**
+     * Retorna el mana del jugador
+     * @return int
+     */
+
     public int getManaPlayer(){
         int mana = cliente.getMana();
         return mana;
     }
+
+    /**
+     * Retorna el mana del rival
+     * @return int
+     */
 
     public int getManaRival(){
         int mana = cliente.getManaR();

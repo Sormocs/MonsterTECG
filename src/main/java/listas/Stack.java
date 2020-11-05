@@ -88,7 +88,7 @@ public class Stack {
 
             JsonNode nodo = Json.parse(file);
 
-            String[] tipo_carta = {"minions","secrets","Spells"};
+            String[] tipo_carta = {"minions","secrets","Spells","minions"};
 
             String[] minions = {"attackOwn18_141HP","attackOwn25","attackOwn35_413HP","attackOwn36","attackOwn40","attackRival16_148HP",
                     "attackRival20","attackRival24_134HP","attackRival32_58HP","attackRival40","attackRival56","attack100HP","attack125HP","attack172HP",
@@ -102,7 +102,7 @@ public class Stack {
 
             for (int i = 0; i <= 16;i++){
 
-                int valor_carta = (int) (Math.random() * 3);
+                int valor_carta = (int) (Math.random() * 4);
 
                 if (tipo_carta[valor_carta].equals("minions")){
 

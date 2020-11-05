@@ -38,7 +38,7 @@ public class Match_GUI extends JFrame {
     private JButton card9;
 
 
-    private JTextArea history;
+    private static JTextArea history;
 
     private JScrollPane scroll;
 
@@ -159,12 +159,12 @@ public class Match_GUI extends JFrame {
         if (selected != null){
             Partida.GetInstance().EnviarMensaje(selected);
 
-            String infoturno = selected.get("informacion").textValue();
+            String infoturno = "-Yo: "+selected.get("informacion").textValue();
             infoturno += " con costo de mana de ";
             infoturno += selected.get("costo");
             infoturno += "\n";
 
-            history.append(infoturno);
+            Match_GUI.ShowCard(infoturno);
             Partida.GetInstance().GuardarPartida(infoturno);
             //Object elemento = selected;
             //mano.Delete(elemento);
@@ -379,7 +379,15 @@ public class Match_GUI extends JFrame {
         }
     }
 
+    /**
+     * Agrega la carta jugada a la pantalla
+     * @param infocarta String
+     */
 
+    public static void ShowCard(String infocarta){
 
+        history.append(infocarta);
+
+    }
 
 }

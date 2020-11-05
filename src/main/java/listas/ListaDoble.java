@@ -42,11 +42,11 @@ public class ListaDoble {
      * @param dato
      */
     public void  InsertarFinal(Object dato){
-        if (!Vacia()) {
+        if (inicio == null) {
             fin = new NodoDoble(dato, null, null);
             inicio = fin;
         } else {
-            NodoDoble nuevo = new NodoDoble(dato, fin, null);
+            NodoDoble nuevo = new NodoDoble(dato, null, fin);
             fin.setSiguiente(nuevo);
             fin = nuevo;
         }
@@ -96,7 +96,36 @@ public class ListaDoble {
 
         while (temp != null){
             System.out.println(temp.getDato());
+            Object das = temp.getDato();
             temp = temp.getSiguiente();
+        }
+    }
+
+    /**
+     * Retorna el nodo siguiente
+     * @param temp NodoDoble
+     * @return NodoDoble
+     */
+
+    public NodoDoble MoverDerecha(NodoDoble temp){
+        if (temp.getSiguiente() == null){
+            return temp;
+        } else {
+            return temp.getSiguiente();
+        }
+    }
+
+    /**
+     * Retorna el nodo anterior
+     * @param temp NodoDoble
+     * @return NodoDoble
+     */
+
+    public NodoDoble MoverIzquierda(NodoDoble temp){
+        if (temp.getAnterior() == null){
+            return temp;
+        } else {
+            return temp.getAnterior();
         }
     }
 }

@@ -9,6 +9,14 @@ public class Minions {
     public String ruta;
     public String informacion;
 
+    /**
+     * Llama la metodo correpondiente de la carta
+     * @param Vida int
+     * @param VidaR int
+     * @param Mana int
+     * @return int[]
+     */
+
     public int[] Caso(int Vida, int VidaR, int Mana){
 
         int[] vidamana = new int[2];
@@ -28,6 +36,13 @@ public class Minions {
         return vidamana;
     }
 
+    /**
+     * Retorna la nueva vida y mana
+     * @param Vida int
+     * @param Mana int
+     * @return int[]
+     */
+
     public int[] PropiaHP(int Vida, int Mana){
 
         int dato = (this.porcentaje*Vida)/100;
@@ -42,6 +57,14 @@ public class Minions {
 
     }
 
+    /**
+     * Retorna la nueva vida y mana
+     * @param Vida int
+     * @param Mana int
+     * @param VidaR int
+     * @return int[]
+     */
+
     public int[] RivalHP(int Vida, int VidaR, int Mana){
 
         int dato = (this.porcentaje*VidaR)/100;
@@ -54,6 +77,13 @@ public class Minions {
         return vidamana;
 
     }
+
+    /**
+     * Retorna la nueva vida y mana
+     * @param Vida int
+     * @param Mana int
+     * @return int[]
+     */
 
     public int[] Ninguno(int Vida, int Mana){
 

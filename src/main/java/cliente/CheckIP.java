@@ -9,14 +9,18 @@ import java.net.UnknownHostException;
 
 public class CheckIP {
 
+    private static String IP;
+
     /**
      * metodo para retornar la ip
-     * @return ip
+     * @return String
      * @throws UnknownHostException
      */
-    String obtenerIP() throws UnknownHostException {
+    public static String obtenerIP() throws UnknownHostException {
         InetAddress ip = InetAddress.getLocalHost();
         return ip.getHostAddress();
     }
+
+
 
 }

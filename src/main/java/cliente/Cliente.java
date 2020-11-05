@@ -5,6 +5,7 @@ import cartas.Secrets;
 import cartas.Spells;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
+import gui.Match_GUI;
 import gui.Partida;
 import manejo.json.Json;
 
@@ -35,8 +36,6 @@ public class Cliente implements Runnable {
     private DataInputStream in;
     private int puerto = 5000;
 
-    private String IP;
-
     private String host = "localhost";
     private String mensaje;
 
@@ -56,7 +55,6 @@ public class Cliente implements Runnable {
             this.cliente = new Socket(host,puerto);
             this.in = new DataInputStream(cliente.getInputStream());
             this.out = new DataOutputStream(cliente.getOutputStream());
-            ObtenerIP();
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -94,20 +92,6 @@ public class Cliente implements Runnable {
         } catch (Exception e){
             e.printStackTrace();
         }
-    }
-
-    /**
-     * Llama a la clase CheckIP para obtener la ip de la pc.
-     * @throws UnknownHostException
-     */
-
-    private void ObtenerIP() throws UnknownHostException {
-
-        //Llamo a la clase y al método para obtener la IP
-        CheckIP miIP = new CheckIP();
-        this.IP = miIP.obtenerIP();
-        System.out.println(IP);
-
     }
 
     /**
@@ -155,10 +139,11 @@ public class Cliente implements Runnable {
             String s_nodo = mensaje[0];
             JsonNode nodo = Json.parse(s_nodo);
 
-            String infoturno = nodo.get("informacion").textValue();
+            String infoturno = "-Rival: " + nodo.get("informacion").textValue();
             infoturno += " con costo de mana de ";
-            infoturno += nodo.get("costo");
+            infoturno += nodo.get("costo") + "\n";
             Partida.GetInstance().GuardarPartida(infoturno);
+            Match_GUI.ShowCard(infoturno);
 
             String tipo = nodo.get("tipo").textValue();
 
@@ -183,6 +168,11 @@ public class Cliente implements Runnable {
 
     }
 
+    /**
+     * Crea un objeto de la carta recibida.
+     * @param nodo JsonNode
+     */
+
     public void Minions(JsonNode nodo){
 
         try {
@@ -199,6 +189,11 @@ public class Cliente implements Runnable {
 
     }
 
+    /**
+     * Crea un objeto de la carta recibida.
+     * @param nodo JsonNode
+     */
+
     public void Spells(JsonNode nodo){
 
         try {
@@ -209,6 +204,11 @@ public class Cliente implements Runnable {
         }
 
     }
+
+    /**
+     * Crea un objeto de la carta recibida.
+     * @param nodo JsonNode
+     */
 
     public void Secrets(JsonNode nodo){
 
@@ -246,34 +246,61 @@ public class Cliente implements Runnable {
 
     /**
      * Modifica la vida del jugador.
-     * @param vida
+     * @param vida int
      */
 
     public void setVida(int vida) {
         this.vida = vida;
-        System.out.println(this.vida);
     }
+
+    /**
+     * Retorna el mana del jugador
+     * @return int
+     */
 
     public int getMana() {
         return mana;
     }
 
+    /**
+     * Modifica la vida del jugador.
+     * @param mana int
+     */
+
     public void setMana(int mana) {
         this.mana = mana;
-        System.out.println(this.mana);
     }
+
+    /**
+     * Retorna la vida rival
+     * @return int
+     */
 
     public int getVidaR() {
         return vidaR;
     }
 
+    /**
+     * Modifica la vida rival
+     */
+
     public void setVidaR(int vidaR) {
         this.vidaR = vidaR;
     }
 
+    /**
+     * Retorna el mana rival
+     * @return int
+     */
+
     public int getManaR() {
         return manaR;
     }
+
+    /**
+     * Modifica el mana rival
+     * @param manaR
+     */
 
     public void setManaR(int manaR) {
         this.manaR = manaR;

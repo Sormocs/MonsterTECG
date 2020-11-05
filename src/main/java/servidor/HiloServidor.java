@@ -44,7 +44,7 @@ public class HiloServidor implements  Runnable{
                 String[] leermensaje = mensaje.split("#");
 
                 //Leerá de quien proviene el mensaje. Si es del host, lo cambiará a guest y si viceversa.
-                if (leermensaje[1].equals("Host")){
+                if (leermensaje[1].equals("Guest")){
                     mensaje = leermensaje[0] + "#Host#" + leermensaje[2] + "#" + leermensaje[3];
                     Socket usuariosFirst = usuarios.getFirst();
                     out = new DataOutputStream(usuariosFirst.getOutputStream());
