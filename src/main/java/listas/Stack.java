@@ -124,8 +124,6 @@ public class Stack {
 
             }
 
-            //print();
-
         }catch (Exception e){
             e.printStackTrace();
         }

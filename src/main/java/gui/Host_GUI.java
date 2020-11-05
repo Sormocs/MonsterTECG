@@ -91,7 +91,9 @@ public class Host_GUI extends JFrame {
         if (Partida.GetInstance().isHay_guest()) {
             Match_GUI game_gui = new Match_GUI();
             game_gui.setVisible(true);
+            Partida.GetInstance().setGame_gui(game_gui);
             this.setVisible(false);
+            game_gui.Disable();
         }else{
             JOptionPane.showMessageDialog(this,"Wait for the guest to connect","No Guest Connected",JOptionPane.INFORMATION_MESSAGE);
         }

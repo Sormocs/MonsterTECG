@@ -44,6 +44,7 @@ public class Match_GUI extends JFrame implements ActionListener{
     private JButton card8;
     private JButton card9;
 
+    private boolean turno;
     private boolean[] check_pos = {true,true,true,true,false,false,false,false,false,false};
 
     private JButton[] btn_list = {card0,card1,card2,card3,card4,card5,card6,card7,card8,card9};
@@ -196,6 +197,7 @@ public class Match_GUI extends JFrame implements ActionListener{
             btn_list[pos2change].setIcon(new ImageIcon("Cartas/Card-Template.png"));
             btn_list[pos2change].setEnabled(false);
             selected = null;
+            TerminaTurno();
 
         }else{
             JOptionPane.showMessageDialog(this,"Select a card","Nothing Selected",JOptionPane.INFORMATION_MESSAGE);
@@ -211,6 +213,7 @@ public class Match_GUI extends JFrame implements ActionListener{
                     btn_list[i].setIcon(new ImageIcon(nodo.get("ruta").textValue()));
                     btn_list[i].setEnabled(true);
                     check_pos[i] = true;
+                    TerminaTurno();
                     break;
                 }else if(check_pos[9]){
                     JOptionPane.showMessageDialog(this, "Your hand is full", "You can't add more", JOptionPane.INFORMATION_MESSAGE);
@@ -255,6 +258,7 @@ public class Match_GUI extends JFrame implements ActionListener{
             CardTaken();
         }
         if (btn_pressed == skip_turn){
+            TerminaTurno();
 
         }
 
@@ -304,8 +308,45 @@ public class Match_GUI extends JFrame implements ActionListener{
             pos2change = 9;
         }
 
+    }
 
+    public void Disable(){
+        for (int i=0; i<10; i++){
+            if (check_pos[i]){
+                btn_list[i].setEnabled(false);
+            }
+        }
+        take_card.setEnabled(false);
+        use_card.setEnabled(false);
+        skip_turn.setEnabled(false);
+        turno = false;
+    }
 
+    public void ComienzaTurno(){
+        for (int i=0; i<10; i++){
+            if (check_pos[i]){
+                btn_list[i].setEnabled(true);
+            }
+        }
+        take_card.setEnabled(true);
+        use_card.setEnabled(true);
+        skip_turn.setEnabled(true);
+        turno = true;
+    }
+
+    public void TerminaTurno(){
+
+        for (int i=0; i<10; i++){
+            if (check_pos[i]){
+                btn_list[i].setEnabled(false);
+            }
+        }
+        take_card.setEnabled(false);
+        use_card.setEnabled(false);
+        skip_turn.setEnabled(false);
+        turno = false;
+        Partida.GetInstance().TerminaTurno(turno);
 
     }
+
 }

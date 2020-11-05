@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import listas.ListaDoble;
 import servidor.Server;
 
+import javax.swing.*;
 import java.io.IOException;
 
 /**
@@ -23,6 +24,10 @@ public class Partida {
     private boolean hay_guest = false; //True para pruebas, valor verdadero es false
 
     private boolean hay_host = false;
+
+    private Match_GUI game_gui;
+
+    private GUI main_gui;
 
     private Partida(){
 
@@ -166,5 +171,27 @@ public class Partida {
 
     public void Iniciar() {
         cliente.Iniciar();
+    }
+
+    public void setMain_gui(GUI main_gui) {
+        this.main_gui = main_gui;
+    }
+
+    public void setGame_gui(Match_GUI game_gui) {
+        this.game_gui = game_gui;
+    }
+
+    public void ConnectionLost(){
+        JOptionPane.showMessageDialog(game_gui,"Rival has disconnected","Connection Lost",JOptionPane.ERROR_MESSAGE);
+        System.exit(0);
+    }
+
+    public void ComenzarTurno(){
+        game_gui.ComienzaTurno();
+    }
+
+
+    public void TerminaTurno(boolean valor){
+        cliente.setTurno(valor);
     }
 }

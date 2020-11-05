@@ -83,6 +83,7 @@ public class Guest_GUI extends JFrame{
     private void ActionJoinBTN() throws com.fasterxml.jackson.core.JsonProcessingException{
         Match_GUI game_gui = new Match_GUI();
         game_gui.setVisible(true);
+        Partida.GetInstance().setGame_gui(game_gui);
         this.setVisible(false);
     }
 

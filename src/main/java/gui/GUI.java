@@ -41,6 +41,7 @@ public class GUI extends JFrame {
         setLocationRelativeTo(null);
         InitializeComponents();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        Partida.GetInstance().setMain_gui(this);
     }
 
     /**
