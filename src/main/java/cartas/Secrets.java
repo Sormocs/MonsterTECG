@@ -52,6 +52,7 @@ public class Secrets {
         int probabilidad = (int) (Math.random() * 2);
 
         if (probabilidad == 0){
+            cliente.setAfecto(true);
             return;
         } else{
             cliente.setDefensa(0);

@@ -13,7 +13,6 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
-import java.net.SocketException;
 
 /**
  * Clase para tener el cliente del servidor
@@ -33,7 +32,7 @@ public class Cliente implements Runnable {
     private int manaR;
 
     private int defensa;
-
+    private boolean afecto;
     private boolean reflejo;
 
     private DataOutputStream out;
@@ -72,29 +71,31 @@ public class Cliente implements Runnable {
     public void run(){
         try{
             while(true) {
-                try {
-                    //Lee el mensaje que envió el servidor
-                    mensaje = in.readUTF();
-                    //System.out.println(mensaje);
 
-                    //this.turno = true;
+                //Lee el mensaje que envió el servidor
+                mensaje = in.readUTF();
+                //System.out.println(mensaje);
 
-                    //Separar el mensaje según el protocolo establecido
-                    String[] leermensaje = mensaje.split("#");
 
-                    if (leermensaje[0].equals("Iniciar")) {
-                        Partida.GetInstance().setHay_guest(true);
-                    } else if(leermensaje[0].equals("TerminarTurno")){
-                        Partida.GetInstance().ComenzarTurno();
-                    }
-                    //Lógica del juego
-                    else if (leermensaje[1].equals(this.jugador)) {
+                this.turno = true;
+
+                //Separar el mensaje según el protocolo establecido
+                String[] leermensaje = mensaje.split("#");
+
+                if (leermensaje[0].equals("Iniciar")) {
+                    Partida.GetInstance().setHay_guest(true);
+                } else if(leermensaje[0].equals("TerminarTurno")){
+                    Partida.GetInstance().ComenzarTurno();
+                }
+                //Lógica del juego
+                else if (leermensaje[1].equals(this.jugador)){
+                    if (leermensaje[5].equals("TRUE")){
                         EjeccucionCliente(leermensaje);
                     }
-
-                }catch(SocketException e1){
-                    Partida.GetInstance().ConnectionLost();
+                    //Guardar la partida
+                    GuardarPartida(leermensaje[0]);
                 }
+
             }
 
         } catch (Exception e){
@@ -121,19 +122,38 @@ public class Cliente implements Runnable {
             String Svida = Integer.toString(this.vida);
             String Smana = Integer.toString(this.mana);
 
-            mensaje += "#" + this.jugador + "#" + Svida + "#" + Smana;
+            mensaje += "#" + this.jugador + "#" + Svida + "#" + Smana + "#TRUE#TRUE";
 
             this.out.writeUTF(mensaje);
 
             mensaje = null;
-            //this.turno = false;
-
-
+            this.turno = false;
 
         } catch (IOException e) {
             e.printStackTrace();
         }
 
+    }
+
+    public void EnviarMensajePropio(JsonNode node){
+        try{
+            String s_string = Json.generateString(node,false);
+
+            // Formación del mensaje.
+            String mensaje = s_string;
+
+            String Svida = Integer.toString(this.vida);
+            String Smana = Integer.toString(this.mana);
+
+            mensaje += "#" + this.jugador + "#" + Svida + "#" + Smana + "#TRUE#FALSE";
+
+            this.out.writeUTF(mensaje);
+
+            mensaje = null;
+            this.turno = false;
+        } catch (IOException e){
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -148,12 +168,6 @@ public class Cliente implements Runnable {
 
             String s_nodo = mensaje[0];
             JsonNode nodo = Json.parse(s_nodo);
-
-            String infoturno = "-Rival: " + nodo.get("informacion").textValue();
-            infoturno += " con costo de mana de ";
-            infoturno += nodo.get("costo") + "\n";
-            Partida.GetInstance().GuardarPartida(infoturno);
-            Match_GUI.ShowCard(infoturno);
 
             String tipo = nodo.get("tipo").textValue();
 
@@ -196,11 +210,27 @@ public class Cliente implements Runnable {
 
         }
 
+        EnviarMensajePropio(nodo);
+
     }
 
     public void EjeccucionAmbos(JsonNode nodo){
 
-        System.out.println("dadad");
+        String tipo = nodo.get("tipo").textValue();
+
+        if (tipo.equals("spell")){
+
+            Spells(nodo);
+
+        } else if (tipo.equals("secreta")){
+
+            Secrets(nodo);
+
+        } else if (isAfecto()){
+            setAfecto(false);
+            EnviarMensaje(nodo);
+        }
+
     }
 
 
@@ -259,7 +289,7 @@ public class Cliente implements Runnable {
 
     public void Iniciar(){
         try {
-            this.out.writeUTF("Iniciar#Guest#0#0#");
+            this.out.writeUTF("Iniciar#Guest#0#0#0#0");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -267,20 +297,40 @@ public class Cliente implements Runnable {
 
     public void HostConnects(){
         try {
-            this.out.writeUTF("Conecta_Host#Host#0#0#");
+            this.out.writeUTF("Conecta_Host#Host#0#0#0#0");
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
+    public void GuardarPartida(String mensaje){
+
+        JsonNode nodo = null;
+        try {
+            nodo = Json.parse(mensaje);
+            String infoturno = "-Rival: " + nodo.get("informacion").textValue();
+            infoturno += " con costo de mana de ";
+            infoturno += nodo.get("costo") + "\n";
+            Match_GUI.ShowCard(infoturno);
+            Partida.GetInstance().GuardarPartida(infoturno);
+
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
+
     public void setTurno(boolean turno) {
         try {
             this.turno = turno;
-            this.out.writeUTF("TerminarTurno#"+this.jugador+"#0#0#");
+            this.out.writeUTF("TerminarTurno#"+this.jugador+"#0#0#0#0");
         } catch (IOException e1) {
             e1.printStackTrace();
         }
     }
+
 
     //MANEJO DE VIDA Y MANA DE LOS 2 JUGADORES
 
@@ -407,8 +457,12 @@ public class Cliente implements Runnable {
         this.vida += cura;
     }
 
-    public boolean isTurno() {
-        return turno;
+
+    public boolean isAfecto() {
+        return afecto;
     }
 
+    public void setAfecto(boolean afecto) {
+        this.afecto = afecto;
+    }
 }

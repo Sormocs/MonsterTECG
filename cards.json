@@ -231,7 +231,8 @@
         "evento": "defensa",
         "porcentaje": "75",
         "ruta": "Cartas/Secret-Def75.png",
-        "informacion": "Usa una carta de tipo secreta que da una defensa del 75%"
+        "informacion": "Usa una carta de tipo secreta que da una defensa del 75%",
+        "afecta": "Propio"
       },
       "def90": {
         "ataque": "0",
