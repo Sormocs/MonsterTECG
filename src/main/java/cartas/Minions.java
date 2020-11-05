@@ -8,6 +8,7 @@ public class Minions {
     public String aplica;
     public String ruta;
     public String informacion;
+    public String afecta;
 
     /**
      * Llama la metodo correpondiente de la carta

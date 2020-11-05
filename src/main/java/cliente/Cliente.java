@@ -13,7 +13,6 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
-import java.net.UnknownHostException;
 
 /**
  * Clase para tener el cliente del servidor
@@ -31,6 +30,10 @@ public class Cliente implements Runnable {
 
     private int vidaR;
     private int manaR;
+
+    private int defensa;
+
+    private boolean reflejo;
 
     private DataOutputStream out;
     private DataInputStream in;
@@ -119,6 +122,8 @@ public class Cliente implements Runnable {
             mensaje = null;
             this.turno = false;
 
+
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -167,6 +172,32 @@ public class Cliente implements Runnable {
 
     }
 
+    public void EjeccucionPropia(JsonNode nodo){
+
+        String tipo = nodo.get("tipo").textValue();
+
+        if (tipo.equals("minions")){
+
+            Minions(nodo);
+
+        } else if (tipo.equals("spell")){
+
+            Spells(nodo);
+
+        } else if (tipo.equals("secreta")){
+
+            Secrets(nodo);
+
+        }
+
+    }
+
+    public void EjeccucionAmbos(JsonNode nodo){
+
+        System.out.println("dadad");
+    }
+
+
     /**
      * Crea un objeto de la carta recibida.
      * @param nodo JsonNode
@@ -197,7 +228,7 @@ public class Cliente implements Runnable {
 
         try {
             Spells spell = Json.fromJson(nodo,Spells.class);
-            spell.hola();
+            spell.Caso();
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
@@ -213,7 +244,7 @@ public class Cliente implements Runnable {
 
         try {
             Secrets secret = Json.fromJson(nodo,Secrets.class);
-            secret.hola();
+            secret.Caso();
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
@@ -257,7 +288,21 @@ public class Cliente implements Runnable {
      */
 
     public void setVida(int vida) {
-        this.vida = vida;
+
+        if (this.defensa != 0){
+
+            int nvida = (this.defensa*vida)/100;
+
+            this.vida = nvida;
+
+            setDefensa(0);
+
+        } else if (isReflejo()){
+            this.vida = vida/2;
+        } else {
+            this.vida = vida;
+        }
+
     }
 
     /**
@@ -313,4 +358,45 @@ public class Cliente implements Runnable {
         this.manaR = manaR;
     }
 
+    /**
+     * Retorna la defesa activa
+     * @return int
+     */
+
+    public int getDefensa() {
+        return defensa;
+    }
+
+    /**
+     * Aplica la nueva defensa
+     * @param defensa int
+     */
+
+    public void setDefensa(int defensa) {
+        this.defensa = defensa;
+    }
+
+    public boolean isReflejo() {
+        return reflejo;
+    }
+
+    public void setReflejo(boolean reflejo) {
+        this.reflejo = reflejo;
+    }
+
+    public void RellenarMana(int mana){
+        this.mana += mana;
+    }
+
+    public void Curar(int cura){
+        this.vida += cura;
+    }
+
+    public boolean isTurno() {
+        return turno;
+    }
+
+    public void setTurno(boolean turno) {
+        this.turno = turno;
+    }
 }

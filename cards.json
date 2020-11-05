@@ -8,7 +8,8 @@
         "porcentaje": "18",
         "aplica": "propiaHP",
         "ruta": "Cartas/Minions-Attack_Own18Prcnt_141HP.png",
-        "informacion": "Usa una carta de tipo minion haciendo 141 de daño + 10% de la propia vida"
+        "informacion": "Usa una carta de tipo minion haciendo 141 de daño + 10% de la propia vida",
+        "afecta": "Rival"
       },
       "attackOwn25":{
         "ataque": "0",
@@ -17,7 +18,8 @@
         "porcentaje": "25",
         "aplica": "propiaHP",
         "ruta": "Cartas/Minions-Attack_Own25Prcnt.png",
-        "informacion": "Usa una carta de tipo minion haciendo el 25% de la propia vida de daño"
+        "informacion": "Usa una carta de tipo minion haciendo el 25% de la propia vida de daño",
+        "afecta": "Rival"
       },
       "attackOwn35_413HP": {
         "ataque": "413",
@@ -26,7 +28,8 @@
         "porcentaje": "35",
         "aplica": "propiaHP",
         "ruta": "Cartas/Minions-Attack_Own35Prcnt_413HP.png",
-        "informacion": "Usa una carta de tipo minion haciendo 413 de daño + el 35% de la propia vida"
+        "informacion": "Usa una carta de tipo minion haciendo 413 de daño + el 35% de la propia vida",
+        "afecta": "Rival"
       },
       "attackOwn36": {
         "ataque": "0",
@@ -35,7 +38,8 @@
         "porcentaje": "36",
         "aplica": "propiaHP",
         "ruta": "Cartas/Minions-Attack_Own36Prcnt.png",
-        "informacion": "Usa una carta de tipo minion haciendo el 36% de daño de la propia vida"
+        "informacion": "Usa una carta de tipo minion haciendo el 36% de daño de la propia vida",
+        "afecta": "Rival"
       },
       "attackOwn40": {
         "ataque": "0",
@@ -44,7 +48,8 @@
         "porcentaje": "40",
         "aplica": "propiaHP",
         "ruta": "Cartas/Minions-Attack_Own40Prcnt.png",
-        "informacion": "Usa una carta de tipo minion haciendo el 40% de daño de la propia vida"
+        "informacion": "Usa una carta de tipo minion haciendo el 40% de daño de la propia vida",
+        "afecta": "Rival"
       },
       "attackRival16_148HP": {
         "ataque": "148",
@@ -53,7 +58,8 @@
         "porcentaje": "16",
         "aplica": "RivalHP",
         "ruta": "Cartas/Minions-Attack16Prcnt_148HP.png",
-        "informacion": "Usa una carta de tipo minion haciendo 148 de daño + el 16% de la vida rival"
+        "informacion": "Usa una carta de tipo minion haciendo 148 de daño + el 16% de la vida rival",
+        "afecta": "Rival"
       },
       "attackRival20": {
         "ataque": "0",
@@ -62,7 +68,8 @@
         "porcentaje": "20",
         "aplica": "RivalHP",
         "ruta": "Cartas/Minions-Attack20Prcnt.png",
-        "informacion": "Usa una carta de tipo minion haciendo el 20% de la vida rival"
+        "informacion": "Usa una carta de tipo minion haciendo el 20% de la vida rival",
+        "afecta": "Rival"
       },
       "attackRival24_134HP": {
         "ataque": "134",
@@ -71,7 +78,8 @@
         "porcentaje": "24",
         "aplica": "RivalHP",
         "ruta": "Cartas/Minions-Attack24Prcnt_134HP.png",
-        "informacion": "Usa una carta de tipo minion haciendo 134 de daño mas el 24% de la vida rival"
+        "informacion": "Usa una carta de tipo minion haciendo 134 de daño mas el 24% de la vida rival",
+        "afecta": "Rival"
       },
       "attackRival32_58HP": {
         "ataque": "58",
@@ -80,7 +88,8 @@
         "porcentaje": "32",
         "aplica": "RivalHP",
         "ruta": "Cartas/Minions-Attack32Prcnt_58HP.png",
-        "informacion": "Usa una carta de tipo minion haciendo 58 más el 32% de la vida rival"
+        "informacion": "Usa una carta de tipo minion haciendo 58 más el 32% de la vida rival",
+        "afecta": "Rival"
       },
       "attackRival40": {
         "ataque": "0",
@@ -89,7 +98,8 @@
         "porcentaje": "40",
         "aplica": "RivalHP",
         "ruta": "Cartas/Minions-Attack40Prcnt.png",
-        "informacion": "Usa una carta de tipo minion haciendo el 40% de la vida rival"
+        "informacion": "Usa una carta de tipo minion haciendo el 40% de la vida rival",
+        "afecta": "Rival"
       },
       "attackRival56": {
         "ataque": "0",
@@ -98,7 +108,8 @@
         "porcentaje": "56",
         "aplica": "RivalHP",
         "ruta": "Cartas/Minions-Attack56Prcnt.png",
-        "informacion": "Usa una carta de tipo minion haciendo el 56% de la vida rival"
+        "informacion": "Usa una carta de tipo minion haciendo el 56% de la vida rival",
+        "afecta": "Rival"
       },
       "attack100HP": {
         "ataque": "100",
@@ -107,7 +118,8 @@
         "porcentaje": "0",
         "aplica": "ninguno",
         "ruta": "Cartas/Minions-Attack100HP.png",
-        "informacion": "Usa una carta de tipo minion haciendo 100 de daño"
+        "informacion": "Usa una carta de tipo minion haciendo 100 de daño",
+        "afecta": "Rival"
       },
       "attack125HP": {
         "ataque": "125",
@@ -116,7 +128,8 @@
         "porcentaje": "0",
         "aplica": "ninguno",
         "ruta": "Cartas/Minions-Attack125HP.png",
-        "informacion": "Usa una carta de tipo minion haciendo 125 de daño"
+        "informacion": "Usa una carta de tipo minion haciendo 125 de daño",
+        "afecta": "Rival"
       },
       "attack172HP": {
         "ataque":"172",
@@ -125,7 +138,8 @@
         "porcentaje": "0",
         "aplica": "ninguno",
         "ruta": "Cartas/Minions-Attack172HP.png",
-        "informacion": "Usa una carta de tipo minion haciendo 172 de daño"
+        "informacion": "Usa una carta de tipo minion haciendo 172 de daño",
+        "afecta": "Rival"
       },
       "attack200HP": {
         "ataque": "200",
@@ -134,7 +148,8 @@
         "porcentaje": "0",
         "aplica": "ninguno",
         "ruta": "Cartas/Minions-Attack200HP.png",
-        "informacion": "Usa una carta de tipo minion haciendo 200 de daño"
+        "informacion": "Usa una carta de tipo minion haciendo 200 de daño",
+        "afecta": "Rival"
       },
       "attack258HP": {
         "ataque": "258",
@@ -143,7 +158,8 @@
         "porcentaje": "0",
         "aplica": "ninguno",
         "ruta": "Cartas/Minions-Attack258HP.png",
-        "informacion": "Usa una carta de tipo minion haciendo 258 de daño"
+        "informacion": "Usa una carta de tipo minion haciendo 258 de daño",
+        "afecta": "Rival"
       },
       "attack269HP": {
         "ataque": "269",
@@ -152,7 +168,8 @@
         "porcentaje": "0",
         "aplica": "ninguno",
         "ruta": "Cartas/Minions-Attack269HP.png",
-        "informacion": "Usa una carta de tipo minion haciendo 269 de daño"
+        "informacion": "Usa una carta de tipo minion haciendo 269 de daño",
+        "afecta": "Rival"
 
       },
       "attack300HP": {
@@ -162,7 +179,8 @@
         "porcentaje": "0",
         "aplica": "ninguno",
         "ruta": "Cartas/Minions-Attack300HP.png",
-        "informacion": "Usa una carta de tipo minion haciendo 300 de daño"
+        "informacion": "Usa una carta de tipo minion haciendo 300 de daño",
+        "afecta": "Rival"
       },
       "attack321HP": {
         "ataque": "321",
@@ -171,7 +189,8 @@
         "porcentaje": "0",
         "aplica": "ninguno",
         "ruta": "Cartas/Minions-Attack321HP.png",
-        "informacion": "Usa una carta de tipo minion haciendo 321 de daño"
+        "informacion": "Usa una carta de tipo minion haciendo 321 de daño",
+        "afecta": "Rival"
       },
       "attack400HP": {
         "ataque": "400",
@@ -180,7 +199,8 @@
         "porcentaje": "0",
         "aplica": "ninguno",
         "ruta": "Cartas/Minions-Attack400HP.png",
-        "informacion": "Usa una carta de tipo minion haciendo 400 de daño"
+        "informacion": "Usa una carta de tipo minion haciendo 400 de daño",
+        "afecta": "Rival"
       }
     },
     "secrets":{
@@ -191,7 +211,8 @@
         "evento": "winorlose",
         "porcentaje": "50",
         "ruta": "Cartas/Secret-50WinOrLose.png",
-        "informacion": "Usa una carta de tipo secreto que puede hacer que gane o pierda con un 50% de posibilidades"
+        "informacion": "Usa una carta de tipo secreto que puede hacer que gane o pierda con un 50% de posibilidades",
+        "afecta": "Ambos"
       },
       "def50": {
         "ataque": "0",
@@ -200,7 +221,8 @@
         "evento": "defensa",
         "porcentaje": "50",
         "ruta": "Cartas/Secret-Def50.png",
-        "informacion": "Usa una carta de tipo secreta que da una defensa del 50%"
+        "informacion": "Usa una carta de tipo secreta que da una defensa del 50%",
+        "afecta": "Propio"
       },
       "def75":{
         "ataque": "0",
@@ -218,7 +240,8 @@
         "evento": "defensa",
         "porcentaje": "90",
         "ruta": "Cartas/Secret-Def90.png",
-        "informacion": "Usa una carta de tipo secreta que da una defensa del 90%"
+        "informacion": "Usa una carta de tipo secreta que da una defensa del 90%",
+        "afecta": "Propio"
       },
       "elimSecretCard": {
         "ataque": "0",
@@ -227,7 +250,8 @@
         "evento": "EliminarCartaSecreta",
         "porcentaje": "0",
         "ruta": "Cartas/Secret-EliminateNextSecret.png",
-        "informacion": "Usa una carta de tipo secreta que elimina una carta"
+        "informacion": "Usa una carta de tipo secreta que elimina una carta",
+        "afecta": "Propio"
       },
       "elimSpellCard": {
         "ataque": "0",
@@ -236,7 +260,8 @@
         "evento": "EliminarCartaSpell",
         "porcentaje": "0",
         "ruta": "Cartas/Secret-EliminateNextSpell.png",
-        "informacion": "Usa una carta de tipo secreta que elimina una carta"
+        "informacion": "Usa una carta de tipo secreta que elimina una carta",
+        "afecta": "Rival"
       },
       "killIfSecret": {
         "ataque": "1000",
@@ -245,7 +270,8 @@
         "evento": "Secreta_y_Ganar",
         "porcentaje": "0",
         "ruta": "Cartas/Secret-Kill_ifSecret.png",
-        "informacion": "Usa una carta de tipo secreta que puede hacer que gane el usuario"
+        "informacion": "Usa una carta de tipo secreta que puede hacer que gane el usuario",
+        "afecta": "Rival"
       },
       "reflect50DMG": {
         "ataque": "0",
@@ -254,7 +280,8 @@
         "evento": "reflejar",
         "porcentaje": "50",
         "ruta": "Cartas/Secret-Reflect50.png",
-        "informacion": "Usa una carta de tipo secreta que reflaja el 50% del daño"
+        "informacion": "Usa una carta de tipo secreta que aumenta en 50% el daño recibido",
+        "afecta": "Rival"
       },
       "InstaWin4": {
         "ataque": "1000",
@@ -263,16 +290,18 @@
         "evento": "Ejecutar",
         "porcentaje": "4",
         "ruta": "Cartas/Secret-WinHPLower4.png",
-        "informacion": "Usa una carta de tipo secreta que tiene un 4% de posibilidades de ejecutar"
+        "informacion": "Usa una carta de tipo secreta que tiene un 4% de posibilidades de ejecutar",
+        "afecta": "Rival"
       },
       "InstaWin10": {
         "ataque": "1000",
         "tipo": "secreta",
         "costo": "500",
-        "evento": "ejecutar",
+        "evento": "Ejecutar",
         "porcentaje": "10",
         "ruta": "Cartas/Secret-WinHPLower10.png",
-        "informacion": "Usa una carta de tipo secreta que tiene un 10% de posibilidades de ejecutar"
+        "informacion": "Usa una carta de tipo secreta que tiene un 10% de posibilidades de ejecutar",
+        "afecta": "Rival"
       }
     },
     "Spells": {
@@ -280,10 +309,11 @@
         "tipo": "spell",
         "objetivo": "mana",
         "porcentaje": "25",
-        "accion": "BoostMana",
+        "accion": "RellenarMana",
         "costo": "50",
         "ruta": "Cartas/Spell-BoostManaRegen.png",
-        "informacion": "Usa una carta de tipo spell que da un boost de mana"
+        "informacion": "Usa una carta de tipo spell que da un boost de mana",
+        "afecta": "Propio"
       },
       "DuplicateCard": {
         "tipo": "spell",
@@ -292,7 +322,8 @@
         "accion": "DuplicarCarta",
         "costo": "150",
         "ruta": "Cartas/Spell-DuplicateCard.png",
-        "informacion": "Usa una carta de tipo spell que puede duplicar una carta"
+        "informacion": "Usa una carta de tipo spell que puede duplicar una carta",
+        "afecta": "Propio"
       },
       "Fill40Mana": {
         "tipo": "spell",
@@ -301,16 +332,18 @@
         "accion": "RellenarMana",
         "costo": "100",
         "ruta": "Cartas/Spell-Fill_40_Mana.png",
-        "informacion": "Usa una carta de tipo spell que te rellena el maná con un 40% de posibilidades"
+        "informacion": "Usa una carta de tipo spell que te rellena el maná con un 40% de posibilidades",
+        "afecta": "Propio"
       },
       "Fill100Mana": {
         "tipo": "spell",
         "objetivo": "mana",
-        "porcentaje": "0",
+        "porcentaje": "1000",
         "accion":"RellenarMana",
         "costo": "200",
         "ruta": "Cartas/Spell-FillMana.png",
-        "informacion": "Usa una carta de tipo spell que rellena el mana"
+        "informacion": "Usa una carta de tipo spell que da un boost de mana",
+        "afecta": "Propio"
       },
       "Freeze": {
         "tipo": "spell",
@@ -319,7 +352,8 @@
         "accion": "QuitarTurnoRival",
         "costo": "250",
         "ruta": "Cartas/Spell-Freeze.png",
-        "informacion": "Usa una carta de tipo spell que quita el turno del rival"
+        "informacion": "Usa una carta de tipo spell que quita el turno del rival",
+        "afecta": "Propio"
       },
       "Heal50": {
         "tipo": "spell",
@@ -328,7 +362,8 @@
         "accion": "curar",
         "costo": "150",
         "ruta": "Cartas/Spell-Heal.png",
-        "informacion": "Usa una carta de tipo spell que cura un 50%"
+        "informacion": "Usa una carta de tipo spell que cura un 50%",
+        "afecta": "Propio"
       },
       "Heal10": {
         "tipo": "spell",
@@ -337,7 +372,8 @@
         "accion": "curar",
         "costo": "50",
         "ruta": "Cartas/Spell-Heal_10.png",
-        "informacion": "Usa una carta de tipo spell que cura un 10%"
+        "informacion": "Usa una carta de tipo spell que cura un 10%",
+        "afecta": "Propio"
       },
       "RevealCard": {
         "tipo": "spell",
@@ -346,7 +382,8 @@
         "accion": "revelar",
         "costo": "150",
         "ruta": "Cartas/Spell-RevealCards.png",
-        "informacion": "Usa una carta de tipo spell que revela una carta"
+        "informacion": "Usa una carta de tipo spell que revela una carta",
+        "afecta": "Rival"
       },
       "StealCard": {
         "tipo": "spell",
@@ -355,16 +392,18 @@
         "accion": "robo",
         "costo": "450",
         "ruta": "Cartas/Spell-StealCard.png",
-        "informacion": "Usa una carta de tipo spell que roba una carta"
+        "informacion": "Usa una carta de tipo spell que roba una carta",
+        "afecta": "Ambos"
       },
       "SupremePower": {
         "tipo": "spell",
         "objetivo": "self",
         "porcentaje": "0",
-        "accion": "3CartasSeguidas",
+        "accion": "SupremePower",
         "costo": "600",
         "ruta": "Cartas/Spell-SupremePower.png",
-        "informacion": "Usa una carta de tipo spell que te da el poder supremo"
+        "informacion": "Usa una carta de tipo spell que te da el poder supremo",
+        "afecta": "Propio"
       }
     }
   }

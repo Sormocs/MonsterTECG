@@ -42,4 +42,4 @@ public class Server implements Runnable{
 }
 
 //ESTE SERÁ EL PROTOCOLO:
-//OBJETO#JUGADOR#VIDA#MANA
+//OBJETO#JUGADOR#VIDA#MANA#TURNO

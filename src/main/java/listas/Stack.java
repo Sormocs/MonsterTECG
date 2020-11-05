@@ -1,6 +1,5 @@
 package listas;
 
-import cartas.Minions;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import manejo.json.Json;
@@ -10,7 +9,7 @@ import manejo.json.Json;
  */
 
 public class Stack {
-    int max = 17;
+    int max = 21;
     Object nodo;
     int top;
     Object[] stack = new Object[max];
@@ -102,7 +101,7 @@ public class Stack {
 
             for (int i = 0; i <= 16;i++){
 
-                int valor_carta = (int) (Math.random() * 4);
+                int valor_carta = (int) (Math.random() * 3);
 
                 if (tipo_carta[valor_carta].equals("minions")){
 

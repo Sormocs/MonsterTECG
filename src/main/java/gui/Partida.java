@@ -80,7 +80,22 @@ public class Partida {
     public void EnviarMensaje(JsonNode card){
         //Llamo a cliente para enviar un mensaje al server
 
-        cliente.EnviarMensaje(card);
+        String afecta = card.get("afecta").textValue();
+
+        if (afecta.equals("Rival")){
+
+            cliente.EnviarMensaje(card);
+
+        } else if (afecta.equals("Propio")) {
+
+            cliente.EjeccucionPropia(card);
+
+        } else if (afecta.equals("Ambos")){
+
+            cliente.EjeccucionAmbos(card);
+
+        }
+
     }
 
     /**
@@ -92,6 +107,10 @@ public class Partida {
 
         lista.InsertarFinal(infoturno);
 
+    }
+
+    public Cliente cliente(){
+        return this.cliente;
     }
 
     /**
