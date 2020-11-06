@@ -420,6 +420,10 @@ public class Match_GUI extends JFrame implements ActionListener{
                 this.setVisible(false);
                 this.previousHost.setVisible(true);
             }
+            Partida.GetInstance().setManaPropio(200);
+            Partida.GetInstance().setVidaPlayer(1000);
+            Partida.GetInstance().setVidaRival(1000);
+            Partida.GetInstance().setManaR(200);
         }
 
     }
@@ -462,6 +466,10 @@ public class Match_GUI extends JFrame implements ActionListener{
             this.setVisible(false);
             this.previousHost.setVisible(true);
         }
+        Partida.GetInstance().setManaPropio(200);
+        Partida.GetInstance().setVidaPlayer(1000);
+        Partida.GetInstance().setVidaRival(1000);
+        Partida.GetInstance().setManaR(200);
     }
 
     public String Mostrartop(){

@@ -161,6 +161,18 @@ public class Partida {
         return mana;
     }
 
+    public void setVidaPlayer(int  vida){
+        cliente.setVida(vida);
+    }
+
+    public void setVidaRival(int vidaR){
+        cliente.setVidaR(vidaR);
+    }
+
+    public void setManaR(int manaR){
+        cliente.setManaR(manaR);
+    }
+
 
     public void setHay_guest(boolean hay_guest) {
         this.hay_guest = hay_guest;

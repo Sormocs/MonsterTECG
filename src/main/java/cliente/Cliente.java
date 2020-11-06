@@ -272,7 +272,7 @@ public class Cliente implements Runnable {
             vidamana = minion.Caso(this.vida,this.vidaR,this.mana);
 
             setVida(vidamana[0]);
-            setMana(vidamana[1]);
+            //setMana(vidamana[1]);
 
         } catch (JsonProcessingException e) {
             e.printStackTrace();
@@ -400,6 +400,9 @@ public class Cliente implements Runnable {
         } else {
             this.vida = vida;
         }
+        if (this.vida < 0){
+            this.vida = 0;
+        }
 
     }
 
@@ -418,7 +421,11 @@ public class Cliente implements Runnable {
      */
 
     public void setMana(int mana) {
-        this.mana = mana;
+        if (mana < 0){
+            this.mana = 0;
+        } else {
+            this.mana = mana;
+        }
     }
 
     /**
