@@ -1,7 +1,9 @@
 package cartas;
 
 import cliente.Cliente;
+import gui.Match_GUI;
 import gui.Partida;
+import listas.Stack;
 
 public class Spells {
 
@@ -34,6 +36,9 @@ public class Spells {
             case "robo":
                 Robo(cliente);
                 break;
+            case "SupremePower":
+                SupremePower(cliente);
+                break;
 
         }
 
@@ -61,9 +66,25 @@ public class Spells {
 
     public void Revelar(Cliente cliente){
 
+        String revelado = Partida.GetInstance().Gettop();
+
+        Match_GUI.ShowCard(revelado+ "\n");
+
+        Partida.GetInstance().GuardarPartida(revelado+ "\n");
+
+        cliente.EnviarRevelado(revelado);
+
     }
 
     public void Robo(Cliente cliente){
+
+        Stack deck = Partida.GetInstance().Push();
+
+        deck.push(cliente.getUltima());
+
+    }
+
+    public void SupremePower(Cliente cliente){
 
     }
 }

@@ -251,7 +251,7 @@
         "evento": "EliminarCartaSecreta",
         "porcentaje": "0",
         "ruta": "Cartas/Secret-EliminateNextSecret.png",
-        "informacion": "Usa una carta de tipo secreta que elimina una carta",
+        "informacion": "Usa una carta de tipo secreta que elimina un ejecto secreto",
         "afecta": "Propio"
       },
       "elimSpellCard": {
@@ -261,7 +261,7 @@
         "evento": "EliminarCartaSpell",
         "porcentaje": "0",
         "ruta": "Cartas/Secret-EliminateNextSpell.png",
-        "informacion": "Usa una carta de tipo secreta que elimina una carta",
+        "informacion": "Usa una carta de tipo secreta que elimina un efecto spell",
         "afecta": "Rival"
       },
       "killIfSecret": {
@@ -393,7 +393,7 @@
         "accion": "robo",
         "costo": "450",
         "ruta": "Cartas/Spell-StealCard.png",
-        "informacion": "Usa una carta de tipo spell que roba una carta",
+        "informacion": "Usa una carta de tipo spell que toma la ultima carta que usó el rival",
         "afecta": "Ambos"
       },
       "SupremePower": {

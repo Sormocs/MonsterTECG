@@ -3,6 +3,7 @@ package gui;
 import cliente.Cliente;
 import com.fasterxml.jackson.databind.JsonNode;
 import listas.ListaDoble;
+import listas.Stack;
 import servidor.Server;
 
 import javax.swing.*;
@@ -89,7 +90,7 @@ public class Partida {
 
         if (afecta.equals("Rival")){
 
-            cliente.EnviarMensaje(card);
+            cliente.EnviarMensaje(card,true);
 
         } else if (afecta.equals("Propio")) {
 
@@ -205,5 +206,13 @@ public class Partida {
 
     public void EndGame(){
         game_gui.End();
+    }
+
+    public String Gettop(){
+        return game_gui.Mostrartop();
+    }
+
+    public Stack Push(){
+        return game_gui.getDeck();
     }
 }

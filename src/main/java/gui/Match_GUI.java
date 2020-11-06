@@ -463,4 +463,22 @@ public class Match_GUI extends JFrame implements ActionListener{
             this.previousHost.setVisible(true);
         }
     }
+
+    public String Mostrartop(){
+
+        JsonNode node = (JsonNode) this.deck.getTop();
+        String mensaje;
+        if (node == null){
+            mensaje = "No hay cartas del deck por mostrar";
+        } else {
+            mensaje = "Se ha revelado una carta: ";
+            mensaje += node.get("informacion").textValue();
+        }
+
+        return mensaje;
+    }
+
+    public Stack getDeck() {
+        return deck;
+    }
 }

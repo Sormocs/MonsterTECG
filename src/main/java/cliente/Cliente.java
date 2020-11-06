@@ -35,6 +35,7 @@ public class Cliente implements Runnable {
     private int defensa;
     private boolean afecto;
     private boolean reflejo;
+    private JsonNode ultima;
 
     private DataOutputStream out;
     private DataInputStream in;
@@ -90,6 +91,9 @@ public class Cliente implements Runnable {
                         Partida.GetInstance().ComenzarTurno();
                     } else if (leermensaje[0].equals("Victoria")) {
                         Partida.GetInstance().EndGame();
+                    } else if (leermensaje[3].equals("REVELAR")){
+                        Match_GUI.ShowCard(leermensaje[0]);
+                        Partida.GetInstance().GuardarPartida(leermensaje[0] + "\n");
                     }
                     //Lógica del juego
                     else if (leermensaje[1].equals(this.jugador)) {
@@ -115,7 +119,7 @@ public class Cliente implements Runnable {
      * @throws IOException
      */
 
-    public void EnviarMensaje(JsonNode carta)  {
+    public void EnviarMensaje(JsonNode carta, boolean ejecuta)  {
 
         //Enviar un mensaje al server
 
@@ -163,6 +167,18 @@ public class Cliente implements Runnable {
         }
     }
 
+    public void EnviarRevelado(String mensaje){
+
+        mensaje += "#" + this.jugador + "#REVELAR#REVELAR#TRUE#TRUE";
+
+        try {
+            this.out.writeUTF(mensaje);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
     /**
      * Ejecuta lo que recibirá del server
      * @param mensaje
@@ -175,6 +191,8 @@ public class Cliente implements Runnable {
 
             String s_nodo = mensaje[0];
             JsonNode nodo = Json.parse(s_nodo);
+
+            setUltima(nodo);
 
             String tipo = nodo.get("tipo").textValue();
 
@@ -234,8 +252,8 @@ public class Cliente implements Runnable {
             Secrets(nodo);
 
         } else if (isAfecto()){
+            EnviarMensaje(nodo,true);
             setAfecto(false);
-            EnviarMensaje(nodo);
         }
 
     }
@@ -479,5 +497,13 @@ public class Cliente implements Runnable {
 
     public void setAfecto(boolean afecto) {
         this.afecto = afecto;
+    }
+
+    public JsonNode getUltima() {
+        return ultima;
+    }
+
+    public void setUltima(JsonNode ultima) {
+        this.ultima = ultima;
     }
 }

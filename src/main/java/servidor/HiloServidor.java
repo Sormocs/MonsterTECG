@@ -55,7 +55,6 @@ public class HiloServidor implements  Runnable{
                         out.writeUTF(mensaje);
                     } else if (leermensaje[1].equals("Host")) {
                         mensaje = leermensaje[0] + "#Guest#" + leermensaje[2] + "#" + leermensaje[3] + "#" + leermensaje[4] + "#" + leermensaje[5];
-                        ;
                         Socket usuariosLast = usuarios.getLast();
                         out = new DataOutputStream(usuariosLast.getOutputStream());
                         out.writeUTF(mensaje);

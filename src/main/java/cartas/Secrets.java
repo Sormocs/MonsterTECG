@@ -25,10 +25,10 @@ public class Secrets {
                 WinorLose(cliente);
                 break;
             case "EliminarCartaSecreta":
-                EliminarCartaSecreta();
+                EliminarCartaSecreta(cliente);
                 break;
             case "EliminarCartaSpell":
-                EliminarCartaSpell();
+                EliminarCartaSpell(cliente);
                 break;
             case "Secreta_y_Ganar":
                 SecretaYGanar(cliente);
@@ -54,7 +54,7 @@ public class Secrets {
         if (probabilidad == 0){
             cliente.setAfecto(true);
             return;
-        } else{
+        } else if (probabilidad != 0){
             cliente.setDefensa(0);
             cliente.setReflejo(false);
             cliente.setVida(0);
@@ -62,11 +62,15 @@ public class Secrets {
 
     }
 
-    public void EliminarCartaSecreta(){
+    public void EliminarCartaSecreta(Cliente cliente){
+
+        cliente.setDefensa(0);
 
     }
 
-    public void EliminarCartaSpell(){
+    public void EliminarCartaSpell(Cliente cliente){
+
+        cliente.setMana(cliente.getMana()-100);
 
     }
 
