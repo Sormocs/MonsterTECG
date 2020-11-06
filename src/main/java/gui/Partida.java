@@ -90,9 +90,17 @@ public class Partida {
 
         if (afecta.equals("Rival")){
 
+            if (card.get("tipo").textValue().equals("minions") && cliente.isAfecto()){
+
+                cliente.DañoReflejo(card.get("ataque").textValue());
+                cliente.setReflejo(false);
+
+            }
+
             cliente.EnviarMensaje(card,true);
 
         } else if (afecta.equals("Propio")) {
+
 
             cliente.EjeccucionPropia(card);
 

@@ -395,14 +395,32 @@ public class Cliente implements Runnable {
 
             setDefensa(0);
 
-        } else if (isReflejo()){
-            this.vida = vida/2;
         } else {
             this.vida = vida;
         }
         if (this.vida < 0){
             this.vida = 0;
         }
+
+    }
+
+    public void DañoReflejo(String daño){
+
+        int dato = Integer.parseInt(daño);
+
+        int dañorecibido;
+
+        if (dato != 0){
+
+            dañorecibido = (getVida()*50)/100;
+
+        } else {
+
+            dañorecibido = dato;
+
+        }
+
+        setVida(getVida()-dañorecibido);
 
     }
 
