@@ -160,6 +160,7 @@ public class Partida {
         return mana;
     }
 
+
     public void setHay_guest(boolean hay_guest) {
         this.hay_guest = hay_guest;
     }
@@ -190,8 +191,19 @@ public class Partida {
         game_gui.ComienzaTurno();
     }
 
+    public void setManaPropio(int mana){
+        cliente.setMana(mana);
+    }
 
     public void TerminaTurno(boolean valor){
         cliente.setTurno(valor);
+    }
+
+    public void Defeat(){
+        cliente.EndGame();
+    }
+
+    public void EndGame(){
+        game_gui.End();
     }
 }

@@ -88,6 +88,8 @@ public class Cliente implements Runnable {
                         Partida.GetInstance().setHay_guest(true);
                     } else if (leermensaje[0].equals("TerminarTurno")) {
                         Partida.GetInstance().ComenzarTurno();
+                    } else if (leermensaje[0].equals("Victoria")) {
+                        Partida.GetInstance().EndGame();
                     }
                     //Lógica del juego
                     else if (leermensaje[1].equals(this.jugador)) {
@@ -333,6 +335,14 @@ public class Cliente implements Runnable {
             this.out.writeUTF("TerminarTurno#"+this.jugador+"#0#0#0#0");
         } catch (IOException e1) {
             e1.printStackTrace();
+        }
+    }
+
+    public void EndGame(){
+        try {
+            this.out.writeUTF("Victoria#" + this.jugador + "#0#0#0#0");
+        }catch(IOException e2){
+            e2.printStackTrace();
         }
     }
 

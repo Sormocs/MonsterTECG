@@ -94,6 +94,7 @@ public class Host_GUI extends JFrame {
             Partida.GetInstance().setGame_gui(game_gui);
             this.setVisible(false);
             game_gui.Disable();
+            game_gui.setPreviousHost(this);
         }else{
             JOptionPane.showMessageDialog(this,"Wait for the guest to connect","No Guest Connected",JOptionPane.INFORMATION_MESSAGE);
         }

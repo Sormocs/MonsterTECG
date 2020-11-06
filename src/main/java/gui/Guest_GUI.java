@@ -84,6 +84,7 @@ public class Guest_GUI extends JFrame{
         Match_GUI game_gui = new Match_GUI();
         game_gui.setVisible(true);
         Partida.GetInstance().setGame_gui(game_gui);
+        game_gui.setPreviousGuest(this);
         this.setVisible(false);
     }
 
