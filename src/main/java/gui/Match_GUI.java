@@ -196,7 +196,7 @@ public class Match_GUI extends JFrame implements ActionListener{
             if (Integer.parseInt(carta.get("costo").textValue()) <= selected_cost) {
                 Partida.GetInstance().EnviarMensaje(carta);
 
-                String infoturno = carta.get("informacion").textValue();
+                String infoturno = "Yo " + carta.get("informacion").textValue();
                 infoturno += " con costo de mana de ";
                 infoturno += carta.get("costo");
                 infoturno += "\n";

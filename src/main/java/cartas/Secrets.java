@@ -78,7 +78,8 @@ public class Secrets {
 
         cliente.setDefensa(0);
         cliente.setReflejo(false);
-        cliente.setVida(0);
+        cliente.setVida(cliente.getVida()-100);
+        cliente.setMana(cliente.getMana()-50);
 
     }
 
@@ -90,7 +91,7 @@ public class Secrets {
 
     public void Ejecutar(Cliente cliente){
 
-        int probabilidad = (int) (Math.random() * 4);
+        int probabilidad = (int) (Math.random() * 100);
 
         if (probabilidad < this.porcentaje){
             cliente.setDefensa(0);
