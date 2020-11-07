@@ -1,11 +1,14 @@
 package gui;
 
+import cliente.CheckIP;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import listas.ListaDoble;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 
 /**
@@ -16,6 +19,8 @@ public class Host_GUI extends JFrame {
     private JPanel host_screen;
 
     private JLabel host_gui_bg;
+    private JLabel IP;
+    private JLabel port;
 
     private JButton start_btn;
     private JButton history_btn;
@@ -84,6 +89,24 @@ public class Host_GUI extends JFrame {
             }
         });
 
+        IP = new JLabel();
+        IP.setBounds(280,400,300,70);
+        try {
+            IP.setText("IP: "+ CheckIP.obtenerIP());
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        }
+        IP.setFont(new Font("Comic Sans MS",Font.BOLD,28));
+        IP.setForeground(Color.BLACK);
+
+        port = new JLabel();
+        port.setBounds(320,440,300,70);
+        port.setText("Port: 5000");
+        port.setFont(new Font("Comic Sans MS",Font.BOLD,28));
+        port.setForeground(Color.BLACK);
+
+        this.host_screen.add(IP);
+        this.host_screen.add(port);
         this.host_screen.add(history_btn);
         this.host_screen.add(start_btn);
         this.host_screen.add(host_gui_bg);

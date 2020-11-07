@@ -8,6 +8,11 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Clase History_GUI, permite navegar por el historial a traves de las listas doblemente enlazadas, accede a la informacion de las
+ * partidas en esas listas para mostrar lo que ocurrio en cada turno para el jugador correspondiente.
+ */
+
 public class History_GUI extends JFrame implements ActionListener {
 
     private Host_GUI prev_hostgui;
@@ -49,7 +54,10 @@ public class History_GUI extends JFrame implements ActionListener {
 
     private int partidaNum = 1;
 
-
+    /**
+     * Constructor de la clase, llama al constructor de la clase padre Jframe, de la cual hereda muchos metodos que ayudan a que
+     * se forme la ventana.
+     */
     public History_GUI(){
         super();
         InitializeComponents();
@@ -57,12 +65,21 @@ public class History_GUI extends JFrame implements ActionListener {
 
     }
 
+    /**
+     * Metodo para configurar la ventana, por ejemplo el titulo, si se le puede cambiar el tamaño, ajustar el tamaño y la
+     * operación para el cierre.
+     */
     public void ConfigureWin(){
         this.setTitle("History");
         setResizable(false);
         setSize(800, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
+
+    /**
+     * Metodo para iniciar los componentes de la ventana, siendo principalmente el panel para luego llamar al metodo que inicia
+     * los metodos del panel.
+     */
 
     public void InitializeComponents(){
 
@@ -74,6 +91,11 @@ public class History_GUI extends JFrame implements ActionListener {
         ScreenComps();
 
     }
+
+    /**
+     * Inicia los componenetes del panel que se encuentra en la ventana, todos los labels y textos. La manera en la que se inician
+     * los componentes depende de si hay partidas en la lista o no.
+     */
 
     public void ScreenComps(){
         if (listaPartidas.getSize() == 0) {
@@ -172,6 +194,8 @@ public class History_GUI extends JFrame implements ActionListener {
             if (current.getSiguiente() == null){
                 next_game.setEnabled(false);
             }
+            prev_game.setEnabled(false);
+            prev_turn.setEnabled(false);
 
         }
         go_back = new JButton();
@@ -179,12 +203,13 @@ public class History_GUI extends JFrame implements ActionListener {
         go_back.setBounds(320,470,150,50);
         go_back.addActionListener(this::actionPerformed);
 
-        prev_game.setEnabled(false);
-        prev_turn.setEnabled(false);
 
         this.screen.add(go_back);
     }
 
+    /**
+     * Para actualizar la informacion con la del siguiente turno en la pantalla
+     */
     public void NextTurn(){
 
         currentTurn = currentTurn.getSiguiente();
@@ -205,6 +230,9 @@ public class History_GUI extends JFrame implements ActionListener {
 
     }
 
+    /**
+     * Coloca la informacion del primero turno en la segunda partida si es que hay.
+     */
     public void NextGame(){
         partidaNum ++;
         current = current.getSiguiente();
@@ -227,6 +255,9 @@ public class History_GUI extends JFrame implements ActionListener {
 
     }
 
+    /**
+     * Configura la interfaz para que muestre la informacion del turno anterior al que se encuentra visible en la pantalla
+     */
     public void PrevTurn(){
         currentTurn = currentTurn.getAnterior();
         String turno = (String) currentTurn.getDato();
@@ -246,6 +277,9 @@ public class History_GUI extends JFrame implements ActionListener {
 
     }
 
+    /**
+     * Coloca en la pantalla la informacion para que se observe la informacion de la partida anterior a partir del turno 1.
+     */
     public void PrevGame(){
         partidaNum --;
         current = current.getAnterior();
@@ -268,6 +302,10 @@ public class History_GUI extends JFrame implements ActionListener {
 
     }
 
+    /**
+     * LLeva control para activar o desactivar los botones segun las listas, si es posible avanzar o retroceder, o si no existe
+     * ningun elemento antes o despues de tal nodo, para que el programa no tire errores al presionar esos botones.
+     */
     public void VerifyButtons(){
         if (currentTurn.getSiguiente() == null){
             next_turn.setEnabled(false);
@@ -291,6 +329,9 @@ public class History_GUI extends JFrame implements ActionListener {
         }
     }
 
+    /**
+     * Sirve para volver a la interfaz anterior segun si era host o guest quien estaba consultando el historial.
+     */
     public void GoBack(){
         if (prev_hostgui != null){
             this.setVisible(false);
@@ -301,15 +342,26 @@ public class History_GUI extends JFrame implements ActionListener {
         }
     }
 
+    /**
+     * Recibe la gui del invitado para poder regresar a esta cuando el jugador es guest.
+     * @param prev_guestgui
+     */
     public void setPrev_guestgui(Guest_GUI prev_guestgui) {
         this.prev_guestgui = prev_guestgui;
     }
 
+    /**
+     * Recibe la gui del host para poder retornar a esta cuando el jugador es host.
+     * @param prev_hostgui
+     */
     public void setPrev_hostgui(Host_GUI prev_hostgui) {
         this.prev_hostgui = prev_hostgui;
     }
 
-
+    /**
+     * Metodo que viene con el Action Listener para implementar los eventos de los botones.
+     * @param e
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
 

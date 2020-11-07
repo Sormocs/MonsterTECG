@@ -126,6 +126,8 @@ public class GUI extends JFrame {
      */
     private void ActionButton2(){
 
+        JOptionPane.showInputDialog(this,"Introduce IP:");
+        JOptionPane.showInputDialog(this,"Introduce Port:");
         Partida.GetInstance().Invitado();
         ventana_invitado = new Guest_GUI();
         ventana_invitado.setVisible(true);
