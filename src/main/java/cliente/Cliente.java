@@ -401,6 +401,9 @@ public class Cliente implements Runnable {
         if (this.vida < 0){
             this.vida = 0;
         }
+        if (this.vida > 1000){
+            this.vida = 1000;
+        }
 
     }
 
@@ -443,6 +446,9 @@ public class Cliente implements Runnable {
             this.mana = 0;
         } else {
             this.mana = mana;
+        }
+        if (this.mana > 1000){
+            this.mana = 0;
         }
     }
 

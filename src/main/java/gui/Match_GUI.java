@@ -233,7 +233,6 @@ public class Match_GUI extends JFrame implements ActionListener{
                     mano.ChangeValue(deck.getTop(), pos2change);
                     deck.pop();
                 }
-                super_info += infoturno;
             } else if (playermana >= selected_cost && carta.get("tipo").textValue().equals("spell") &&
                     carta.get("accion").textValue().equals("QuitarTurnoRival")){
 
@@ -259,7 +258,7 @@ public class Match_GUI extends JFrame implements ActionListener{
                         deck.pop();
                     }
                     turnonum ++;
-                    String dato = CreateDatoTurno(infoturno);
+                    String dato = CreateDatoTurno("Plays card Freeze");
                     partida.InsertarFinal(dato);
 
             } else if(supreme_power == true && supreme_counter <= 2){
@@ -282,14 +281,15 @@ public class Match_GUI extends JFrame implements ActionListener{
                 Partida.GetInstance().GuardarPartida(infoturno);
 
                 supreme_counter ++;
-                super_info += ","+infoturno;
+                super_info = "Supreme Power Card";
                 if (supreme_counter == 2){
                     supreme_power = false;
                     supreme_counter = 0;
                     TerminaTurno();
                     spower.setVisible(false);
                     turnonum ++;
-                    CreateDatoTurno(super_info);
+                    String dato = CreateDatoTurno(super_info);
+                    partida.InsertarFinal(dato);
                     super_info = "";
                 }
 
@@ -319,7 +319,7 @@ public class Match_GUI extends JFrame implements ActionListener{
                 TerminaTurno();
                 UpdateValues();
                 turnonum ++;
-                String dato = CreateDatoTurno(infoturno);
+                String dato = CreateDatoTurno("Plays Card");
                 partida.InsertarFinal(dato);
             }else{
                 JOptionPane.showMessageDialog(this,"You don't have enough mana","Not enough mana",JOptionPane.INFORMATION_MESSAGE);
@@ -357,6 +357,9 @@ public class Match_GUI extends JFrame implements ActionListener{
                     TerminaTurno();
                     UpdateValues();
                     buttons();
+                    turnonum ++;
+                    String dato = CreateDatoTurno("Took Card");
+                    partida.InsertarFinal(dato);
                     break;
                 }else if(check_pos[0] && check_pos[1] && check_pos[2] && check_pos[3] && check_pos[4] && check_pos[5]
                         && check_pos[6] && check_pos[7] && check_pos[8] && check_pos[9]){

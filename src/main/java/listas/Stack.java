@@ -101,7 +101,7 @@ public class Stack {
 
             for (int i = 0; i <= 16;i++){
 
-                int valor_carta = (int) (Math.random() * 3);
+                int valor_carta = (int) (Math.random() * 4);
 
                 if (tipo_carta[valor_carta].equals("minions")){
 
