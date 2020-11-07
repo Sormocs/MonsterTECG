@@ -190,6 +190,9 @@ public class Cliente implements Runnable {
             String s_nodo = mensaje[0];
             JsonNode nodo = Json.parse(s_nodo);
 
+            setVidaR(Integer.parseInt(mensaje[2]));
+            setManaR(Integer.parseInt(mensaje[2]));
+
             setUltima(nodo);
 
             String tipo = nodo.get("tipo").textValue();
