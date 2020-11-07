@@ -8,6 +8,11 @@ public class ListaCircular {
     private NodoCircular inicio;
     private NodoCircular end;
 
+    /**
+     * Inserta al final
+     * @param valor Object
+     */
+
     public void InsertEnd(Object valor){
 
         if (inicio == null){
@@ -33,6 +38,12 @@ public class ListaCircular {
 
     }
 
+    /**
+     * Cambia el valor
+     * @param elemento Object
+     * @param pos int
+     */
+
     public void ChangeValue(Object elemento, int pos){
 
         int contador = 0;
@@ -51,13 +62,27 @@ public class ListaCircular {
 
     }
 
+    /**
+     * Retorna el final
+     * @return NodoCircular
+     */
+
     public NodoCircular getEnd() {
         return end;
     }
 
+    /**
+     * Retorna el pirmero
+     * @return NodoCircular
+     */
+
     public NodoCircular getInicio(){
         return inicio;
     }
+
+    /**
+     * muestra la lista
+     */
 
     public void Show(){
 

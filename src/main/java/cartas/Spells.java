@@ -16,6 +16,10 @@ public class Spells {
     public String informacion;
     public String afecta;
 
+    /**
+     * Busca la el método correspodiente a la carta y lo ejecuta
+     */
+
     public void Caso() {
 
         Cliente cliente = Partida.GetInstance().cliente();
@@ -36,13 +40,15 @@ public class Spells {
             case "robo":
                 Robo(cliente);
                 break;
-            case "SupremePower":
-                SupremePower(cliente);
-                break;
 
         }
 
     }
+
+    /**
+     * Rellena el mana
+     * @param cliente Cliente
+     */
 
     public void RellenarMana(Cliente cliente){
 
@@ -50,11 +56,21 @@ public class Spells {
 
     }
 
+    /**
+     * Congela el turno rival
+     * @param cliente Cliente
+     */
+
     public void QuitarTurnoRival(Cliente cliente){
 
         Partida.GetInstance().Freeze();
 
     }
+
+    /**
+     * Se cura a si mismo
+     * @param cliente Cliente
+     */
 
     public void Curar(Cliente cliente){
 
@@ -63,6 +79,11 @@ public class Spells {
         cliente.Curar(dato);
 
     }
+
+    /**
+     * Revela una carta rival
+     * @param cliente Cliente
+     */
 
     public void Revelar(Cliente cliente){
 
@@ -76,6 +97,11 @@ public class Spells {
 
     }
 
+    /**
+     * Roba la ultima carta utilizada
+     * @param cliente Cliente
+     */
+
     public void Robo(Cliente cliente){
 
         Stack deck = Partida.GetInstance().Push();
@@ -84,7 +110,4 @@ public class Spells {
 
     }
 
-    public void SupremePower(Cliente cliente){
-
-    }
 }

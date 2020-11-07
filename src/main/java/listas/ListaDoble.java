@@ -138,9 +138,19 @@ public class ListaDoble {
         }
     }
 
+    /**
+     * retorna el tamaño
+     * @return int
+     */
+
     public int getSize() {
         return size;
     }
+
+    /**
+     * Retorna el inicio
+     * @return NodoDoble
+     */
 
     public NodoDoble getInicio() {
         return inicio;

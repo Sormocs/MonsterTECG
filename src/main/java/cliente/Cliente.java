@@ -229,6 +229,11 @@ public class Cliente implements Runnable {
 
     }
 
+    /**
+     * Ejecuta las cartas que son para efectos propios
+     * @param nodo JsonNode
+     */
+
     public void EjeccucionPropia(JsonNode nodo){
 
         String tipo = nodo.get("tipo").textValue();
@@ -250,6 +255,11 @@ public class Cliente implements Runnable {
         EnviarMensajePropio(nodo);
 
     }
+
+    /**
+     * Ejeccucion las cartas que son para ambos
+     * @param nodo JsonNode
+     */
 
     public void EjeccucionAmbos(JsonNode nodo){
 
@@ -323,6 +333,10 @@ public class Cliente implements Runnable {
 
     }
 
+    /**
+     * inicia la partida
+     */
+
     public void Iniciar(){
         try {
             this.out.writeUTF("Iniciar#Guest#0#0#0#0");
@@ -331,6 +345,10 @@ public class Cliente implements Runnable {
         }
     }
 
+    /**
+     * Realiza la conexion de host
+     */
+
     public void HostConnects(){
         try {
             this.out.writeUTF("Conecta_Host#Host#0#0#0#0");
@@ -338,6 +356,10 @@ public class Cliente implements Runnable {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Guarda la partida
+     */
 
     public void GuardarPartida(String mensaje){
 
@@ -356,7 +378,10 @@ public class Cliente implements Runnable {
 
     }
 
-
+    /**
+     * Cambia de turno
+     * @param turno boolean
+     */
 
     public void setTurno(boolean turno) {
         try {
@@ -366,6 +391,10 @@ public class Cliente implements Runnable {
             e1.printStackTrace();
         }
     }
+
+    /**
+     * Termina le juego
+     */
 
     public void EndGame(){
         try {
@@ -386,6 +415,11 @@ public class Cliente implements Runnable {
     public boolean VerificarVida(){
         return vida < 0;
     }
+
+    /**
+     * retorna la vida
+     * @return int
+     */
 
     public int getVida() {
         return vida;
@@ -417,6 +451,11 @@ public class Cliente implements Runnable {
         }
 
     }
+
+    /**
+     * Carta para reflejar el daño
+     * @param daño String
+     */
 
     public void DañoReflejo(String daño){
 
@@ -516,34 +555,73 @@ public class Cliente implements Runnable {
         this.defensa = defensa;
     }
 
+    /**
+     * Obtiene el reflejo
+     * @return boolean
+     */
+
     public boolean isReflejo() {
         return reflejo;
     }
+
+    /**
+     * Modifica el reflejo
+     * @param reflejo boolean
+     */
 
     public void setReflejo(boolean reflejo) {
         this.reflejo = reflejo;
     }
 
+    /**
+     * Rellena el mana
+     * @param mana int
+     */
+
     public void RellenarMana(int mana){
         this.mana += mana;
     }
+
+    /**
+     * Aumenta la vida
+     * @param cura int
+     */
 
     public void Curar(int cura){
         this.vida += cura;
     }
 
+    /**
+     * Modifica afecto
+     * @return boolean
+     */
 
     public boolean isAfecto() {
         return afecto;
     }
 
+    /**
+     * Modifica el afecto
+     * @param afecto boolean
+     */
+
     public void setAfecto(boolean afecto) {
         this.afecto = afecto;
     }
 
+    /**
+     * Obtiene la ultima carta jugada
+     * @return JsonNode
+     */
+
     public JsonNode getUltima() {
         return ultima;
     }
+
+    /**
+     * Mofidica la ultima carta
+     * @param ultima
+     */
 
     public void setUltima(JsonNode ultima) {
         this.ultima = ultima;

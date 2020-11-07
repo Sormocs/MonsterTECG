@@ -13,6 +13,10 @@ public class Secrets {
     public String informacion;
     public String afecta;
 
+    /**
+     * Busca la el método correspodiente a la carta y lo ejecuta
+     */
+
     public void Caso() {
 
         Cliente cliente = Partida.GetInstance().cliente();
@@ -43,9 +47,19 @@ public class Secrets {
 
     }
 
+    /**
+     * Da una defensa a si mismo
+     * @param cliente Cliente
+     */
+
     public void Defensa(Cliente cliente){
         cliente.setDefensa(this.porcentaje);
     }
+
+    /**
+     * Gana o pierde
+     * @param cliente Cliente
+     */
 
     public void WinorLose(Cliente cliente){
 
@@ -62,17 +76,32 @@ public class Secrets {
 
     }
 
+    /**
+     * Elimina la defensa
+     * @param cliente
+     */
+
     public void EliminarCartaSecreta(Cliente cliente){
 
         cliente.setDefensa(0);
 
     }
 
+    /**
+     * Elimina efectos spells
+     * @param cliente Cliente
+     */
+
     public void EliminarCartaSpell(Cliente cliente){
 
         cliente.setMana(cliente.getMana()-100);
 
     }
+
+    /**
+     * Aflica ejectos
+     * @param cliente Cliente
+     */
 
     public void SecretaYGanar(Cliente cliente){
 
@@ -83,11 +112,21 @@ public class Secrets {
 
     }
 
+    /**
+     * Refleja daño
+     * @param cliente Cliente
+     */
+
     public void Reflejar(Cliente cliente){
 
         cliente.setReflejo(true);
 
     }
+
+    /**
+     * Mata con una posibilidad
+     * @param cliente Cliente
+     */
 
     public void Ejecutar(Cliente cliente){
 
