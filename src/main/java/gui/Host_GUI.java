@@ -1,10 +1,12 @@
 package gui;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import listas.ListaDoble;
 
 import javax.swing.*;
 import java.awt.event.*;
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  * Clase Host_GUI que se encarga de abrir la ventana para el Host.
@@ -17,6 +19,8 @@ public class Host_GUI extends JFrame {
 
     private JButton start_btn;
     private JButton history_btn;
+
+    private ListaDoble listaPartidas;
 
     /**
      * Constructor de la clase Host_GUI que llama al constructor de la clase padre y a los metodos para iniciar
@@ -76,7 +80,7 @@ public class Host_GUI extends JFrame {
         history_btn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                History_BTN_Action();
             }
         });
 
@@ -86,10 +90,13 @@ public class Host_GUI extends JFrame {
 
     }
 
-    public void actionPerformed_StartBTN() throws com.fasterxml.jackson.core.JsonProcessingException {
+    private void actionPerformed_StartBTN() throws com.fasterxml.jackson.core.JsonProcessingException {
 
         if (Partida.GetInstance().isHay_guest()) {
             Match_GUI game_gui = new Match_GUI();
+            ListaDoble partida = new ListaDoble();
+            Partida.GetInstance().InsertarPartida(partida);
+            game_gui.setPartida(partida);
             game_gui.setVisible(true);
             Partida.GetInstance().setGame_gui(game_gui);
             this.setVisible(false);
@@ -100,4 +107,13 @@ public class Host_GUI extends JFrame {
         }
 
     }
+
+    private void History_BTN_Action(){
+        History_GUI history = new History_GUI();
+        history.setPrev_hostgui(this);
+        this.setVisible(false);
+        history.setVisible(true);
+
+    }
+
 }

@@ -1,9 +1,11 @@
 package gui;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import listas.ListaDoble;
 
 import javax.swing.*;
 import java.awt.event.*;
+import java.util.ArrayList;
 
 /**
  * Clase Guest_GUI que crea la ventana que actua como el menu para el jugador que entra como guest al juego.
@@ -16,6 +18,7 @@ public class Guest_GUI extends JFrame{
     private JButton history_btn;
 
     private JLabel guest_gui_bg;
+
 
     /**
      * Constructor de la clase que llama al constructor de la clase padre, además de iniciar los componentes de
@@ -70,7 +73,7 @@ public class Guest_GUI extends JFrame{
         history_btn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                History_BTN_Action();
             }
         });
 
@@ -86,6 +89,17 @@ public class Guest_GUI extends JFrame{
         Partida.GetInstance().setGame_gui(game_gui);
         game_gui.setPreviousGuest(this);
         this.setVisible(false);
+        ListaDoble partida = new ListaDoble();
+        game_gui.setPartida(partida);
+        Partida.GetInstance().InsertarPartida(partida);
+    }
+
+    private void History_BTN_Action(){
+        History_GUI history = new History_GUI();
+        history.setPrev_guestgui(this);
+        this.setVisible(false);
+        history.setVisible(true);
+
     }
 
 }

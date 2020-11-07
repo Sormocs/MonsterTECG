@@ -25,7 +25,7 @@ public class Spells {
                 RellenarMana(cliente);
                 break;
             case "QuitarTurnoRival":
-                QuitarTurnoRival(cliente);
+                //QuitarTurnoRival(cliente);
                 break;
             case "curar":
                 Curar(cliente);
@@ -52,7 +52,7 @@ public class Spells {
 
     public void QuitarTurnoRival(Cliente cliente){
 
-        cliente.setTurno(true);
+        Partida.GetInstance().Freeze();
 
     }
 

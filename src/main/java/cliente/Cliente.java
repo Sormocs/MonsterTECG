@@ -77,8 +77,6 @@ public class Cliente implements Runnable {
                 try {
                     //Lee el mensaje que envió el servidor
                     mensaje = in.readUTF();
-                    //System.out.println(mensaje);
-
 
                     this.turno = true;
 
@@ -272,7 +270,6 @@ public class Cliente implements Runnable {
             vidamana = minion.Caso(this.vida,this.vidaR,this.mana);
 
             setVida(vidamana[0]);
-            //setMana(vidamana[1]);
 
         } catch (JsonProcessingException e) {
             e.printStackTrace();

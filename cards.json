@@ -3,7 +3,7 @@
     "minions":{
       "attackOwn18_141HP": {
         "ataque": "141",
-        "costo": "150",
+        "costo": "250",
         "tipo": "minions",
         "porcentaje": "18",
         "aplica": "propiaHP",
@@ -13,7 +13,7 @@
       },
       "attackOwn25":{
         "ataque": "0",
-        "costo": "100",
+        "costo": "200",
         "tipo": "minions",
         "porcentaje": "25",
         "aplica": "propiaHP",
@@ -23,7 +23,7 @@
       },
       "attackOwn35_413HP": {
         "ataque": "413",
-        "costo": "400",
+        "costo": "500",
         "tipo": "minions",
         "porcentaje": "35",
         "aplica": "propiaHP",
@@ -33,7 +33,7 @@
       },
       "attackOwn36": {
         "ataque": "0",
-        "costo": "150",
+        "costo": "250",
         "tipo": "minions",
         "porcentaje": "36",
         "aplica": "propiaHP",
@@ -43,7 +43,7 @@
       },
       "attackOwn40": {
         "ataque": "0",
-        "costo": "200",
+        "costo": "300",
         "tipo": "minions",
         "porcentaje": "40",
         "aplica": "propiaHP",
@@ -53,7 +53,7 @@
       },
       "attackRival16_148HP": {
         "ataque": "148",
-        "costo": "100",
+        "costo": "200",
         "tipo": "minions",
         "porcentaje": "16",
         "aplica": "RivalHP",
@@ -63,7 +63,7 @@
       },
       "attackRival20": {
         "ataque": "0",
-        "costo": "50",
+        "costo": "150",
         "tipo": "minions",
         "porcentaje": "20",
         "aplica": "RivalHP",
@@ -73,7 +73,7 @@
       },
       "attackRival24_134HP": {
         "ataque": "134",
-        "costo": "100",
+        "costo": "200",
         "tipo": "minions",
         "porcentaje": "24",
         "aplica": "RivalHP",
@@ -83,7 +83,7 @@
       },
       "attackRival32_58HP": {
         "ataque": "58",
-        "costo": "300",
+        "costo": "400",
         "tipo": "minions",
         "porcentaje": "32",
         "aplica": "RivalHP",
@@ -93,7 +93,7 @@
       },
       "attackRival40": {
         "ataque": "0",
-        "costo": "300",
+        "costo": "400",
         "tipo": "minions",
         "porcentaje": "40",
         "aplica": "RivalHP",
@@ -103,7 +103,7 @@
       },
       "attackRival56": {
         "ataque": "0",
-        "costo": "500",
+        "costo": "600",
         "tipo": "minions",
         "porcentaje": "56",
         "aplica": "RivalHP",
@@ -113,7 +113,7 @@
       },
       "attack100HP": {
         "ataque": "100",
-        "costo": "50",
+        "costo": "200",
         "tipo": "minions",
         "porcentaje": "0",
         "aplica": "ninguno",
@@ -123,7 +123,7 @@
       },
       "attack125HP": {
         "ataque": "125",
-        "costo": "50",
+        "costo": "250",
         "tipo": "minions",
         "porcentaje": "0",
         "aplica": "ninguno",
@@ -133,7 +133,7 @@
       },
       "attack172HP": {
         "ataque":"172",
-        "costo": "75",
+        "costo": "275",
         "tipo": "minions",
         "porcentaje": "0",
         "aplica": "ninguno",
@@ -143,7 +143,7 @@
       },
       "attack200HP": {
         "ataque": "200",
-        "costo": "100",
+        "costo": "300",
         "tipo": "minions",
         "porcentaje": "0",
         "aplica": "ninguno",
@@ -153,7 +153,7 @@
       },
       "attack258HP": {
         "ataque": "258",
-        "costo": "125",
+        "costo": "325",
         "tipo": "minions",
         "porcentaje": "0",
         "aplica": "ninguno",
@@ -163,7 +163,7 @@
       },
       "attack269HP": {
         "ataque": "269",
-        "costo": "120",
+        "costo": "220",
         "tipo": "minions",
         "porcentaje": "0",
         "aplica": "ninguno",
@@ -174,7 +174,7 @@
       },
       "attack300HP": {
         "ataque": "300",
-        "costo": "150",
+        "costo": "250",
         "tipo": "minions",
         "porcentaje": "0",
         "aplica": "ninguno",
@@ -184,7 +184,7 @@
       },
       "attack321HP": {
         "ataque": "321",
-        "costo": "175",
+        "costo": "275",
         "tipo": "minions",
         "porcentaje": "0",
         "aplica": "ninguno",
@@ -194,7 +194,7 @@
       },
       "attack400HP": {
         "ataque": "400",
-        "costo": "350",
+        "costo": "550",
         "tipo": "minions",
         "porcentaje": "0",
         "aplica": "ninguno",
@@ -207,7 +207,7 @@
       "fifty_fifty": {
         "ataque": "1000",
         "tipo": "secreta",
-        "costo": "700",
+        "costo": "800",
         "evento": "winorlose",
         "porcentaje": "50",
         "ruta": "Cartas/Secret-50WinOrLose.png",
@@ -217,7 +217,7 @@
       "def50": {
         "ataque": "0",
         "tipo": "secreta",
-        "costo": "200",
+        "costo": "300",
         "evento": "defensa",
         "porcentaje": "50",
         "ruta": "Cartas/Secret-Def50.png",
@@ -227,7 +227,7 @@
       "def75":{
         "ataque": "0",
         "tipo": "secreta",
-        "costo": "250",
+        "costo": "350",
         "evento": "defensa",
         "porcentaje": "75",
         "ruta": "Cartas/Secret-Def75.png",
@@ -237,7 +237,7 @@
       "def90": {
         "ataque": "0",
         "tipo": "secreta",
-        "costo": "325",
+        "costo": "425",
         "evento": "defensa",
         "porcentaje": "90",
         "ruta": "Cartas/Secret-Def90.png",
@@ -247,7 +247,7 @@
       "elimSecretCard": {
         "ataque": "0",
         "tipo": "secreta",
-        "costo": "350",
+        "costo": "550",
         "evento": "EliminarCartaSecreta",
         "porcentaje": "0",
         "ruta": "Cartas/Secret-EliminateNextSecret.png",
@@ -257,7 +257,7 @@
       "elimSpellCard": {
         "ataque": "0",
         "tipo": "secreta",
-        "costo": "350",
+        "costo": "550",
         "evento": "EliminarCartaSpell",
         "porcentaje": "0",
         "ruta": "Cartas/Secret-EliminateNextSpell.png",
@@ -267,7 +267,7 @@
       "killIfSecret": {
         "ataque": "1000",
         "tipo": "secreta",
-        "costo": "500",
+        "costo": "600",
         "evento": "Secreta_y_Ganar",
         "porcentaje": "0",
         "ruta": "Cartas/Secret-Kill_ifSecret.png",
@@ -277,7 +277,7 @@
       "reflect50DMG": {
         "ataque": "0",
         "tipo": "secreta",
-        "costo": "200",
+        "costo": "400",
         "evento": "reflejar",
         "porcentaje": "50",
         "ruta": "Cartas/Secret-Reflect50.png",
@@ -287,7 +287,7 @@
       "InstaWin4": {
         "ataque": "1000",
         "tipo": "secreta",
-        "costo": "400",
+        "costo": "500",
         "evento": "Ejecutar",
         "porcentaje": "4",
         "ruta": "Cartas/Secret-WinHPLower4.png",
@@ -297,7 +297,7 @@
       "InstaWin10": {
         "ataque": "1000",
         "tipo": "secreta",
-        "costo": "500",
+        "costo": "600",
         "evento": "Ejecutar",
         "porcentaje": "10",
         "ruta": "Cartas/Secret-WinHPLower10.png",
@@ -311,7 +311,7 @@
         "objetivo": "mana",
         "porcentaje": "25",
         "accion": "RellenarMana",
-        "costo": "50",
+        "costo": "200",
         "ruta": "Cartas/Spell-BoostManaRegen.png",
         "informacion": "Usa una carta de tipo spell que da un boost de mana",
         "afecta": "Propio"
@@ -321,7 +321,7 @@
         "objetivo": "cartaRival",
         "porcentaje": "0",
         "accion": "DuplicarCarta",
-        "costo": "150",
+        "costo": "250",
         "ruta": "Cartas/Spell-DuplicateCard.png",
         "informacion": "Usa una carta de tipo spell que puede duplicar una carta",
         "afecta": "Propio"
@@ -331,7 +331,7 @@
         "objetivo": "mana",
         "porcentaje": "40",
         "accion": "RellenarMana",
-        "costo": "100",
+        "costo": "200",
         "ruta": "Cartas/Spell-Fill_40_Mana.png",
         "informacion": "Usa una carta de tipo spell que te rellena el maná con un 40% de posibilidades",
         "afecta": "Propio"
@@ -341,7 +341,7 @@
         "objetivo": "mana",
         "porcentaje": "1000",
         "accion":"RellenarMana",
-        "costo": "200",
+        "costo": "250",
         "ruta": "Cartas/Spell-FillMana.png",
         "informacion": "Usa una carta de tipo spell que da un boost de mana",
         "afecta": "Propio"
@@ -351,7 +351,7 @@
         "objetivo": "rival",
         "porcentaje": "0",
         "accion": "QuitarTurnoRival",
-        "costo": "250",
+        "costo": "300",
         "ruta": "Cartas/Spell-Freeze.png",
         "informacion": "Usa una carta de tipo spell que quita el turno del rival",
         "afecta": "Propio"
@@ -359,7 +359,7 @@
       "Heal50": {
         "tipo": "spell",
         "objetivo": "self",
-        "porcentaje": "50",
+        "porcentaje": "150",
         "accion": "curar",
         "costo": "150",
         "ruta": "Cartas/Spell-Heal.png",
@@ -371,7 +371,7 @@
         "objetivo": "self",
         "porcentaje": "10",
         "accion": "curar",
-        "costo": "50",
+        "costo": "75",
         "ruta": "Cartas/Spell-Heal_10.png",
         "informacion": "Usa una carta de tipo spell que cura un 10%",
         "afecta": "Propio"
@@ -381,7 +381,7 @@
         "objetivo": "rival",
         "porcentaje": "0",
         "accion": "revelar",
-        "costo": "150",
+        "costo": "200",
         "ruta": "Cartas/Spell-RevealCards.png",
         "informacion": "Usa una carta de tipo spell que revela una carta",
         "afecta": "Rival"
@@ -401,7 +401,7 @@
         "objetivo": "self",
         "porcentaje": "0",
         "accion": "SupremePower",
-        "costo": "600",
+        "costo": "1000",
         "ruta": "Cartas/Spell-SupremePower.png",
         "informacion": "Usa una carta de tipo spell que te da el poder supremo",
         "afecta": "Propio"

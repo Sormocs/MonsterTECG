@@ -8,6 +8,7 @@ public class ListaDoble {
 
     private NodoDoble inicio;
     private NodoDoble fin;
+    private int size;
 
     public ListaDoble(){
         inicio = null;
@@ -30,10 +31,12 @@ public class ListaDoble {
         if (!Vacia()){
             inicio = new NodoDoble(dato, null, null);
             fin = inicio;
+            size = 1;
         } else {
             NodoDoble nuevo = new NodoDoble(dato, null, inicio);
             inicio.setAnterior(nuevo);
             inicio = nuevo;
+            size ++;
         }
     }
 
@@ -45,10 +48,12 @@ public class ListaDoble {
         if (inicio == null) {
             fin = new NodoDoble(dato, null, null);
             inicio = fin;
+            size = 1;
         } else {
             NodoDoble nuevo = new NodoDoble(dato, null, fin);
             fin.setSiguiente(nuevo);
             fin = nuevo;
+            size ++;
         }
     }
 
@@ -64,8 +69,10 @@ public class ListaDoble {
 
         if(!Vacia()){
             inicio.setAnterior(null);
+            size --;
         } else{
             fin = null;
+            size --;
         }
         return dato;
     }
@@ -82,8 +89,10 @@ public class ListaDoble {
 
         if(fin != null){
             fin.setSiguiente(null);
+            size --;
         } else{
             inicio = null;
+            size --;
         }
         return dato;
     }
@@ -127,5 +136,13 @@ public class ListaDoble {
         } else {
             return temp.getAnterior();
         }
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    public NodoDoble getInicio() {
+        return inicio;
     }
 }

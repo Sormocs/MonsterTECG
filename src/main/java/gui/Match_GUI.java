@@ -6,6 +6,7 @@ import java.awt.event.*;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import listas.*;
+import manejo.json.Json;
 
 
 public class Match_GUI extends JFrame implements ActionListener{
@@ -26,6 +27,8 @@ public class Match_GUI extends JFrame implements ActionListener{
     private int rivalmana = Partida.GetInstance().getManaRival();
     private int pos2change;
     private int selected_cost;
+    private int supreme_counter;
+    private int turnonum = 0;
 
     private JButton use_card;
     private JButton take_card;
@@ -45,7 +48,9 @@ public class Match_GUI extends JFrame implements ActionListener{
     private JButton card9;
 
     private JLabel costo;
+    private JLabel spower;
 
+    private boolean supreme_power;
     private boolean turno;
     private boolean[] check_pos = {true,true,true,true,false,false,false,false,false,false};
 
@@ -59,8 +64,12 @@ public class Match_GUI extends JFrame implements ActionListener{
 
     private NodoCircular selected;
 
+    private ListaDoble partida;
+
     private Host_GUI previousHost;
     private Guest_GUI previousGuest;
+
+    private String super_info;
 
     public Match_GUI() throws com.fasterxml.jackson.core.JsonProcessingException{
         super();
@@ -135,6 +144,12 @@ public class Match_GUI extends JFrame implements ActionListener{
         costo.setFont(new Font("Comic Sans MS",Font.BOLD,28));
         costo.setForeground(Color.RED);
 
+        spower = new JLabel();
+        spower.setBounds(330,210,300,50);
+        spower.setText("SUPREME POWER ACTIVATED");
+        spower.setFont(new Font("Comic Sans MS",Font.BOLD,28));
+        spower.setForeground(Color.RED);
+
 
         skip_turn = new JButton(new ImageIcon("Imagenes/SkipBTN.jpg"));
         skip_turn.setBounds(550,260,200,60);
@@ -166,6 +181,7 @@ public class Match_GUI extends JFrame implements ActionListener{
         this.nodos = nodos;
 
         buttons();
+        this.match_screen.add(spower);
         this.match_screen.add(scroll);
         this.match_screen.add(skip_turn);
         this.match_screen.add(take_card);
@@ -176,6 +192,7 @@ public class Match_GUI extends JFrame implements ActionListener{
         this.match_screen.add(PlayerMana);
         this.match_screen.add(RivalMana);
         this.match_screen.add(fondo);
+        spower.setVisible(false);
     }
 
     public void GenerateHand() {
@@ -193,8 +210,92 @@ public class Match_GUI extends JFrame implements ActionListener{
 
         if (selected != null){
             JsonNode carta = (JsonNode) selected.getElemento();
-            if (Integer.parseInt(carta.get("costo").textValue()) <= selected_cost) {
+            if (playermana >= selected_cost && carta.get("tipo").textValue().equals("spell") && carta.get("accion").textValue().equals("SupremePower")) {
+                supreme_power = true;
                 Partida.GetInstance().EnviarMensaje(carta);
+                String infoturno = "Yo " + carta.get("informacion").textValue();
+                infoturno += " con costo de mana de ";
+                infoturno += carta.get("costo");
+                infoturno += "\n";
+                history.append(infoturno);
+                Partida.GetInstance().GuardarPartida(infoturno);
+                spower.setVisible(true);
+                check_pos[pos2change] = false;
+                btn_list[pos2change].setIcon(new ImageIcon("Cartas/Card-Template.png"));
+                btn_list[pos2change].setEnabled(false);
+                Partida.GetInstance().setManaPropio(Partida.GetInstance().getManaPlayer() - selected_cost);
+                selected = null;
+                costo.setText("No selection");
+                selected_cost = 0;
+                buttons();
+                UpdateValues();
+                if (deck.isEmpty() == false) {
+                    mano.ChangeValue(deck.getTop(), pos2change);
+                    deck.pop();
+                }
+                super_info += infoturno;
+            } else if (playermana >= selected_cost && carta.get("tipo").textValue().equals("spell") &&
+                    carta.get("accion").textValue().equals("QuitarTurnoRival")){
+
+                    Partida.GetInstance().EnviarMensaje(carta);
+                    String infoturno = "Yo " + carta.get("informacion").textValue();
+                    infoturno += " con costo de mana de ";
+                    infoturno += carta.get("costo");
+                    infoturno += "\n";
+                    history.append(infoturno);
+                    Partida.GetInstance().GuardarPartida(infoturno);
+
+                    check_pos[pos2change] = false;
+                    btn_list[pos2change].setIcon(new ImageIcon("Cartas/Card-Template.png"));
+                    btn_list[pos2change].setEnabled(false);
+                    Partida.GetInstance().setManaPropio(Partida.GetInstance().getManaPlayer() - selected_cost);
+                    selected = null;
+                    costo.setText("No selection");
+                    selected_cost = 0;
+                    buttons();
+                    UpdateValues();
+                    if (deck.isEmpty() == false) {
+                        mano.ChangeValue(deck.getTop(), pos2change);
+                        deck.pop();
+                    }
+                    turnonum ++;
+                    String dato = CreateDatoTurno(infoturno);
+                    partida.InsertarFinal(dato);
+
+            } else if(supreme_power == true && supreme_counter <= 2){
+
+                check_pos[pos2change] = false;
+                btn_list[pos2change].setIcon(new ImageIcon("Cartas/Card-Template.png"));
+                btn_list[pos2change].setEnabled(false);
+                selected = null;
+                costo.setText("No selection");
+                selected_cost = 0;
+                buttons();
+                UpdateValues();
+
+                Partida.GetInstance().EnviarMensaje(carta);
+                String infoturno = "Yo " + carta.get("informacion").textValue();
+                infoturno += " con costo de mana de ";
+                infoturno += carta.get("costo");
+                infoturno += "\n";
+                history.append(infoturno);
+                Partida.GetInstance().GuardarPartida(infoturno);
+
+                supreme_counter ++;
+                super_info += ","+infoturno;
+                if (supreme_counter == 2){
+                    supreme_power = false;
+                    supreme_counter = 0;
+                    TerminaTurno();
+                    spower.setVisible(false);
+                    turnonum ++;
+                    CreateDatoTurno(super_info);
+                    super_info = "";
+                }
+
+            } else if (playermana >= selected_cost && supreme_power == false) {
+                Partida.GetInstance().EnviarMensaje(carta);
+
 
                 String infoturno = "Yo " + carta.get("informacion").textValue();
                 infoturno += " con costo de mana de ";
@@ -217,6 +318,9 @@ public class Match_GUI extends JFrame implements ActionListener{
                 buttons();
                 TerminaTurno();
                 UpdateValues();
+                turnonum ++;
+                String dato = CreateDatoTurno(infoturno);
+                partida.InsertarFinal(dato);
             }else{
                 JOptionPane.showMessageDialog(this,"You don't have enough mana","Not enough mana",JOptionPane.INFORMATION_MESSAGE);
             }
@@ -225,6 +329,21 @@ public class Match_GUI extends JFrame implements ActionListener{
             JOptionPane.showMessageDialog(this,"Select a card","Nothing Selected",JOptionPane.INFORMATION_MESSAGE);
         }
 
+    }
+
+    public String CreateDatoTurno(String info){
+        String dato = String.valueOf(turnonum)+"#"+info+"#"+String.valueOf(playerhp)+"#"+String.valueOf(playermana)
+                +"#" +btn_list[0].getIcon()
+                +"#"+btn_list[1].getIcon()
+                +"#"+btn_list[2].getIcon()
+                +"#"+btn_list[3].getIcon()
+                +"#"+btn_list[4].getIcon()
+                +"#"+btn_list[5].getIcon()
+                +"#"+btn_list[6].getIcon()
+                +"#"+btn_list[7].getIcon()
+                +"#"+btn_list[8].getIcon()
+                +"#"+btn_list[9].getIcon();
+        return dato;
     }
 
     public void CardTaken(){
@@ -488,5 +607,9 @@ public class Match_GUI extends JFrame implements ActionListener{
 
     public Stack getDeck() {
         return deck;
+    }
+
+    public void setPartida(ListaDoble partida) {
+        this.partida = partida;
     }
 }

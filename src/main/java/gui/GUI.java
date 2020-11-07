@@ -1,7 +1,12 @@
 package gui;
 
+import listas.ListaCircular;
+
 import javax.swing.*;
 import java.awt.event.*;
+import java.util.ArrayList;
+
+import listas.ListaDoble;
 
 /**
  * Clase GUI que se encarga de manejar la interfaz principal que da a los jugadores la opcion de ingresar
@@ -20,6 +25,7 @@ public class GUI extends JFrame {
 
     private JLabel menu_bg;
 
+
     /**
      * Constructor de la clase GUI para iniciar los componentes de la ventana y para configurar esta misma,
      * además de llamar al constructor de la clase padre (JFrame).
@@ -34,7 +40,7 @@ public class GUI extends JFrame {
     /**
      * Metodo para configurar los componentes de la ventana
      */
-    public void ConfigureWin(){
+    private void ConfigureWin(){
         setTitle("Monster TECG!");
         setSize(800,600);
         setResizable(false);

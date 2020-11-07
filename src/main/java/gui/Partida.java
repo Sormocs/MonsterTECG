@@ -30,6 +30,8 @@ public class Partida {
 
     private GUI main_gui;
 
+    private ListaDoble listaPartidas = new ListaDoble();
+
     private Partida(){
 
     }
@@ -234,5 +236,19 @@ public class Partida {
 
     public Stack Push(){
         return game_gui.getDeck();
+    }
+
+    public void Freeze(){
+        game_gui.UpdateValues();
+        game_gui.Disable();
+        game_gui.TerminaTurno();
+    }
+
+    public ListaDoble getListaPartidas() {
+        return listaPartidas;
+    }
+
+    public void InsertarPartida(Object partida){
+        listaPartidas.InsertarFinal(partida);
     }
 }
