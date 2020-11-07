@@ -51,6 +51,9 @@ public class Host_GUI extends JFrame {
 
     }
 
+    /**
+     * Metodo para iniciar los componentes de la ventana
+     */
     private void InitializeComponents() {
 
         host_screen = new JPanel();
@@ -60,6 +63,9 @@ public class Host_GUI extends JFrame {
 
     }
 
+    /**
+     * Metodo para iniciar los componenetes del panel que contiene los elementos que se muestran en la ventana.
+     */
     private void StartScreen() {
 
         host_gui_bg = new JLabel(new ImageIcon("Imagenes/HostGuiBG.jpg"));
@@ -113,6 +119,10 @@ public class Host_GUI extends JFrame {
 
     }
 
+    /**
+     * Inicia la partida siempre que se verifique que hay un guest conectado y comenzar el juego.
+     * @throws com.fasterxml.jackson.core.JsonProcessingException
+     */
     private void actionPerformed_StartBTN() throws com.fasterxml.jackson.core.JsonProcessingException {
 
         if (Partida.GetInstance().isHay_guest()) {
@@ -131,6 +141,9 @@ public class Host_GUI extends JFrame {
 
     }
 
+    /**
+     * Permite acceder al historial de partidas al presionar el boton que activa este metodo.
+     */
     private void History_BTN_Action(){
         History_GUI history = new History_GUI();
         history.setPrev_hostgui(this);

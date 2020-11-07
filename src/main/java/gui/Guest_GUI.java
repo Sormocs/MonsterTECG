@@ -5,7 +5,6 @@ import listas.ListaDoble;
 
 import javax.swing.*;
 import java.awt.event.*;
-import java.util.ArrayList;
 
 /**
  * Clase Guest_GUI que crea la ventana que actua como el menu para el jugador que entra como guest al juego.
@@ -32,6 +31,9 @@ public class Guest_GUI extends JFrame{
 
     }
 
+    /**
+     * Metodo para configurar la ventana
+     */
     private void ConfigureWin(){
 
         setTitle("Monster TECG!");
@@ -41,6 +43,9 @@ public class Guest_GUI extends JFrame{
 
     }
 
+    /**
+     * Inicia los componenetes de la ventana, en este caso
+     */
     private void InitializeComponents(){
 
         guest_screen = new JPanel();
@@ -50,6 +55,9 @@ public class Guest_GUI extends JFrame{
 
     }
 
+    /**
+     * Inicia los componentes del panel en la ventana, como lo son los botones y labels contenidos en este
+     */
     private void StartScreen(){
 
         guest_gui_bg = new JLabel(new ImageIcon("Imagenes/GuestGuiBG.jpg"));
@@ -83,6 +91,10 @@ public class Guest_GUI extends JFrame{
 
     }
 
+    /**
+     * Metodo que permite al guest unirse a la partida iniciada por el host
+     * @throws com.fasterxml.jackson.core.JsonProcessingException
+     */
     private void ActionJoinBTN() throws com.fasterxml.jackson.core.JsonProcessingException{
         Match_GUI game_gui = new Match_GUI();
         game_gui.setVisible(true);
@@ -94,6 +106,9 @@ public class Guest_GUI extends JFrame{
         Partida.GetInstance().InsertarPartida(partida);
     }
 
+    /**
+     * Metodo para ejecutar la accion del boton que permite acceder al historial
+     */
     private void History_BTN_Action(){
         History_GUI history = new History_GUI();
         history.setPrev_guestgui(this);

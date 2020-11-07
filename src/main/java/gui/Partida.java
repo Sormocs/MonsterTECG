@@ -297,16 +297,27 @@ public class Partida {
         return game_gui.getDeck();
     }
 
+    /**
+     * Metodo freeze para eliminar turno al jugador
+     */
     public void Freeze(){
         game_gui.UpdateValues();
         game_gui.Disable();
         game_gui.TerminaTurno();
     }
 
+    /**
+     * Obtiene la lista de partidas para pasarlas al historial
+     * @return
+     */
     public ListaDoble getListaPartidas() {
         return listaPartidas;
     }
 
+    /**
+     * Inserta una partida al historial de partidas
+     * @param partida
+     */
     public void InsertarPartida(Object partida){
         listaPartidas.InsertarFinal(partida);
     }

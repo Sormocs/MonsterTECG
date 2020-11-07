@@ -8,7 +8,10 @@ import com.fasterxml.jackson.databind.JsonNode;
 import listas.*;
 import manejo.json.Json;
 
-
+/**
+ * Clase Match_GUI que controla lo que ocurre durante el juego, desde enviar los mensajes hasta guardar la informacion
+ * para el historial de partidas.
+ */
 public class Match_GUI extends JFrame implements ActionListener{
 
     private JLabel match_screen;
@@ -71,12 +74,19 @@ public class Match_GUI extends JFrame implements ActionListener{
 
     private String super_info;
 
+    /**
+     * Constructor de la clase, llama al constructor padre que le permite tener la funcion de ventana
+     * @throws com.fasterxml.jackson.core.JsonProcessingException
+     */
     public Match_GUI() throws com.fasterxml.jackson.core.JsonProcessingException{
         super();
         InitializeComponents();
         ConfigureWin();
     }
 
+    /**
+     * Configura la ventana
+     */
     private void ConfigureWin(){
 
         this.setTitle("En partida");
@@ -85,6 +95,10 @@ public class Match_GUI extends JFrame implements ActionListener{
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
+    /**
+     * Inicia el panel que va a contener todos los elementos de la ventana.
+     * @throws com.fasterxml.jackson.core.JsonProcessingException
+     */
     private void InitializeComponents() throws com.fasterxml.jackson.core.JsonProcessingException{
 
         match_screen = new JLabel();
@@ -94,6 +108,9 @@ public class Match_GUI extends JFrame implements ActionListener{
 
     }
 
+    /**
+     * Inicia los componentes del panel, coloca todos los botnes y textos que se muestran en el juego.
+     */
     public void StartScreenComps(){
 
         fondo = new JLabel(new ImageIcon("Imagenes/FondoJuego.jpg"));
@@ -195,6 +212,9 @@ public class Match_GUI extends JFrame implements ActionListener{
         spower.setVisible(false);
     }
 
+    /**
+     * Genera la lista circular que contiene la mano del jugador.
+     */
     public void GenerateHand() {
 
         int contador = 0;
@@ -206,6 +226,10 @@ public class Match_GUI extends JFrame implements ActionListener{
         }
     }
 
+    /**
+     * Metodo para verificar que se pueda usar una carta, guarda la informacion de cada turno y tambien analiza los eventos de
+     * dos de las cartas.
+     */
     public void CardUsed(){
 
         if (selected != null){
@@ -331,6 +355,12 @@ public class Match_GUI extends JFrame implements ActionListener{
 
     }
 
+    /**
+     * Crea el dato para almacenar en el historial de las partidas, recibe informacion de la accion que ocurrio en el turno y
+     * le agrega los datos y el deck del jugador en un solo string.
+     * @param info
+     * @return
+     */
     public String CreateDatoTurno(String info){
         String dato = String.valueOf(turnonum)+"#"+info+"#"+String.valueOf(playerhp)+"#"+String.valueOf(playermana)
                 +"#" +btn_list[0].getIcon()
@@ -346,6 +376,9 @@ public class Match_GUI extends JFrame implements ActionListener{
         return dato;
     }
 
+    /**
+     * Agrega a la lista circular del jugador la primera carta del deck y acaba con el turno de este al hacerlo.
+     */
     public void CardTaken(){
         if (deck.isEmpty() == false){
             for (int i = 0; i<10; i++){
@@ -374,7 +407,10 @@ public class Match_GUI extends JFrame implements ActionListener{
         costo.setText("No selection");
     }
 
-
+    /**
+     * Genera los botones para las cartas en la interfaz y les coloca la imagen segun la carta que se encuentre en la posicion respectiva
+     * de la lista.
+     */
     public void buttons(){
         for (int i = 0; i<10; i++){
             if (check_pos[i]){
@@ -387,13 +423,19 @@ public class Match_GUI extends JFrame implements ActionListener{
         }
     }
 
-
+    /**
+     * Agrega al historial dentro de la partida la carta jugada.
+     * @param infocarta
+     */
     public static void ShowCard(String infocarta) {
 
         history.append(infocarta);
     }
 
-
+    /**
+     * Permite obtener los eventos de los botones y saber cual boton es el que fue presionado.
+     * @param e
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
 
@@ -493,6 +535,9 @@ public class Match_GUI extends JFrame implements ActionListener{
 
     }
 
+    /**
+     * Desactiva los botones de la interfaz para el host nada mas, ya que siempre comienza el guest.
+     */
     public void Disable(){
         for (int i=0; i<10; i++){
             if (check_pos[i]){
@@ -505,6 +550,9 @@ public class Match_GUI extends JFrame implements ActionListener{
         turno = false;
     }
 
+    /**
+     * Permite reactivar los botones de la interfaz al recibir el mensaje de que el turno rival ha terminado.
+     */
     public void ComienzaTurno(){
         for (int i=0; i<10; i++){
             if (check_pos[i]){
@@ -519,6 +567,10 @@ public class Match_GUI extends JFrame implements ActionListener{
         UpdateValues();
     }
 
+    /**
+     * Actualiza los valores de vida y mana propios y rivales para que en la pantalla se muestre a tiempo real los valores
+     * que tiene cada uno. Tambien verifica la vida para saber si el jugador perdio.
+     */
     public void UpdateValues(){
 
         playerhp = Partida.GetInstance().getVidaPlayer();
@@ -550,6 +602,9 @@ public class Match_GUI extends JFrame implements ActionListener{
 
     }
 
+    /**
+     * Avisa que se termina el turno y se lo notifica a la clase Partida.
+     */
     public void TerminaTurno(){
 
         for (int i=0; i<10; i++){
@@ -571,14 +626,25 @@ public class Match_GUI extends JFrame implements ActionListener{
 
     }
 
+    /**
+     * Guarda la ventana host para retornar a esta misma.
+     * @param previousHost
+     */
     public void setPreviousHost(Host_GUI previousHost) {
         this.previousHost = previousHost;
     }
 
+    /**
+     * Guarda la ventana guest para retornar a esta misma en caso de que el jugador sea guest
+     * @param previousGuest
+     */
     public void setPreviousGuest(Guest_GUI previousGuest) {
         this.previousGuest = previousGuest;
     }
 
+    /**
+     * Muestra un mensaje de que ha ganado la partida y vuelve a la ventana previa ya fuera de host o de guest.
+     */
     public void End(){
         JOptionPane.showMessageDialog(this,"Congratulations! You earned nothing","You won :)",JOptionPane.INFORMATION_MESSAGE);
         if(previousGuest != null){
@@ -594,6 +660,10 @@ public class Match_GUI extends JFrame implements ActionListener{
         Partida.GetInstance().setManaR(200);
     }
 
+    /**
+     * Revela una carta del deck del rival siempre y cuando este tenga.
+     * @return
+     */
     public String Mostrartop(){
 
         JsonNode node = (JsonNode) this.deck.getTop();
@@ -608,10 +678,18 @@ public class Match_GUI extends JFrame implements ActionListener{
         return mensaje;
     }
 
+    /**
+     * Obtiene el deck del jugador
+     * @return
+     */
     public Stack getDeck() {
         return deck;
     }
 
+    /**
+     * Recibe la lista de la partida que debe verificar para el historial de partidas.
+     * @param partida
+     */
     public void setPartida(ListaDoble partida) {
         this.partida = partida;
     }

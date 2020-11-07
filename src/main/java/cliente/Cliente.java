@@ -46,6 +46,10 @@ public class Cliente implements Runnable {
 
     private boolean turno;
 
+    /**
+     * Constructor de la clase cliente, define los valores iniciales de la vida y mana propios y del rival.
+     * @param jugador
+     */
     public Cliente(String jugador){
 
         this.vida = 1000;
@@ -144,6 +148,10 @@ public class Cliente implements Runnable {
 
     }
 
+    /**
+     * Forma un mensaje con la vida y mana propios para transmitirlo.
+     * @param node
+     */
     public void EnviarMensajePropio(JsonNode node){
         try{
             String s_string = Json.generateString(node,false);
@@ -165,6 +173,10 @@ public class Cliente implements Runnable {
         }
     }
 
+    /**
+     * Envia el mensaje de la carta que fue revelada
+     * @param mensaje
+     */
     public void EnviarRevelado(String mensaje){
 
         mensaje += "#" + this.jugador + "#REVELAR#REVELAR#TRUE#TRUE";
@@ -181,7 +193,6 @@ public class Cliente implements Runnable {
      * Ejecuta lo que recibirá del server
      * @param mensaje
      */
-
     public void EjeccucionCliente(String[] mensaje){
         //Aqui se hará lo que mander el servidor
 
